@@ -1,0 +1,7 @@
+{
+  "name": "ramen-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

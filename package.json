@@ -1,0 +1,93 @@
+{
+  "name": "mobile-ramen-test-jucasero-app",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@awesome-cordova-plugins/in-app-browser": "^5.43.0",
+    "@capacitor/app": "1.1.0",
+    "@capacitor/core": "3.4.1",
+    "@capacitor/haptics": "1.1.4",
+    "@capacitor/keyboard": "1.2.2",
+    "@capacitor/status-bar": "1.0.8",
+    "@capacitor/storage": "^1.2.5",
+    "@craco/craco": "^6.4.3",
+    "@ionic-native/android-permissions": "^5.36.0",
+    "@ionic-native/core": "^5.36.0",
+    "@ionic/react": "^6.0.0",
+    "@ionic/react-router": "^6.0.0",
+    "@ramenx/ionic-template-generator": "latest",
+    "@ramenx/ui-library": "latest",
+    "@team_eureka/eureka-ionic-core": "^1.0.7",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^12.19.15",
+    "@types/react": "^16.14.3",
+    "@types/react-dom": "^16.9.10",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.7",
+    "axios": "^0.26.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
+    "esm": "^3.2.25",
+    "ionicons": "^5.4.0",
+    "moment": "^2.29.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.2",
+    "sass": "^1.49.9",
+    "swiper": "^8.1.5",
+    "typescript": "^4.1.3",
+    "util": "^0.12.4",
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4",
+    "yargs": "^17.5.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@capacitor/cli": "3.4.1",
+    "@types/gulp": "^4.0.9",
+    "craco-sass-resources-loader": "^1.1.0",
+    "gulp": "^4.0.2",
+    "plop-pack-npm-install-packages": "0.0.3",
+    "postcss": "8.4.6",
+    "ts-node": "^10.7.0"
+  },
+  "description": "An Ionic project"
+}
