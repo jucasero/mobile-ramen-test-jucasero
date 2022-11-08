@@ -1,10 +1,18 @@
 @import ../../theme/ui-rules.sass
-
-.onboarding
-  padding-top: var(--ion-safe-area-top)
-  .content
-    max-width: $grid * 85
-ion-footer 
-  margin: 0 auto
-  max-width: $grid * 85
-  
+.ion-page 
+  background-size: cover
+  ion-content
+    --background: transparent
+    .swiper-slide
+      height: auto !important
+    .onboarding
+      padding-top: var(--ion-safe-area-top)
+      flex-direction: column
+      justify-content: space-between
+      margin: 0
+      .content
+        max-width: $grid * 85
+  ion-footer 
+    display: block
+    max-width: 100%
+    padding: 0

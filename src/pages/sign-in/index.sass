@@ -1,19 +1,19 @@
 @import ../../theme/ui-rules.sass
-
-.signin-page 
-  .content 
-    max-width: $grid * 85
+.signin-page
   ion-content 
-    .swiper 
-      height: 100%
-      .sign-in
-          background-color: var(--ion-background-color)
-          flex-direction: column
-          justify-content: flex-start
-          width: 100%
-          height: 100%
-          .visible-m 
-            display: block
-          div.content
-            img 
-              width: 100%
+    .login-entry
+      width: 100%
+      padding: 0 $grid*12 4vh
+      display: flex
+      flex-direction: column
+    .login-data
+      padding-top: var(--ion-safe-area-top)
+      flex-direction: column
+      display: flex
+      justify-content: flex-start
+      align-items: flex-start
+      padding: 0 $grid*8 4vh
+  ion-footer 
+    display: block
+    max-width: 100%
+    padding: 0

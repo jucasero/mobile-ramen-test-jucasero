@@ -1,55 +1,226 @@
 @import ../../theme/ui-rules.sass
 
-.dots
-  display: flex
-  align-items: center
-  margin-left: $grid*4
+.root-page 
+  &.initial-state 
+    ion-toolbar 
+      --border-width: 0
+      &:nth-child(1) 
+        text-align: -webkit-right
+    div.custom-skeleton 
+      padding: 0 16px
+      >div 
+        width: 100%
+        &:nth-child(2)
+          display: flex
 
-  div
-    opacity: 0.25
-    width: $grid+2
-    height: $grid+2
-    border-radius: $grid
-    margin-right: $grid+2
-    transition: all 500ms
-    background-color: var(--ion-text-color)
+  &.home-loaded
+    ion-header
+      ion-toolbar
+        >div
+          padding: 0px 8px 0px 8px
+          display: flex !important
+          justify-content: flex-end
+          flex-direction: row
+          align-items: center
+          margin-top: 20px
+          ion-button
+            --background: var(--ion-background-color)
+            --padding-bottom: 4px
+            --padding-start: 4px
+            --padding-end: 4px
+            border-radius: 0px
+            box-shadow: none
+            --padding-top: 4px
+            img
+              height: 45px
+              width: 45px
+              background-repeat: no-repeat
+              background-position: 50%
+              border-radius: 50%
+              background-size: 100% auto
+          >div
+            &:nth-child(1)
+              position: relative
+              padding-right: 8px
+              margin-right: 8px
+              ion-button
+                --color: var(--ion-color-primary-shade)
+              >ion-badge
+                position: absolute
+                color: var(--ion-text-color)
+                bottom: 12%
+                right: 10%
+                width: 21px
+                height: 21px
+                display: flex
+                border-radius: 10px
+                background-color: var(--ion-color-secondary)
+                align-items: center
+                justify-content: center
+            &:nth-child(2)
+              position: relative
+      div.title
+        padding: 0 $grid * 6
+        font-weight: $bold
+        line-height: 1
+        text-align: left
+        color: var(--ion-color-primary)
+        margin-bottom: $grid * 4
+        >div:nth-child(1)
+          font-size: $grid * 9
+          color: var(--ion-color-primary-tint)
+          line-height: $grid * 8
+        >div:nth-child(2)
+          position: relative
+          font-size: $grid * 10
+          >span
+            position: absolute
+            font-size: $grid * 10
+            margin-left: $grid * 2
+      @media ($breakpoint-s)
+        div.title
+          padding: 0 $grid * 4
+          >div:nth-child(1)
+            font-size: $grid * 8
+            line-height: $grid * 7
+          >div:nth-child(2)
+            font-size: $grid * 9
+            >span 
+              font-size: $grid * 9
+      div.lava-buttons
+        padding: 0 4 * $grid
+        display: flex
+        justify-content: flex-start
+        margin-bottom: 2px
+        overflow-x: scroll
+        &::-webkit-scrollbar
+          display: none
+        >ion-button
+          --background-hover: transparent
+          color: var(--ion-color-primary-tint)
+          --background: #F2F4F4
+          /* Light Gray */
+          --padding-start: 16px
+          --padding-end: 16px
+          border-radius: 50px
+          width: fit-content
+          border-radius: 5px
+          margin-left: 5px
+          padding: 0px
+          height: 2.25em
+          font-size: 16px
+          font-weight: bold
+          line-height: 1
+          letter-spacing: -0.8px
+          text-align: center
+          svg
+            margin-right: 4px
+          &:first-child
+            margin-left: 0px
+          &.active
+            svg
+              margin-right: 4px
+            --background: var(--ion-color-secondary-linear)
+            color: var(--ion-text-color)
 
-  .selected
-    opacity: 1 !important
-    width: 30px !important
-
-.onboarding
-  width: 100%
-  height: 100%
-  display: flex
-  flex-direction: column
-
-  .content
-    display: flex
-    text-align: left
-    max-width: $grid*85
-    flex-direction: column
-    padding: $grid*8 $grid*8 0
-    img 
-      z-index: 1
-      align-self: center
-      position: relative
-      max-width: $grid*65
-    h2 
-      font-weight: bold
-      padding-top: $grid*6
-      font-size: $grid*10
-      background: linear-gradient(74.39deg, #0A1FBA 0%, #2D66F6 48.96%, #4BAAF9 100%)
-      -webkit-background-clip: text
-      -webkit-text-fill-color: transparent
-    h3 
-      font-size: $grid*5
-      padding-top: $grid*3
-      padding-right: $grid
-      line-height: $grid*6
-      background: rgba(0, 0, 0, 0.6)
-      -webkit-background-clip: text
-      -webkit-text-fill-color: transparent
+    ion-content
+      --background: transparent
+      --padding-start: 16px
+      --padding-end: 16px
+      background-repeat: no-repeat
+      background-position: center calc(100% + 50px)
+      background-color: var(--ion-background-color)
+      &::-webkit-scrollbar
+        display: none
+      div.empty-tasks
+        padding-top: 0px
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        width: 100%
+        margin-top: 56px
+        >div
+          padding-top: 8px
+          font-size: 24px
+          font-weight: bold
+          line-height: 1
+          letter-spacing: -1.2px
+          color: var(--ion-color-primary-shade)
+      .swiper 
+        height: 100%
+        display: flex
+        align-items: flex-start
+        justify-content: flex-start
+        overflow: auto
+        .swiper-slide
+          width: 100%
+          margin-top: 16px
+          display: flex
+          flex-direction: row
+          align-items: flex-start
+          justify-content: center
+      div.progress-bar
+        background-color: var(--ion-color-primary)
+        width: 100%
+        border-radius: 24px
+        display: flex
+        padding: 18px 24px
+        margin-bottom: 24px
+        >div
+          .progress-text p
+            margin-bottom: 0
+          color: rgba(255, 255, 255, 0.6)
+          // Text
+          &:nth-child(1)
+            width: calc(100% - 80px)
+            >div
+              &:nth-child(1) 
+                font-size: 24px
+                font-weight: bold
+                line-height: 1
+                letter-spacing: -1.2px
+                text-align: left
+                color: var(--ion-color-primary-contrast)
+                padding-bottom: 4px
+              &:nth-child(2)
+                font-size: 14px
+                font-weight: 600
+                font-stretch: normal
+                font-style: normal
+                line-height: 1
+                letter-spacing: -0.8px
+                text-align: left
+                display: flex
+                align-items: center
+                >span
+                  font-size: 32px
+                  margin-right: 10px
+          &:nth-child(2)
+            display: flex
+            align-items: center
+            position: relative
+            >div
+              // Progress Circle indicador
+              &:nth-child(1)
+                display: flex
+                justify-content: center
+                text-align: center
+                position: absolute
+                top: -80px
+                width: 80px !important
+                height: 80px !important
+                margin: 0 auto
+                -webkit-user-select: none
+                user-select: none
+              // Percent Label
+              &:nth-child(2)
+                position: absolute
+                color: var(--ion-color-primary-contrast)
+                font-size: 16px
+                font-weight: bold
+                padding-left: 4px
+                width: 100%
 ion-footer 
   display: flex
   max-width: $grid*85

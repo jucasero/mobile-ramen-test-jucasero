@@ -1,7 +1,6 @@
 const locale = {
   LOGIN_TITLE: '¡Lorem ipsum dolor sit amet!',
-  LOGIN_SUBTITLE:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  LOGIN_SUBTITLE: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 
   LOGIN_WITH_EMAIL: 'Ingresa con tu correo',
   LOGIN_WITH_GOOGLE: 'Ingresar con Google',

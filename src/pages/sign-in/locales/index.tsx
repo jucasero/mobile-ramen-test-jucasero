@@ -1,9 +1,5 @@
-import en from './en';
-import es from './es';
+import en from './en'
+import es from './es'
+import br from './br'
 
-const locale = {
-    en,
-    es
-}
-
-export default locale
+export default { en, es, br }

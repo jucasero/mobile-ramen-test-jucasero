@@ -1,10 +1,6 @@
-export default {
-    dummy_title1: "Lorem ipsum",
-    dummy_description1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-  
-    dummy_title2: "dolor sit",
-    dummy_description2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-  
-    dummy_title3: "consectetur",
-    dummy_description3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-  };
+const locale = {
+  PRODUCT_INQUIRY_TITLE: "Consulta producto",
+  PRODUCT_INQUIRY_SUBTITLE: "Podrás ver toda la información de un producto.",
+};
+
+export default locale;

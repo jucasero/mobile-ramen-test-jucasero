@@ -1,104 +1,126 @@
-import { Route } from 'react-router-dom'
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
-import { IonReactRouter } from '@ionic/react-router'
-import { AuthenticationClient } from '@team_eureka/eureka-ionic-core'
-import OnBoardingPage from './pages/onboarding'
-import SignInPage from './pages/sign-in'
-import SectionExplore from './pages/sections/explore'
-import SettingsClient from './clients/SettingsClient'
+import { Route } from "react-router-dom";
+import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
+import SettingsClient from "./clients/SettingsClient";
+
+/* Core Pages */
+import SignInPage, { onSignInCallbackHandler } from "./pages/sign-in";
+import OnBoardingPage from "./pages/onboarding";
+import RootHomePage from "./pages/root-home";
+
 /* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css'
+import "@ionic/react/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css'
-import '@ionic/react/css/structure.css'
-import '@ionic/react/css/typography.css'
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/typography.css";
 
 /* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css'
-import '@ionic/react/css/float-elements.css'
-import '@ionic/react/css/text-alignment.css'
-import '@ionic/react/css/text-transformation.css'
-import '@ionic/react/css/flex-utils.css'
-import '@ionic/react/css/display.css'
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import './theme/variables.css'
-import './theme/ion-overrides.sass'
+import "./theme/variables.css";
+import "./theme/ion-overrides.sass";
 
 /* Ramen UI Base */
-import '@ramenx/ui-library/dist/index.css'
+import "@ramenx/ui-library/dist/index.css";
 
 /* React Hooks */
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { AuthenticationClient, IJwt } from "@team_eureka/eureka-ionic-core";
+import { ICustomer } from "./models/users/ICustomer";
 
-setupIonicReact()
+/* Parte de la documentacion para equipos regionales (agregar modulo) */
+//import ProductScanTool from "./pages/tools/tool-product-scan";
 
-interface PageState {
-  booting?: boolean
-  authenticated?: boolean
-  is_first_time?: boolean
-  app_booting?: boolean
-}
+import animationBuilder from "./libs/AnimationBuilder";
+
+/* Set the lenguage (spanish if the default lenguage if you dont set any other) */
+/* setLocale('br') */
+
+setupIonicReact();
 
 const App: React.FC = () => {
   setupIonicReact({
-    mode: 'ios'
-  })
+    mode: "ios",
+  });
 
   /* Page state to controlate step by step the flow of the app */
-  const [pageState, setPageState] = useState<PageState>({
-    booting: true /* Booting flow when start the app */,
-    authenticated:
-      true /* Launch Authentication flow when user is not identified */,
-    is_first_time: false /* Launch Onboarding flow when is first time */,
-    app_booting: false /* Set if the start is booting */
-  })
+  const [authenticated, setAuth] = useState<boolean>(false);
+  const [is_first_time, setFirstTime] = useState<boolean>(false);
+  const [app_booting, setAppBooting] = useState<boolean>(false);
+  const [registration_data, setRegistration] = useState<any>();
 
   useEffect(() => {
     const getStorageClientData = async () => {
-      await SettingsClient.boot()
-      await AuthenticationClient.boot()
-      setPageState({
-        is_first_time: SettingsClient.get('FIRST_TIME', true),
-        authenticated: AuthenticationClient.isAuthenticated(),
-      })
-    }
-    getStorageClientData()
-  }, [])
+      try {
+        await SettingsClient.boot();
+        await AuthenticationClient.boot();
+        setFirstTime(SettingsClient.get("FIRST_TIME", true));
+        setAuth(AuthenticationClient.isAuthenticated());
+        console.log("auth", authenticated);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getStorageClientData();
+  }, []);
 
   const onBoardingCompletedHandler = () => {
-    setPageState({
-      ...pageState,
-      is_first_time: SettingsClient.get('FIRST_TIME', false)
-    })
-  }
+    setFirstTime(SettingsClient.get("FIRST_TIME", false));
+  };
 
-  const { authenticated, is_first_time, app_booting } = pageState
+  const onAuthenticatedHandler = async (
+    needRegistration: boolean,
+    jwt?: IJwt,
+    callback?: onSignInCallbackHandler,
+    customer?: ICustomer
+  ) => {
+    setAuth(true);
+    setRegistration({ jwt: jwt, customer: customer });
+  };
 
   if (app_booting) {
-    return <div></div>
+    return <div></div>;
   }
   if (is_first_time) {
     return (
       <OnBoardingPage
         onBoardingCompleted={() => onBoardingCompletedHandler()}
       ></OnBoardingPage>
-    )
+    );
   }
   if (!authenticated) {
-    return <SignInPage></SignInPage>
+    return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (
     <IonApp>
       <IonReactRouter keyLength={1}>
-        <IonRouterOutlet>
+        <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path='/' component={SectionExplore} exact={true} />
+          <Route path="/" component={RootHomePage} exact={true} />
+
+          {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
+          {/*<Route
+            path="/product-detail"
+            component={ProductScanTool}
+            exact={true}
+          />
+          <Route
+            path="/product-detail/:productean"
+            component={ProductScanTool}
+            exact={true}
+          />*/}
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
-  )
-}
+  );
+};
 
-export default App
+export default App;

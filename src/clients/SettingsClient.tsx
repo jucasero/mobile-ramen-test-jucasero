@@ -1,5 +1,5 @@
 import { Storage } from '@capacitor/storage';
-import WithBootedClient from "../lib/WithBootedClient";
+import WithBootedClient from "../libs/WithBootedClient";
 
 
 const storageName = "@settings";

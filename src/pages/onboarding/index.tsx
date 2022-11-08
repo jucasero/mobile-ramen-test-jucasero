@@ -1,40 +1,46 @@
+import './index.sass'
 import 'swiper/swiper.min.css'
 import '@ionic/react/css/ionic-swiper.css'
-
 import React, { useEffect, useState } from 'react'
-import { IonContent, IonFooter, IonPage } from '@ionic/react'
-import { SettingsClient } from '@team_eureka/eureka-ionic-core'
-import i18n from '@team_eureka/eureka-ionic-core/lib/i18n'
+import { IonContent, IonFooter, IonImg, IonPage } from '@ionic/react'
+import { Expr, SettingsClient, XConsole, i18 } from '@team_eureka/eureka-ionic-core'
+import { Geolocation } from '@capacitor/geolocation';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
-
 import locales from './locales'
-import './index.sass'
+import AppWelcomeBackground from './../../assets/media/app-welcome-bg.svg';
+import AppWelcomeImage from './../../assets/media/app-welcome-img.svg';
+import OnboardingGpsImage from './../../assets/media/onboarding-gps.svg';
+import OnboardingNotification from './../../assets/media/onboarding-notification.svg'
 
-import { XGrid, XSpace, XDots, XButtonNext, XImage, XText } from '@ramenx/ui-library'
-import OnboardingDummy from '../../assets/img/onboarding/dummy.svg'
+// RAMEN componentes library
+import { XGrid, XSpace, XText, XButton, XImage } from '@ramenx/ui-library'
 
+const cencosudx = XConsole({label: 'Onboarding-page'})
+const localize = i18(locales)
 const colorGray = 'rgba(0,0,0,0.6)'
-const colorGradientBlue =
-  'linear-gradient(74.39deg, #0A1FBA 0%, #2D66F6 48.96%, #4BAAF9 100%)'
+const style = { backgroundImage: `url(${AppWelcomeBackground})` }
+
 interface IProps {
   onBoardingCompleted: () => void
 }
 
 const OnBoardingPage: React.FC<IProps> = (props) => {
-  const localize = i18n(locales)
 
   const [swiper, setSwiper] = useState<any>()
-
-  const [pageStates, setPageStates] = useState({
-    mode: 'INITIAL_STATE',
-    slideIndex: 0
-  })
+  const [slideState, setSlideStates] = useState<Number>(0)
+  const [mode, setModeState] = useState<"WELCOME" | "GPS" | "NOTIFICATIONS">('WELCOME')
+  const [buttonText, setButtonState] = useState(localize('welcome_button', ''))
+  const [gpsState, setGPSState] = useState<boolean>()
+  const [pushNotificationState, setPushNotificationState] = useState<boolean>();
 
   useEffect(() => {
-    console.log('Onboarding')
-  }, [])
+    console.log('Onboarding', slideState)
+  }, [slideState])
 
-  const { slideIndex } = pageStates
+  useEffect(() => {
+    console.log('Onboarding', mode)
+  }, [mode])
+
 
   const onGetSwiperHandler = (e: any) => {
     setSwiper(e)
@@ -46,14 +52,99 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
   }
 
   const onChangeHandler = () => {
-    if (slideIndex === 2) {
-      onEndOndboarding()
-    }
+    setButtonState(localize('gps_button',''))
+    setModeState('GPS')
     swiper!.slideNext()
   }
 
+  const onEnableGPSHandler = async () => {
+		try {
+			const permissionState = await Geolocation.checkPermissions();
+			Expr.whenNotInNativePhone(async () => {
+        setGPSState(true);
+        setModeState('NOTIFICATIONS')
+        setButtonState(localize('notification_button',''))
+        swiper!.slideNext()
+				return;
+			})
+			Expr.whenAndroid(async () => {
+				//In Android we have 2 states
+				switch (permissionState.location) {
+					case "granted":
+            setGPSState(true);
+						setModeState('NOTIFICATIONS')
+            setButtonState(localize('notification_button',''))
+            swiper!.slideNext()
+            break;
+					case "prompt" || "denied":
+						try {
+							const granted = await Geolocation.requestPermissions!();
+						} catch (error) {
+							cencosudx.error(error);
+						}
+						// Call again to check the authorization
+						setTimeout(onEnableGPSHandler, 500);
+						break;
+					case "prompt-with-rationale":
+            setGPSState(false);
+						setModeState('NOTIFICATIONS')
+            setButtonState(localize('notification_button',''))
+            swiper!.slideNext()
+            break;
+				}
+			})
+	
+			Expr.whenIos(async () => {
+				// In Ios we have 3 states 
+				switch (permissionState.location) {
+					case "granted":
+            setGPSState(true);
+						setModeState('NOTIFICATIONS')
+            setButtonState(localize('notification_button',''))
+            swiper!.slideNext()
+            break;
+					case "denied":
+            setGPSState(false);
+						setModeState('NOTIFICATIONS')
+            setButtonState(localize('notification_button',''))
+            swiper!.slideNext()
+            break;
+					case "prompt":
+						// Take a picture to request authorization
+						try {
+							await Geolocation.getCurrentPosition();
+						} catch (error) {
+							cencosudx.error(error)
+						}
+						// Call again to check the authorization
+						setTimeout(onEnableGPSHandler, 500);
+						break;
+				}
+			})
+		} catch (error) {
+
+		}
+	}
+
+  const onContinueHandler = async () => {
+    switch(slideState) {
+      case 0: {
+        onChangeHandler()
+        break;
+      }
+      case 1: {
+        onEnableGPSHandler()
+        break;
+      }
+      case 2: {
+        onEndOndboarding()
+        break;
+      }
+    }
+  }
+
   return (
-    <IonPage>
+    <IonPage style={style}>
       <IonContent>
         {/* Swiper slide with three screen with a dummy header imagen and dummy text
         -- Change text on 'locales' folder */}
@@ -62,53 +153,49 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
           initialSlide={0}
           speed={400}
           onSlideChange={(e) =>
-            setPageStates({ ...pageStates, slideIndex: e.activeIndex })
+            setSlideStates(e.activeIndex)
           }
         >
           <SwiperSlide className='onboarding'>
-            <div className='content'>
+            <div className='content-welcome'>
+              <XSpace level='4' />
+              <IonImg src={AppWelcomeImage}/>
               <XGrid type='column' justify='center'>
-                <XSpace level='6' />
-                <XImage src={OnboardingDummy} width='85' />
-                <XSpace level='10' />
-
-                <XText level='5' background={colorGradientBlue}>
-                  {localize('dummy_title1', '')}
-                </XText>
                 <XText level='9' leading='title' background={colorGray}>
-                  {localize('dummy_description1', '')}
+                  {localize('welcome_title', '')}
+                </XText>
+                <XText level='4' leading='title' background='black'>
+                  {localize('welcome_description', '')}
                 </XText>
               </XGrid>
             </div>
           </SwiperSlide>
           <SwiperSlide className='onboarding'>
-            <div className='content'>
+            <div className='content-gps'>
+              <XSpace level='4' />
+              <XImage src={OnboardingGpsImage} width='75'/>
+              <XSpace level='4' />
               <XGrid type='column' justify='center'>
-                <XSpace level='6' />
-                <XImage src={OnboardingDummy} width='85' />
-                <XSpace level='10' />
-
-                <XText level='5' background={colorGradientBlue}>
-                  {localize('dummy_title2', '')}
+                <XText level='4' leading='title' background='black'>
+                  {localize('gps_title', '')}
                 </XText>
                 <XText level='9' leading='title' background={colorGray}>
-                  {localize('dummy_description2', '')}
+                  {localize('gps_description', '')}
                 </XText>
               </XGrid>
             </div>
           </SwiperSlide>
           <SwiperSlide className='onboarding'>
-            <div className='content'>
+            <div className='content-notifications'>
+              <XSpace level='4' />
+              <XImage src={OnboardingNotification} width='75'/>
+              <XSpace level='4' />
               <XGrid type='column' justify='center'>
-                <XSpace level='6' />
-                <XImage src={OnboardingDummy} width='85' />
-                <XSpace level='10' />
-
-                <XText level='5' background={colorGradientBlue}>
-                  {localize('dummy_title3', '')}
+                <XText level='4' leading='title' background='black'>
+                  {localize('notification_title', '')}
                 </XText>
                 <XText level='9' leading='title' background={colorGray}>
-                  {localize('dummy_description3', '')}
+                  {localize('notification_description', '')}
                 </XText>
               </XGrid>
             </div>
@@ -116,10 +203,9 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
         </Swiper>
       </IonContent>
       <IonFooter>
-        <XGrid boundaries='xlarge' justify='between'>
-          <XDots count={3} current={slideIndex} />
-          <XButtonNext onClick={() => onChangeHandler()} />
-        </XGrid>
+        <XButton background='black' size='xlarge' onClick={() => { onContinueHandler()}}>
+          {buttonText}
+        </XButton>
       </IonFooter>
     </IonPage>
   )

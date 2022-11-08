@@ -1,15 +1,15 @@
 const locale = {
-  dummy_title1: 'Lorem ipsum dolor sit amet.',
-  dummy_description1:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+  welcome_title: 'Conoce Mi Local.',
+  welcome_description: 'La nueva app para facilitar todas tus tareas.',
+  welcome_button: 'Comencemos',
 
-  dummy_title2: 'Pellentesque commodo dui viverra.',
-  dummy_description2:
-    'Pellentesque commodo dui viverra suscipit suscipit. Mauris quis leo posuere.',
+  gps_title: 'Pellentesque commodo dui viverra.',
+  gps_description: 'Pellentesque commodo dui viverra suscipit suscipit. Mauris quis leo posuere.',
+	gps_button: 'Activar localización',
 
-  dummy_title3: 'Aliquam vel facilisis nibh, et luctus.',
-  dummy_description3:
-    'Aliquam vel facilisis nibh, et luctus purus. Etiam egestas placerat lacus.'
+  notification_title: 'Aliquam vel facilisis nibh, et luctus.',
+  notification_description: 'Aliquam vel facilisis nibh, et luctus purus. Etiam egestas placerat lacus.',
+	notification_button: 'Activar notificaciones'
 }
 
 export default locale
