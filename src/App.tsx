@@ -38,6 +38,7 @@ import { ICustomer } from "./models/users/ICustomer";
 
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
+import FoundRateAlertsProducts from "./pages/tasks/task-found-rate-product";
 
 import animationBuilder from "./libs/AnimationBuilder";
 
@@ -107,16 +108,11 @@ const App: React.FC = () => {
           <Route path="/" component={RootHomePage} exact={true} />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
-          {/*<Route
-            path="/product-detail"
-            component={ProductScanTool}
+          <Route
+            path="/found-rate-alerts"
+            component={FoundRateAlertsProducts}
             exact={true}
           />
-          <Route
-            path="/product-detail/:productean"
-            component={ProductScanTool}
-            exact={true}
-          />*/}
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

@@ -1,0 +1,98 @@
+@import ../../../theme/ui-rules.sass
+
+.task-loss-product
+    ion-toolbar
+        --border-color: transparent
+    custom-skeleton 
+        padding: 0 16px
+        >div 
+        width: 100%
+        &:nth-child(2)
+            display: flex
+    .total
+        padding-left: 32px
+
+    .task-header
+        border-bottom: solid 8px #F0F0F0
+        padding-bottom: 16px
+
+    ion-content
+        --padding-top: 16px
+
+    .questiom-container
+        margin: auto 24px
+        background: #F0F0F0
+        border-radius: 16px        
+        ion-button
+            --padding-start: 11px
+            --padding-end: 7px
+            --background: #ffffff
+            --background-activated: #ffffff
+            --color: rgba(0, 0, 0, 0.6)
+        ion-button.selected
+            --background: #2CDFA6
+            --background-activated: #2CDFA6
+            --color: #ffffff
+
+    .yes-container
+        background: #E8F9F3
+        border-radius: 24px 
+        padding: 24px
+        margin: 24px 24px auto
+        ul
+            list-style: none
+            margin-left: 0
+            padding-left: 1em
+            ion-icon
+                color: #2CDFA6
+            span
+                color: rgba(0, 0, 0, 0.6)
+        x-button
+            position: absolute
+            bottom: 28px    
+            width: 100%
+            margin: -24px
+    .no-container
+        background: #F0F0F0 
+        margin: 24px
+        border-radius: 20px
+        padding: 10px 0px 16px 16px
+
+    .product-details
+        ion-item
+            --border-color: transparent
+
+.modal    
+    .modal-title
+        margin: 40px 30px 20px
+    ion-button
+        margin: 4px 32px
+        --background: #ffffff
+        --background-activated: #ffffff
+        --border-color: #F0F0F0
+        --border-width: 2px
+    ion-button.selected
+        margin: 4px 32px
+        --background: #ffffff
+        --background-activated: #ffffff
+        --border-color: transparent
+        --border-width: 2px
+        background: linear-gradient(#fff, #fff) padding-box,linear-gradient(79.78deg, #32E0A1 20.82%, #F0FE0A 89.45%) border-box
+        border: 2px solid transparent
+        border-radius: 64px
+    ion-item
+        margin-top: 32px
+        --padding-start: 24px
+        --padding-end: 16px
+        --border-color: transparent
+        ion-textarea
+            border-radius: 24px
+            --color: #999999
+            --background: #F0F0F0
+            --padding-start: 18px !important
+    .out-of-stock-causes-container
+        margin: 0px 0 0 24px
+
+.footer-buttom-container
+    margin-top: 24px
+

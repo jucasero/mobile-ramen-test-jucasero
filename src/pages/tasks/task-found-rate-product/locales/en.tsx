@@ -1,0 +1,27 @@
+const locale = {
+  SUCCESSFULY_MANAGED_ALERT: "Alert has been handled successfully.",
+  TITLE: "Found Rate Alerts",
+  LOSS_PLAN_REASON: "Do you know why the product has lost sales?",
+  NO_FLEJE: "It was without strapping",
+  BAD_POSITIONED: "It was misplaced",
+  WRONG_CODE: "It had code difference",
+  OTHER: "Other reason",
+  LEAVE_COMMENT: "Leave a comment",
+  SEND: "Send",
+  OUT_STOCK_CAUSE: "Pleaseindicate the reason why the product is out of stock?",
+  BAD_STOCK_ADJUSTMENT: "Out of stock",
+  FINISH: "Finish",
+  VERIFICATION: "Make sure the product complies with the following items",
+  RIGHT_PLACED: "Placed correctly",
+  RIGHT_CODE: "Correct code",
+  RIGHT_FLEJE: "Corresponding strap",
+  STOCK: "Stock",
+  READY: "Ready, finish alert",
+  IS_IN_STOCK: "Is there stock in warehouse/chamber to replenish?",
+  REPLENISH: "Yes, replenish",
+  NO: "No",
+  CONTINUE: "Continue",
+  IS_IN_GONDOLA: "Is the product in the gondola?",
+};
+
+export default locale;
