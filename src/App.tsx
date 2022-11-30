@@ -38,7 +38,10 @@ import { ICustomer } from "./models/users/ICustomer";
 
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
+// Merchandise reception imports
 import MerchandisereceptionAlert from "./pages/tasks/merchandise-reception-task";
+import MerchandiseReceptionProducts from "./pages/tasks/merchandise-reception-task/components/product/product-list";
+import { routes } from './pages/tasks/constants.js';
 
 import animationBuilder from "./libs/AnimationBuilder";
 
@@ -97,7 +100,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (authenticated) {
+  if (!authenticated) {
     return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (
@@ -108,9 +111,15 @@ const App: React.FC = () => {
           <Route path="/" component={RootHomePage} exact={true} />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
+          {/* Merchandise reception routes */}
           <Route
             path="/merchandise-reception"
             component={MerchandisereceptionAlert}
+            exact={true}
+          />
+          <Route
+            path={routes.productCategory}
+            component={MerchandiseReceptionProducts}
             exact={true}
           />
         </IonRouterOutlet>
