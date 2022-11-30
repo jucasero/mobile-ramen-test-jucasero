@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import ProgressBar from "react-customizable-progressbar";
 import { IonContent } from "@ionic/react";
 import { i18 } from "@team_eureka/eureka-ionic-core";
 import EmojiIcon from "../../../../components/emoji-icon";
 import TaskCard from "../../../../components/task-card";
-import { IMerchandiseReceptionMetaData, ITask } from "../../../../models/ITask";
+import TasksClient from "../../../../clients/TasksClient";
 import { ReactComponent as AllDoneImage } from "./../../../../assets/media/eye.svg";
 import trackImage from "../../../../assets/media/task/truck.svg";
 import locales from "./locales";
+import { ITask } from "../../../../models/ITasks/ITask";
 
 const localize = i18(locales);
 interface IProps {
@@ -16,34 +17,20 @@ interface IProps {
 }
 const TasksContent: React.FC<IProps> = (props) => {
   const history = useHistory();
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
-  const task: ITask<IMerchandiseReceptionMetaData> = {
-    id: "2",
-    title: "Recepción de mercadería",
-    type: "MERCHANDISE-RECEPTION",
-    meta_data: {
-      products: [
-        { id: "20", title: "Lácteos", type: "DAIRY", total: 1 },
-        { id: "21", title: "Panificados", type: "BAKED", total: 3 },
-        { id: "22", title: "Almacén", type: "WAREHOUSE", total: 2 },
-        { id: "23", title: "Vinos", type: "WINES", total: 2 },
-        {
-          id: "24",
-          title: "Mundo bio",
-          type: "BIO-WORLD",
-          total: 1,
-        },
-      ],
-      total: 5,
-    },
+  const handleOnClickTask = (task: ITask) => {
+    history.replace({ pathname: task.type, state: task });
   };
 
-  const handleOnClickTask = () => {
-    history.replace({
-      pathname: `${task.type.toLocaleLowerCase()}`,
-      state: task.meta_data,
-    });
+  const getTasks = async () => {
+    const tasksResponse = await TasksClient.getTasks();
+    setTasks(tasksResponse);
   };
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   return (
     <IonContent>
@@ -70,17 +57,21 @@ const TasksContent: React.FC<IProps> = (props) => {
         </div>
       </div>
 
-      <TaskCard
-        image={trackImage}
-        title={task.title}
-        total={task.meta_data.total}
-        onClick={handleOnClickTask}
-      ></TaskCard>
-
-      <div className="empty-tasks">
-        <AllDoneImage />
-        <div>{localize("ALL_IN_ORDER", "")}</div>
-      </div>
+      {Boolean(tasks.length) ? (
+        tasks.map((task) => (
+          <TaskCard
+            image={trackImage}
+            title={task.title}
+            total={task.total}
+            onClick={() => handleOnClickTask(task)}
+          ></TaskCard>
+        ))
+      ) : (
+        <div className="empty-tasks">
+          <AllDoneImage />
+          <div>{localize("ALL_IN_ORDER", "")}</div>
+        </div>
+      )}
     </IonContent>
   );
 };
