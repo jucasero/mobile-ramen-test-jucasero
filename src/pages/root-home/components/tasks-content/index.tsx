@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
 import ProgressBar from "react-customizable-progressbar";
 import { IonContent } from "@ionic/react";
@@ -10,6 +10,8 @@ import { ReactComponent as AllDoneImage } from "./../../../../assets/media/eye.s
 import trackImage from "../../../../assets/media/task/truck.svg";
 import locales from "./locales";
 import { ITask } from "../../../../models/ITasks/ITask";
+import CardSkeleton from "../../../../components/card-skeleton";
+import useFetch from "../../../../hooks/useFetch";
 
 const localize = i18(locales);
 interface IProps {
@@ -17,19 +19,15 @@ interface IProps {
 }
 const TasksContent: React.FC<IProps> = (props) => {
   const history = useHistory();
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [fetchTasks, tasks, isLoading] = useFetch(TasksClient.getTasks());
 
   const handleOnClickTask = (task: ITask) => {
     history.replace({ pathname: task.type, state: task });
   };
 
-  const getTasks = async () => {
-    const tasksResponse = await TasksClient.getTasks();
-    setTasks(tasksResponse);
-  };
-
   useEffect(() => {
-    getTasks();
+    fetchTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,17 +54,19 @@ const TasksContent: React.FC<IProps> = (props) => {
           <div>{Math.floor(props.pendingInPercent)}%</div>
         </div>
       </div>
-
-      {Boolean(tasks.length) ? (
-        tasks.map((task) => (
+      {isLoading && <CardSkeleton numberOfcards={3} />}
+      {tasks &&
+        tasks.map((task, index) => (
           <TaskCard
+            key={index}
             image={trackImage}
             title={task.title}
             total={task.total}
             onClick={() => handleOnClickTask(task)}
           ></TaskCard>
-        ))
-      ) : (
+        ))}
+
+      {tasks !== null && !tasks.length && (
         <div className="empty-tasks">
           <AllDoneImage />
           <div>{localize("ALL_IN_ORDER", "")}</div>

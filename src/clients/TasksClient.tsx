@@ -17,7 +17,7 @@ class TasksClient extends RESTClient implements WithBootedClient {
             total: 5,
           },
         ]);
-      }, 300)
+      }, 500)
     );
     const response = await apiCall;
     return response;
@@ -39,7 +39,7 @@ class TasksClient extends RESTClient implements WithBootedClient {
             total: 1,
           },
         ]);
-      }, 300)
+      }, 500)
     );
     const response = await apiCall;
     return response;
