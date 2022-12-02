@@ -37,6 +37,8 @@ export const getTimeDiff = (timestamp: any): TimeDiff => {
  * @returns {Object} elapsed time, text, result
  */
 export const getElapsedTime = (timestamp: any): ElapsedTime => {
+  if (typeof timestamp === 'string')
+    timestamp = new Date(timestamp).getTime() / 1000;
   const timeDiff = getTimeDiff(timestamp);
   let time = timeDiff.sec;
   let text = 'segundos';
