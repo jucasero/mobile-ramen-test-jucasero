@@ -11,8 +11,8 @@ import {
 import { chevronForwardSharp } from 'ionicons/icons';
 import { IProduct } from '../../../../../../models/IProduct';
 import { getElapsedTime } from '../../../../../../libs/helpers';
-import yogurt from '../../../../../../assets/image/yogurt.jpeg';
 import clock from '../../../../../../assets/media/clock.svg';
+import yogurt from '../../../../../../assets/image/yogurt.jpeg';
 import locales from '../locales';
 import './index.sass';
 
@@ -26,7 +26,7 @@ interface IProps {
 const Product: React.FC<IProps> = (props) => {
   const product: IProduct = props.product;
   const badgeColors = {
-    // Check from SAP API
+    // Check chip colors/behavior to get it from SAP API
     black: '#373737', // No Stock
     purple: '#5371C4', // Promotion
     green: '#34C759', // MundoBio
@@ -43,7 +43,7 @@ const Product: React.FC<IProps> = (props) => {
         <IonGrid>
           <IonRow>
             <div className="product-chip-container">
-              {/* Badges, check to get from SAP */}
+              {/* Chips, check to get from SAP */}
               <span
                 className="product-task-badge"
                 style={{ color: badgeColors.black }}
@@ -77,12 +77,12 @@ const Product: React.FC<IProps> = (props) => {
               </IonRow>
               <IonRow>
                 <span className="product-task-badge badge-nrt">
-                  {`${product.stock_nrt} ${localize('STOCK_NRT', '')}`}
+                  {`${product.units_found} ${localize('STOCK_NRT', '')}`}
                 </span>
                 <div>
                   <span className="unit-timestamp">
                     <IonIcon icon={clock} className="clock-icon" />
-                    {getElapsedTime(Number(product.last_reception_date)).result}
+                    {getElapsedTime(product.last_reception_date).result}
                   </span>
                 </div>
               </IonRow>
