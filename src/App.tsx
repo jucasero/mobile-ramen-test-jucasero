@@ -97,7 +97,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (authenticated) {
+  if (!authenticated) {
     return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (
