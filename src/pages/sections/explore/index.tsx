@@ -1,5 +1,5 @@
 import { IonContent, IonFooter, IonPage } from '@ionic/react'
-import { XHeader, XText } from '@ramenx/ui-library'
+import { XText } from '@ramenx/ui-library'
 import ExploreContainer from '../../../components/ExploreContainer'
 
 import { ReactComponent as LogoConnect } from '../../../assets/img/logo/logo-connect.svg'
@@ -12,11 +12,11 @@ const SectionExplore: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
-        <XHeader
+        {/* <XHeader
           logo={<LogoConnect />}
           clickNotifications={() => console.log('notifications')}
           clickProfile={() => console.log('profile')}
-        />
+        /> */}
         <XText level='5' spacing='2' emoji='👋🏼'>
           {localize('EXPLORE_HI', '')}
           {'Alezzi'}

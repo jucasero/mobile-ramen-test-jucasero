@@ -19,7 +19,7 @@ import { ICustomer } from "../../models/users/ICustomer";
 import locales from "./locales";
 import "./index.sass";
 
-import { XButton, XGrid, XImage, XSpace, XText } from "@ramenx/ui-library";
+import { XText } from "@ramenx/ui-library";
 import UserClient from "../../clients/UserClient";
 import { AxiosResponse } from "axios";
 
@@ -180,9 +180,9 @@ const SignInPage: React.FC<IProps> = (props) => {
           onSlideChange={(e) => setSlideStates(e.activeIndex)}
         >
           <SwiperSlide className="login-entry">
-            <XSpace level="2" />
-            <XImage src={LoginHeader} />
-            <XSpace level="4" />
+            {/* <XSpace level="2" /> */}
+            {/* <XImage src={LoginHeader} /> */}
+            {/* <XSpace level="4" /> */}
             <XText level="4" leading="title" background="black">
               {localize("LOGIN_TITLE", "")}
             </XText>
@@ -191,24 +191,24 @@ const SignInPage: React.FC<IProps> = (props) => {
             </XText>
           </SwiperSlide>
           <SwiperSlide className="login-data">
-            <XSpace level="3" />
+            {/* <XSpace level="3" /> */}
             <div onClick={() => onGoBackHandler()}>
               <IonIcon icon={arrowBack}></IonIcon>
             </div>
-            <XSpace level="8" />
-            <XGrid></XGrid>
+            {/* <XSpace level="8" /> */}
+            {/* <XGrid></XGrid> */}
           </SwiperSlide>
         </Swiper>
       </IonContent>
       <IonFooter>
-        <XButton
+        {/* <XButton
           background="black"
           size="xlarge"
           onClick={() => onCencosudLogin()}
         >
           {localize("LOGIN_CENCOSUD", "")}
-        </XButton>
-        <XSpace level="4" />
+        </XButton> */}
+        {/* <XSpace level="4" /> */}
       </IonFooter>
     </IonPage>
   );

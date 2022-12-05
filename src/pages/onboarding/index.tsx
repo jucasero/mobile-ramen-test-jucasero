@@ -13,7 +13,7 @@ import OnboardingGpsImage from './../../assets/media/onboarding-gps.svg';
 import OnboardingNotification from './../../assets/media/onboarding-notification.svg'
 
 // RAMEN componentes library
-import { XGrid, XSpace, XText, XButton, XImage } from '@ramenx/ui-library'
+// import { XGrid, XSpace, XText, XButton, XImage } from '@ramenx/ui-library'
 
 const cencosudx = XConsole({label: 'Onboarding-page'})
 const localize = i18(locales)
@@ -158,7 +158,7 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
         >
           <SwiperSlide className='onboarding'>
             <div className='content-welcome'>
-              <XSpace level='4' />
+              {/* <XSpace level='4' />
               <IonImg src={AppWelcomeImage}/>
               <XGrid type='column' justify='center'>
                 <XText level='9' leading='title' background={colorGray}>
@@ -167,12 +167,12 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
                 <XText level='4' leading='title' background='black'>
                   {localize('welcome_description', '')}
                 </XText>
-              </XGrid>
+              </XGrid> */}
             </div>
           </SwiperSlide>
           <SwiperSlide className='onboarding'>
             <div className='content-gps'>
-              <XSpace level='4' />
+              {/* <XSpace level='4' />
               <XImage src={OnboardingGpsImage} width='75'/>
               <XSpace level='4' />
               <XGrid type='column' justify='center'>
@@ -182,12 +182,12 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
                 <XText level='9' leading='title' background={colorGray}>
                   {localize('gps_description', '')}
                 </XText>
-              </XGrid>
+              </XGrid> */}
             </div>
           </SwiperSlide>
           <SwiperSlide className='onboarding'>
             <div className='content-notifications'>
-              <XSpace level='4' />
+              {/* <XSpace level='4' />
               <XImage src={OnboardingNotification} width='75'/>
               <XSpace level='4' />
               <XGrid type='column' justify='center'>
@@ -197,15 +197,15 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
                 <XText level='9' leading='title' background={colorGray}>
                   {localize('notification_description', '')}
                 </XText>
-              </XGrid>
+              </XGrid> */}
             </div>
           </SwiperSlide>
         </Swiper>
       </IonContent>
       <IonFooter>
-        <XButton background='black' size='xlarge' onClick={() => { onContinueHandler()}}>
+        {/* <XButton background='black' size='xlarge' onClick={() => { onContinueHandler()}}>
           {buttonText}
-        </XButton>
+        </XButton> */}
       </IonFooter>
     </IonPage>
   )

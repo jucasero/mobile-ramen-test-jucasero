@@ -8,6 +8,9 @@ import SignInPage, { onSignInCallbackHandler } from "./pages/sign-in";
 import OnBoardingPage from "./pages/onboarding";
 import RootHomePage from "./pages/root-home";
 
+import { XButton, XText } from '@ramenx/ui-library'
+
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -104,6 +107,15 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
+          <div>
+            <XButton text="Botón de acción" size="m" />
+
+            <p style={{ color: "red" }}>HOLA HOLsA</p>
+            <XText size={11}>Lorem ipsum dolor...</XText>
+
+            <p style={{ color: "green" }}>HOLA HOssLA</p>
+          </div>
+
           {/* CORE PATHS */}
           <Route path="/" component={RootHomePage} exact={true} />
 

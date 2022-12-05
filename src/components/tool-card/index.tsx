@@ -3,7 +3,7 @@ import React from "react";
 import { IonButton, IonIcon } from "@ionic/react";
 import { chevronForwardOutline } from "ionicons/icons";
 // RAMEN componentes library
-import { XImage } from "@ramenx/ui-library";
+// import { XImage } from "@ramenx/ui-library";
 
 interface IProps {
   imageSrc?: string;
@@ -19,11 +19,11 @@ const ToolCard: React.FC<IProps> = (props) => {
       <div
         className={`card-image-container ${props.disabled ? "disabled" : ""}`}
       >
-        <XImage
+        {/* <XImage
           className={`card-image ${props.disabled ? "disabled" : ""}`}
           src={props.imageSrc}
           heigh={200}
-        />
+        /> */}
       </div>
       <div className="titles">
         <div>
