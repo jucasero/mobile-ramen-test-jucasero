@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { IonPage, IonContent, IonList } from '@ionic/react';
 import { useHistory } from 'react-router';
 import { ICategory } from '../../../../../../models/ITasks/ICategory';
-import { IProduct } from '../../../../../../models/IProduct';
+import { IProduct } from '../../../../../../models/ITasks/IProduct';
 import TaskHeader from '../../task-header';
-import Product from '../product';
 import { ProductSkeleton } from '../../../../../../components/loaders';
+import Product from '../product';
 import useFetch from '../../../../../../hooks/useFetch';
 import MerchandiseReceptionClient from '../../../../../../clients/MerchandiseReceptionClient';
 import { routes } from '../../../constants';
@@ -39,8 +39,7 @@ const Products: React.FC = () => {
   const renderProductsList = () => (
     <IonList>
       {products?.map((product: IProduct) => (
-        // Please check what should be the unique key ?
-        <Product key={product.block_type} product={product} />
+        <Product key={product.id} product={product} />
       ))}
     </IonList>
   );

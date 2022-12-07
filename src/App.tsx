@@ -39,7 +39,7 @@ import { ICustomer } from "./models/users/ICustomer";
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 // Merchandise reception imports
-import MerchandisereceptionAlert from "./pages/tasks/merchandise-reception-task";
+import MerchandiseReceptionAlert from "./pages/tasks/merchandise-reception-task";
 import MerchandiseReceptionProducts from "./pages/tasks/merchandise-reception-task/components/product/product-list";
 import { routes } from './pages/tasks/merchandise-reception-task/constants';
 
@@ -114,7 +114,7 @@ const App: React.FC = () => {
           {/* Merchandise reception routes */}
           <Route
             path={routes.merchandiseReception}
-            component={MerchandisereceptionAlert}
+            component={MerchandiseReceptionAlert}
             exact={true}
           />
           <Route
