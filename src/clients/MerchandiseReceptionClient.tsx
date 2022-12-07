@@ -35,18 +35,16 @@ class MerchandiseReceptionProdcutClient
             units_requested: '1200',
             transit_stock_date: '1655913706869',
             shop: 'CornerShop',
-            category: 'DAIRY',
+            category: 'dairy',
           },
         ];
-        console.log('seraching...', categoryID);
         const filteredProducts = products.filter(
           (product: IProduct) => product.category === categoryID
         );
         resolve(filteredProducts);
-      }, 3000);
+      }, 500);
     });
     const response = await callApi;
-    console.log('response', response);
     return response;
   }
 }

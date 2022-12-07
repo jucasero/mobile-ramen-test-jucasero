@@ -6,6 +6,7 @@ import {
   IonThumbnail,
   IonLabel,
 } from '@ionic/react';
+import './index.sass';
 
 interface IProps {
   qtyProducts?: number;
@@ -42,7 +43,7 @@ const ProductSkeleton: React.FC<IProps> = (props) => {
 
   // Rendering skeleton elements by qtyProducts
   const renderSkeletonProducts = () => {
-    const elements = [...Array(qtyProducts || 1)];
+    const elements = Array.from({ length: qtyProducts || 1 });
     return elements.map((_, index) => {
       return skeletonProdComponent(`skeleton-${index}`);
     });
