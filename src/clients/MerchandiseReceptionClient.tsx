@@ -1,6 +1,7 @@
 import WithBootedClient from '../libs/WithBootedClient';
 import { RESTClient } from '@team_eureka/eureka-ionic-core';
-import { IProduct } from '../models/IProduct';
+import { IProduct } from '../models/ITasks/IProduct';
+import { ICategory } from '../models/ITasks/ICategory';
 
 class MerchandiseReceptionProdcutClient
   extends RESTClient
@@ -8,15 +9,37 @@ class MerchandiseReceptionProdcutClient
 {
   async boot() {}
 
-  // TODO: Mezclar ambos cambios
   // TODO: Obtener tareas de recepcion de mercaderia (polling) / jwt / TasksClient
-  // TODO: getDetailTask => mover aqui
+
+  async getCategories(taskType: string) {
+    //apiCall use taskType
+    const apiCall = new Promise<ICategory[]>((resolve) =>
+      setTimeout(() => {
+        resolve([
+          { id: '20', title: 'Lácteos', type: 'dairy', total: 1 },
+          { id: '21', title: 'Panificados', type: 'baked', total: 3 },
+          { id: '22', title: 'Almacén', type: 'warehouse', total: 2 },
+          { id: '23', title: 'Vinos', type: 'wines', total: 2 },
+          {
+            id: '24',
+            title: 'Mundo bio',
+            type: 'bio-world',
+            total: 1,
+          },
+        ]);
+      }, 500)
+    );
+    const response = await apiCall;
+    return response;
+  }
+
   async getProductsByCategory(categoryID: string): Promise<IProduct[]> {
     // Add your API call here
     const callApi = new Promise<IProduct[]>((resolve) => {
       setTimeout(() => {
         const products = [
           {
+            id: '123',
             image: 'images',
             description: 'Bebida lactea Trencitosss',
             ean: 'EAN 7802800500611',
@@ -36,6 +59,11 @@ class MerchandiseReceptionProdcutClient
             transit_stock_date: '1655913706869',
             shop: 'CornerShop',
             category: 'dairy',
+            product_offer: {
+              sin_stock: true,
+              promotion: true,
+              mundo_brio: false,
+            },
           },
         ];
         const filteredProducts = products.filter(

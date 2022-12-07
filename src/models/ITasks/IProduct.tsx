@@ -1,4 +1,5 @@
 export interface IProduct {
+  id: string;
   shop: string;
   units_found?: string;
   description?: string;
@@ -18,4 +19,9 @@ export interface IProduct {
   average_sale?: string;
   units_sold?: string;
   category: string;
+  product_offer: {
+    sin_stock: boolean;
+    promotion: boolean;
+    mundo_brio: boolean;
+  };
 }
