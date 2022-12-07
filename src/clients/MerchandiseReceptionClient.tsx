@@ -41,7 +41,7 @@ class MerchandiseReceptionProdcutClient
           {
             id: '123',
             image: 'images',
-            description: 'Bebida lactea Trencitosss',
+            description: 'Bebida lactea Trencitos',
             ean: 'EAN 7802800500611',
             stock_nrt: '115',
             unit_of_meansure: '200ml',

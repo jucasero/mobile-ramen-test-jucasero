@@ -27,7 +27,7 @@ const TaskBody = () => {
   }, []);
 
   // Redirection to merchandise reception products list
-  const handleProductsByCategory = (category: ICategory) => {
+  const redirectProductsByCategory = (category: ICategory) => {
     const state: any = { productCategory: category };
     const productCategoryRoute = `${routes.productCategory.replace(
       ':productCategory',
@@ -45,7 +45,7 @@ const TaskBody = () => {
             key={category.id}
             image={bakedImage}
             title={category.title}
-            onClick={() => handleProductsByCategory(category)}
+            onClick={() => redirectProductsByCategory(category)}
             total={category.total}
           />
         ))}
