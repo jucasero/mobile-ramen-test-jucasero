@@ -1,15 +1,15 @@
-import { Storage } from '@capacitor/storage';
+import { Storage } from "@capacitor/storage";
 import WithBootedClient from "../libs/WithBootedClient";
-
 
 const storageName = "@settings";
 interface IState {
-  [key: string]: any
+  [key: string]: any;
 }
 
 enum SETTINGS_ENUM {
   "LANGUAGE",
   "FIRST_TIME",
+  "PUSH_TOKEN",
 }
 export type SettingTypes = keyof typeof SETTINGS_ENUM;
 
@@ -40,8 +40,8 @@ class SettingsClient extends WithBootedClient {
 
     await Storage.set({
       key: storageName,
-      value: JSON.stringify(this.state)
-    })
+      value: JSON.stringify(this.state),
+    });
     return value;
   }
 
@@ -52,8 +52,8 @@ class SettingsClient extends WithBootedClient {
 
     await Storage.set({
       key: storageName,
-      value: JSON.stringify(this.state)
-    })
+      value: JSON.stringify(this.state),
+    });
     return true;
   }
 

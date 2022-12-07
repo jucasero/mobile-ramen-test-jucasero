@@ -1,6 +1,11 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "ramen-ionic",
-	"webDir": "build",
-	"bundledWebRuntime": false
+  "appId": "io.ionic.starter",
+  "appName": "ramen-ionic",
+  "webDir": "build",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
 }
