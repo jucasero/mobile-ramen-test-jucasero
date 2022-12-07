@@ -9,7 +9,7 @@ import {
   IonIcon,
 } from '@ionic/react';
 import { chevronForwardSharp } from 'ionicons/icons';
-import { IProduct } from '../../../../../../models/IProduct';
+import { IProduct } from '../../../../../../models/ITasks/IProduct';
 import { getElapsedTime } from '../../../../../../libs/helpers';
 import clock from '../../../../../../assets/media/clock.svg';
 import yogurt from '../../../../../../assets/image/yogurt.jpeg';
@@ -24,12 +24,40 @@ interface IProps {
 
 // Product card detail
 const Product: React.FC<IProps> = (props) => {
-  const product: IProduct = props.product;
-  const badgeColors = {
-    // Check chip colors/behavior to get it from SAP API
-    black: '#373737', // No Stock
-    purple: '#5371C4', // Promotion
-    green: '#34C759', // MundoBio
+  const { product } = props;
+
+  const renderProductChips = () => {
+    const offerings = [
+      {
+        key: 'sin_stock',
+        color: '#373737',
+        text: localize('NO_STOCK', ''),
+      },
+      {
+        key: 'promotion',
+        color: '#5371C4',
+        text: localize('PROMOTION', ''),
+      },
+      {
+        key: 'mundo_brio',
+        color: '#34C759',
+        text: localize('MUNDO_BRIO', ''),
+      },
+    ];
+    const chips = Object.entries(product.product_offer).map(([key, value]) => {
+      const productOffer = offerings.find((offer) => offer.key === key);
+      if (!value || !productOffer) return null;
+      return (
+        <span
+          key={productOffer.key}
+          className="product-task-badge"
+          style={{ backgroundColor: productOffer.color }}
+        >
+          {productOffer.text}
+        </span>
+      );
+    });
+    return chips;
   };
 
   return (
@@ -42,22 +70,7 @@ const Product: React.FC<IProps> = (props) => {
       >
         <IonGrid>
           <IonRow>
-            <div className="product-chip-container">
-              {/* Chips, check to get from SAP */}
-              <span
-                className="product-task-badge"
-                style={{ color: badgeColors.black }}
-              >
-                {localize('NO_STOCK', '')}
-              </span>
-              <span
-                className="product-task-badge"
-                style={{ backgroundColor: badgeColors.purple }}
-              >
-                {/* //TODO: Reemplazar acorde color + propiedad */}
-                {localize('PROMOTION', '')}
-              </span>
-            </div>
+            <div className="product-chip-container">{renderProductChips()}</div>
           </IonRow>
           <div className="divider" />
           <IonRow>
