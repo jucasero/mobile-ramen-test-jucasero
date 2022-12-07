@@ -5,7 +5,7 @@ import TaskBody from "./components/task-body";
 
 import locales from "./locales";
 
-const MerchandisereceptionAlert: React.FC = () => {
+const MerchandiseReceptionAlert: React.FC = () => {
   const localize = i18(locales);
 
   return (
@@ -16,4 +16,4 @@ const MerchandisereceptionAlert: React.FC = () => {
   );
 };
 
-export default MerchandisereceptionAlert;
+export default MerchandiseReceptionAlert;
