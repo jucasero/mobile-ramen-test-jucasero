@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import TaskCard from '../../../../../components/task-card';
 import bakedImage from '../../../../../assets/media/task/baked.svg';
 import { IProduct } from '../../../../../models/ITask';
-import { routes } from '../../../constants';
+import { routes } from '../../constants';
 
 const TaskBody = () => {
   const history = useHistory<History>();

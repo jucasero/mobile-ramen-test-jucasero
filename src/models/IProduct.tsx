@@ -17,4 +17,5 @@ export interface IProduct {
   transit_stock_date?: string;
   average_sale?: string;
   units_sold?: string;
+  category: string;
 }

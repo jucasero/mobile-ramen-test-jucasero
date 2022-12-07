@@ -42,7 +42,7 @@ const ProductSkeleton: React.FC<IProps> = (props) => {
 
   // Rendering skeleton elements by qtyProducts
   const renderSkeletonProducts = () => {
-    const elements = [...Array(qtyProducts)];
+    const elements = [...Array(qtyProducts || 1)];
     return elements.map((_, index) => {
       return skeletonProdComponent(`skeleton-${index}`);
     });

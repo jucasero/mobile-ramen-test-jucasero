@@ -54,6 +54,7 @@ const Product: React.FC<IProps> = (props) => {
                 className="product-task-badge"
                 style={{ backgroundColor: badgeColors.purple }}
               >
+                {/* //TODO: Reemplazar acorde color + propiedad */}
                 {localize('PROMOTION', '')}
               </span>
             </div>
