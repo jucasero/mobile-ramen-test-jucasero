@@ -10,7 +10,7 @@ import { ReactComponent as AllDoneImage } from "./../../../../assets/media/eye.s
 import trackImage from "../../../../assets/media/task/truck.svg";
 import locales from "./locales";
 import { ITask } from "../../../../models/ITasks/ITask";
-import CardSkeleton from "../../../../components/card-skeleton";
+import { TaskSkeleton } from "../../../../components/loaders";
 import useFetch from "../../../../hooks/useFetch";
 
 const localize = i18(locales);
@@ -54,7 +54,7 @@ const TasksContent: React.FC<IProps> = (props) => {
           <div>{Math.floor(props.pendingInPercent)}%</div>
         </div>
       </div>
-      {isLoading && <CardSkeleton numberOfcards={3} />}
+      {isLoading && <TaskSkeleton cardsNumber={tasks?.length || 1} />}
       {tasks &&
         tasks.map((task, index) => (
           <TaskCard

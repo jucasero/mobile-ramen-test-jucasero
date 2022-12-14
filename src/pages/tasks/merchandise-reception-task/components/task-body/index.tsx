@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { IonContent } from '@ionic/react';
 import { useHistory } from 'react-router';
 import TaskCard from '../../../../../components/task-card';
-import bakedImage from '../../../../../assets/media/task/baked.svg';
 import { ITask } from '../../../../../models/ITasks/ITask';
 import { ICategory } from '../../../../../models/ITasks/ICategory';
 import MerchandiseReceptionClient from '../../../../../clients/MerchandiseReceptionClient';
 import useFetch from '../../../../../hooks/useFetch';
-import CardSkeleton from '../../../../../components/card-skeleton';
+import { TaskSkeleton } from '../../../../../components/loaders';
 import { routes } from '../../constants';
 
 const TaskBody = () => {
@@ -28,7 +27,10 @@ const TaskBody = () => {
 
   // Redirection to merchandise reception products list
   const redirectProductsByCategory = (category: ICategory) => {
-    const state: any = { productCategory: category };
+    const state: any = {
+      productCategory: category,
+      merchandise_reception: locationState,
+    };
     const productCategoryRoute = `${routes.productCategory.replace(
       ':productCategory',
       category.type.toLocaleLowerCase()
@@ -38,15 +40,16 @@ const TaskBody = () => {
 
   return (
     <IonContent className="ion-padding">
-      {isLoading && <CardSkeleton numberOfcards={5} />}
+      {isLoading && <TaskSkeleton cardsNumber={locationState.total} />}
       {categories &&
         categories.map((category: ICategory) => (
           <TaskCard
             key={category.id}
-            image={bakedImage}
+            image={category.image}
             title={category.title}
             onClick={() => redirectProductsByCategory(category)}
             total={category.total}
+            boxIcon
           />
         ))}
     </IonContent>
