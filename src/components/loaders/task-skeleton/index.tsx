@@ -9,27 +9,25 @@ import {
 import '../index.sass';
 
 interface IProps {
-  qtyProducts?: number;
+  cardsNumber?: number;
 }
 
-// Loader Skeleton Product
-const ProductSkeleton: React.FC<IProps> = (props) => {
-  const { qtyProducts } = props;
+// Loader Skeleton Tasks
+const TaskSkeleton: React.FC<IProps> = (props) => {
+  const { cardsNumber } = props;
 
   // Render skeleton elements
-  const skeletonProdComponent = (key: string) => (
+  const skeletonComponent = (key: string) => (
     <Fragment key={key}>
-      <IonListHeader>
-        <IonSkeletonText animated={true} />
-      </IonListHeader>
+      <IonListHeader />
       <IonItem lines="none">
         <IonThumbnail slot="start">
           <IonSkeletonText animated={true} />
         </IonThumbnail>
-        <IonLabel>
-          <h3>
+        <IonLabel style={{ width: '80%' }}>
+          <p>
             <IonSkeletonText animated={true} />
-          </h3>
+          </p>
           <p>
             <IonSkeletonText animated={true} />
           </p>
@@ -41,15 +39,15 @@ const ProductSkeleton: React.FC<IProps> = (props) => {
     </Fragment>
   );
 
-  // Rendering skeleton elements by qtyProducts
-  const renderSkeletonProducts = () => {
-    const elements = Array.from({ length: qtyProducts || 1 });
+  // Rendering skeleton elements by cardsNumber
+  const renderSkeletonComponent = () => {
+    const elements = Array.from({ length: cardsNumber || 1 });
     return elements.map((_, index) => {
-      return skeletonProdComponent(`skeleton-${index}`);
+      return skeletonComponent(`skeleton-${index}`);
     });
   };
 
-  return <Fragment>{renderSkeletonProducts()}</Fragment>;
+  return <Fragment>{renderSkeletonComponent()}</Fragment>;
 };
 
-export default ProductSkeleton;
+export default TaskSkeleton;
