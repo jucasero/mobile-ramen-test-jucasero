@@ -9,6 +9,7 @@ interface ITaskCardProps {
   title: string;
   image: string;
   total: number;
+  boxIcon?: boolean;
   onClick: () => void;
 }
 
@@ -17,6 +18,7 @@ const TaskCard: React.FC<ITaskCardProps> = ({
   image,
   total,
   onClick,
+  boxIcon
 }) => {
   return (
     <IonItem
@@ -26,7 +28,12 @@ const TaskCard: React.FC<ITaskCardProps> = ({
       detailIcon={chevronForwardSharp}
       lines="none"
     >
-      <IonImg src={image ?? defaultImage} />
+      <div className={boxIcon ? 'task-box' : ''}>
+        <IonImg
+          src={image ?? defaultImage}
+          className={boxIcon ? 'task-image' : ''}
+        />
+      </div>
       <XText spacing="2" level="10">
         {title}
       </XText>

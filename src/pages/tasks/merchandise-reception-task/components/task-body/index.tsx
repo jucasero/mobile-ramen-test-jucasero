@@ -1,23 +1,23 @@
-import { useEffect } from "react";
-import { IonContent } from "@ionic/react";
-import { useHistory } from "react-router";
-import TaskCard from "../../../../../components/task-card";
-import bakedImage from "../../../../../assets/media/task/baked.svg";
-import { ITask } from "../../../../../models/ITasks/ITask";
-import { ICategory } from "../../../../../models/ITasks/ICategory";
-import TasksClient from "../../../../../clients/TasksClient";
-import useFetch from "../../../../../hooks/useFetch";
-import CardSkeleton from "../../../../../components/card-skeleton";
+import { useEffect } from 'react';
+import { IonContent } from '@ionic/react';
+import { useHistory } from 'react-router';
+import TaskCard from '../../../../../components/task-card';
+import { ITask } from '../../../../../models/ITasks/ITask';
+import { ICategory } from '../../../../../models/ITasks/ICategory';
+import MerchandiseReceptionClient from '../../../../../clients/MerchandiseReceptionClient';
+import useFetch from '../../../../../hooks/useFetch';
+import { TaskSkeleton } from '../../../../../components/loaders';
+import { routes } from '../../constants';
 
 const TaskBody = () => {
   const history = useHistory<ITask>();
   const locationState = history.location.state;
   const [fetchCategories, categories, isLoading] = useFetch(
-    TasksClient.getDetailTask(locationState?.type)
+    MerchandiseReceptionClient.getCategories(locationState?.type)
   );
 
   useEffect(() => {
-    if (!locationState) history.replace("/");
+    if (!locationState) history.replace('/');
   }, [history, locationState]);
 
   useEffect(() => {
@@ -25,17 +25,31 @@ const TaskBody = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Redirection to merchandise reception products list
+  const redirectProductsByCategory = (category: ICategory) => {
+    const state: any = {
+      productCategory: category,
+      merchandise_reception: locationState,
+    };
+    const productCategoryRoute = `${routes.productCategory.replace(
+      ':productCategory',
+      category.type.toLocaleLowerCase()
+    )}`;
+    history.replace(productCategoryRoute, state);
+  };
+
   return (
     <IonContent className="ion-padding">
-      {isLoading && <CardSkeleton numberOfcards={5} />}
+      {isLoading && <TaskSkeleton cardsNumber={locationState.total} />}
       {categories &&
         categories.map((category: ICategory) => (
           <TaskCard
             key={category.id}
-            image={bakedImage}
+            image={category.image}
             title={category.title}
-            onClick={() => {}}
+            onClick={() => redirectProductsByCategory(category)}
             total={category.total}
+            boxIcon
           />
         ))}
     </IonContent>

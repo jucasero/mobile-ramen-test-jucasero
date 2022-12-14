@@ -38,7 +38,10 @@ import { ICustomer } from "./models/users/ICustomer";
 
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
-import MerchandisereceptionAlert from "./pages/tasks/merchandise-reception-task";
+// Merchandise reception imports
+import MerchandiseReceptionAlert from "./pages/tasks/merchandise-reception-task";
+import MerchandiseReceptionProducts from "./pages/tasks/merchandise-reception-task/components/product/product-list";
+import { routes } from './pages/tasks/merchandise-reception-task/constants';
 
 import animationBuilder from "./libs/AnimationBuilder";
 
@@ -108,9 +111,15 @@ const App: React.FC = () => {
           <Route path="/" component={RootHomePage} exact={true} />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
+          {/* Merchandise reception routes */}
           <Route
-            path="/merchandise-reception"
-            component={MerchandisereceptionAlert}
+            path={routes.merchandiseReception}
+            component={MerchandiseReceptionAlert}
+            exact={true}
+          />
+          <Route
+            path={routes.productCategory}
+            component={MerchandiseReceptionProducts}
             exact={true}
           />
         </IonRouterOutlet>
