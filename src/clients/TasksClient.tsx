@@ -13,7 +13,7 @@ class TasksClient extends RESTClient implements WithBootedClient {
             id: '1',
             title: 'Recepción de mercadería',
             type: 'merchandise-reception',
-            total: 5,
+            total: 7,
           },
         ]);
       }, 500)
