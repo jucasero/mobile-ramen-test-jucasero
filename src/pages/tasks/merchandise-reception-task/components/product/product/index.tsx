@@ -7,12 +7,12 @@ import {
   IonGrid,
   IonThumbnail,
   IonIcon,
+  IonImg,
 } from '@ionic/react';
 import { chevronForwardSharp } from 'ionicons/icons';
 import { IProduct } from '../../../../../../models/ITasks/IProduct';
 import { getElapsedTime } from '../../../../../../libs/helpers';
 import clock from '../../../../../../assets/media/clock.svg';
-import yogurt from '../../../../../../assets/image/yogurt.jpeg';
 import locales from '../locales';
 import './index.sass';
 
@@ -29,7 +29,7 @@ const Product: React.FC<IProps> = (props) => {
   const renderProductChips = () => {
     const offerings = [
       {
-        key: 'sin_stock',
+        key: 'no_stock',
         color: '#373737',
         text: localize('NO_STOCK', ''),
       },
@@ -76,7 +76,7 @@ const Product: React.FC<IProps> = (props) => {
           <IonRow>
             <IonCol size="3" className="product-image">
               <IonThumbnail>
-                <img src={yogurt} alt={product.description} />
+                <IonImg src={product.image} alt={product.description} />
               </IonThumbnail>
             </IonCol>
             <IonCol>
@@ -85,7 +85,7 @@ const Product: React.FC<IProps> = (props) => {
               </IonRow>
               <IonRow className="product-tag">
                 <span className="product-measure">
-                  {`${product.unit_of_meansure}:`}
+                  {`${localize('EAN', '')}:`}
                 </span>
                 <span className="product-ean">{product.ean}</span>
               </IonRow>
