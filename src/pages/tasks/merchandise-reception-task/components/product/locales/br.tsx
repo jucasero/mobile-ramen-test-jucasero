@@ -3,6 +3,7 @@ const locale = {
   PROMOTION: 'Promoção',
   STOCK_NRT: 'UNI',
   MUNDO_BRIO: 'Mundo Brio',
+  EAN: 'EAN',
 };
 
 export default locale;
