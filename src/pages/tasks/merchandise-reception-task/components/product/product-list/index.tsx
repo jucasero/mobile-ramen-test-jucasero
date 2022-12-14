@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { IonPage, IonContent, IonList } from '@ionic/react';
 import { useHistory } from 'react-router';
+import { ITask } from '../../../../../../models/ITasks/ITask';
 import { ICategory } from '../../../../../../models/ITasks/ICategory';
 import { IProduct } from '../../../../../../models/ITasks/IProduct';
 import TaskHeader from '../../task-header';
@@ -13,6 +14,7 @@ import './index.sass';
 
 interface ILocationState {
   productCategory: ICategory;
+  merchandise_reception: ITask;
 }
 
 // Merchandise reception products list
@@ -49,6 +51,7 @@ const Products: React.FC = () => {
       <TaskHeader
         title={productCategory.title}
         backRoute={routes.merchandiseReception}
+        data={locationState.merchandise_reception}
       />
       <IonContent className="ion-padding">
         {isLoading ? renderLoadingProducts() : renderProductsList()}
