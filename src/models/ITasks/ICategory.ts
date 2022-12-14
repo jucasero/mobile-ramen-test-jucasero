@@ -3,4 +3,5 @@ export interface ICategory {
   title: string;
   type: string;
   total: number;
+  image: string;
 }
