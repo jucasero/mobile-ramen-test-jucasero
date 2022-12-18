@@ -19,13 +19,13 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
   const history = useHistory();
 
   return (
-    <IonHeader className="task-header" mode="md">
+    <IonHeader className="ion-no-border task-header" mode="md">
       <IonToolbar mode="md">
         <IonButton
           fill="clear"
           onClick={() => history.replace(backRoute, data)}
         >
-          <IonIcon icon={arrowBack} slot="icon-only" size="large"></IonIcon>
+          <IonIcon icon={arrowBack} slot="icon-only" size="large" />
         </IonButton>
         <XText className="ion-padding">
           <h1 style={{ margin: 0, whiteSpace: 'pre-line' }}>{title}</h1>
