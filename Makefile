@@ -2,7 +2,6 @@ run:
 	npm run start
 
 setup-android:
-	npm install @capacitor/android
 	npx cap add android
 
 run-android:
@@ -11,10 +10,13 @@ run-android:
 	npx cap copy android
 	npx cap open android
 	
+setup-ios:
+	npx cap add ios
+
 run-ios:
 	npm run build
+	npx cap sync ios
 	npx cap copy ios
-	npx cap sync
 	npx cap open ios
 	
 device:
