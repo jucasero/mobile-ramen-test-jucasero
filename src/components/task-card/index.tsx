@@ -34,7 +34,7 @@ const TaskCard: React.FC<ITaskCardProps> = ({
           className={boxIcon ? 'task-image' : ''}
         />
       </div>
-      <XText spacing="2" level="10">
+      <XText spacing="2" level="10" background="black">
         {title}
       </XText>
       <Badge total={total}></Badge>

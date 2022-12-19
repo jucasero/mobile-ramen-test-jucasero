@@ -21,14 +21,11 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
   return (
     <IonHeader className="task-header" mode="md">
       <IonToolbar mode="md">
-        <IonButton
-          fill="clear"
-          onClick={() => history.replace(backRoute, data)}
-        >
+        <IonButton fill="clear" onClick={() => history.replace(backRoute, data)}>
           <IonIcon icon={arrowBack} slot="icon-only" size="large"></IonIcon>
         </IonButton>
-        <XText className="ion-padding">
-          <h1 style={{ margin: 0, whiteSpace: 'pre-line' }}>{title}</h1>
+        <XText className="ion-padding" background="black">
+          <h1 style={{ margin: 0, whiteSpace: "pre-line" }}>{title}</h1>
         </XText>
       </IonToolbar>
     </IonHeader>

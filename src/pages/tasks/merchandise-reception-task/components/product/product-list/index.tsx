@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { IonPage, IonContent, IonList } from '@ionic/react';
+import { useEffect, useState } from "react";
+import { IonPage, IonContent, IonList, IonModal, useIonToast, IonTextarea, IonButton, IonItem } from "@ionic/react";
 import { useHistory } from 'react-router';
+import { XButton } from "@ramenx/ui-library";
+import "./index.sass";
 import { ITask } from '../../../../../../models/ITasks/ITask';
 import { ICategory } from '../../../../../../models/ITasks/ICategory';
 import { IProduct } from '../../../../../../models/ITasks/IProduct';
 import TaskHeader from '../../task-header';
 import { ProductSkeleton } from '../../../../../../components/loaders';
 import Product from '../product';
-import useFetch from '../../../../../../hooks/useFetch';
+import { useFetch, useModal } from '../../../../../../hooks';
 import MerchandiseReceptionClient from '../../../../../../clients/MerchandiseReceptionClient';
 import { routes } from '../../../constants';
 import './index.sass';
@@ -25,6 +27,18 @@ const Products: React.FC = () => {
   const [getProductsByCategory, products, isLoading] = useFetch(
     MerchandiseReceptionClient.getProductsByCategory(productCategory.type)
   );
+  const { isShowing, toggle } = useModal();
+  const [name, setName] = useState("")
+  const [present] = useIonToast();
+
+  const presentToast = (position: "top" | "middle" | "bottom", message: string) => {
+    present({
+      message,
+      duration: 2000,
+      position: position,
+      color: "medium",
+    });
+  };
 
   useEffect(() => {
     if (!locationState) history.replace('/');
@@ -41,21 +55,97 @@ const Products: React.FC = () => {
   const renderProductsList = () => (
     <IonList>
       {products?.map((product: IProduct) => (
-        <Product key={product.id} product={product} />
+        <Product key={product.id} product={product} onClick={() => {
+          setName("modal-product");
+          toggle();
+        }} />
       ))}
     </IonList>
   );
 
+  const renderProduct = () => {
+    return (
+          <div className="modal-container">
+            <p className="modal-close-button" onClick={toggle}>
+              x
+            </p>
+
+            <h1 className="modal-title">
+              Ya puedes gestionar <br /> el producto en sala
+            </h1>
+
+            <div className="modal-circle-container">
+              <div className="modal-circle">
+                <p className="modal-circle-text-1">Llegaron</p>
+                <p className="modal-circle-text-2">100 cajas</p>
+                <p className="modal-circle-text-3">Hace 28:07:50</p>
+              </div>
+            </div>
+
+            <div className="modal-product-card">{products && <Product key={"1"} product={products[0]} onClick={toggle} />}</div>
+
+            <XButton size="large" onClick={finishTask}>
+              Finalizar tarea
+            </XButton>
+
+            <p className="product-problem-link" onClick={productProblem}>
+              ¿Problema con el producto?
+            </p>
+          </div>
+    )
+  }
+
+  const renderProblem = () => {
+    return (
+      <div className="modal-problem-container">
+        <p className="modal-close-button" onClick={toggle}>
+          x
+        </p>
+
+        <h1 className="modal-title">¿Algún problema con el producto?</h1>
+
+        <div className="modal-button-container">
+          <IonButton color="light" shape="round">
+            No llegó
+          </IonButton>
+          <IonButton color="light" shape="round">
+            Llegó incompleto
+          </IonButton>
+        </div>
+
+        <IonItem>
+          <IonTextarea className="modal-textarea" placeholder="Deja algún comentario"></IonTextarea>
+        </IonItem>
+
+        <XButton background="black" size="large" onClick={finishTask}>
+          Enviar
+        </XButton>
+      </div>
+    );
+  }
+
+  const finishTask = () => {
+    toggle();
+
+    setTimeout(() => presentToast("bottom", "Recepción gestionada"), 500)
+  }
+
+  const productProblem = () => {
+    setName("");
+  };
+
   return (
     <IonPage>
-      <TaskHeader
-        title={productCategory.title}
-        backRoute={routes.merchandiseReception}
-        data={locationState.merchandise_reception}
-      />
-      <IonContent className="ion-padding">
-        {isLoading ? renderLoadingProducts() : renderProductsList()}
-      </IonContent>
+      <TaskHeader title={productCategory.title} backRoute={routes.merchandiseReception} data={locationState.merchandise_reception} />
+      <IonContent className="ion-padding">{isLoading ? renderLoadingProducts() : renderProductsList()}</IonContent>
+
+      <IonModal isOpen={isShowing} className="modal">
+        {name === "modal-product" ? (
+          renderProduct()
+        ) : (
+          renderProblem()
+        )}
+      </IonModal>
     </IonPage>
   );
 };

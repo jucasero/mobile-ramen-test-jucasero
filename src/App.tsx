@@ -100,7 +100,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (!authenticated) {
+  if (authenticated) { // TODO
     return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (

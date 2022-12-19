@@ -11,7 +11,7 @@ import trackImage from "../../../../assets/media/task/truck.svg";
 import locales from "./locales";
 import { ITask } from "../../../../models/ITasks/ITask";
 import { TaskSkeleton } from "../../../../components/loaders";
-import useFetch from "../../../../hooks/useFetch";
+import { useFetch } from "../../../../hooks";
 
 const localize = i18(locales);
 interface IProps {
