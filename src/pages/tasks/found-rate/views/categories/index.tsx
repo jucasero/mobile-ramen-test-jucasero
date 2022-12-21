@@ -1,7 +1,7 @@
 import { IonPage } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import TaskHeader from '../../components/TaskHeader';
-import TaskBody from '../../components/TaskBody';
+import CategoryList from '../../components/categories';
 import locales from './locales';
 
 // Merchandise reception products list
@@ -10,8 +10,8 @@ const FoundRateCategories: React.FC = () => {
 
   return (
     <IonPage>
-      <TaskHeader title={localize('FILTER_TITLE', '')} />
-      <TaskBody />;
+      <TaskHeader title={localize('FOUND_RATE_ALERT', '')} />
+      <CategoryList />;
     </IonPage>
   );
 };

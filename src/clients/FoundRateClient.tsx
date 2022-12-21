@@ -5,7 +5,9 @@ import { categories } from '../mocks/found-rate';
 import { apiCallMock } from '../mocks/utils';
 
 class FoundRateClient extends RESTClient implements WithBootedClient {
-  async boot() {}
+  async boot() {
+    /* Do something */
+  }
 
   async getCategories(): Promise<ICategory[]> {
     const response = await apiCallMock(categories);
