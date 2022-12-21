@@ -6,11 +6,11 @@ import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
-import { foundRateRoutes } from '../../../../routes';
 import useFetch from '../../../../hooks/useFetch';
 import TasksClient from '../../../../clients/TasksClient';
-import CardSkeleton from '../../../../components/card-skeleton';
+import { TaskSkeleton } from '../../../../components/loaders';
 import alarmImage from '../../../../assets/media/task/alarm.svg';
+import { ITask } from '../../../../models/ITasks/ITask';
 import locales from './locales';
 
 const localize = i18(locales);
@@ -21,8 +21,8 @@ const TasksContent: React.FC<IProps> = (props) => {
   const history = useHistory();
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
 
-  const handleOnClickTask = () => {
-    history.replace(foundRateRoutes.root);
+  const handleOnClickTask = (task: ITask) => {
+    history.replace({ pathname: task.type, state: task });
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const TasksContent: React.FC<IProps> = (props) => {
           <div>{Math.floor(props.pendingInPercent)}%</div>
         </div>
       </div>
-      {loading && <CardSkeleton numberOfcards={1} />}
+      {loading && <TaskSkeleton cardsNumber={1} />}
 
       {tasks &&
         tasks.map((task) => (
@@ -62,7 +62,7 @@ const TasksContent: React.FC<IProps> = (props) => {
             image={alarmImage}
             title={task.title}
             total={task.total}
-            onClick={handleOnClickTask}
+            onClick={() => handleOnClickTask(task)}
           ></TaskCard>
         ))}
 
