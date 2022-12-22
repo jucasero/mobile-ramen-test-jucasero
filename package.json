@@ -32,6 +32,7 @@
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.26.0",
     "cordova-plugin-inappbrowser": "^5.0.0",
+    "ionicons": "^6.0.4",
     "react": "^17.0.1",
     "react-customizable-progressbar": "^1.2.0",
     "react-dom": "^17.0.1",
