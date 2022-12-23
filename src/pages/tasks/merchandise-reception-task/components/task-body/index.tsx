@@ -7,7 +7,7 @@ import { ICategory } from '../../../../../models/ITasks/ICategory';
 import MerchandiseReceptionClient from '../../../../../clients/MerchandiseReceptionClient';
 import { useFetch } from '../../../../../hooks';
 import { TaskSkeleton } from '../../../../../components/loaders';
-import { routes } from '../../constants';
+import { routes } from '../../../../../constants';
 
 const TaskBody = () => {
   const history = useHistory<ITask>();
