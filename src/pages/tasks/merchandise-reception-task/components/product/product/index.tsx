@@ -20,11 +20,12 @@ const localize = i18(locales);
 
 interface IProps {
   product: IProduct;
+  onClick?: () => void;
 }
 
 // Product card detail
 const Product: React.FC<IProps> = (props) => {
-  const { product } = props;
+  const { product, onClick } = props;
 
   const renderProductChips = () => {
     const offerings = [
@@ -66,6 +67,7 @@ const Product: React.FC<IProps> = (props) => {
         className='product-task-card'
         detail={true}
         detailIcon={chevronForwardSharp}
+        onClick={onClick}
         lines='none'
       >
         <IonGrid>

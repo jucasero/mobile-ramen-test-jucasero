@@ -1,11 +1,11 @@
 import { IonPage } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import TaskHeader from './components/task-header';
-import TaskBody from './components/task-body';
-
+import TaskHeader from '../../components/task-header';
+import TaskBody from '../../components/task-body';
 import locales from './locales';
 
-const MerchandiseReceptionAlert: React.FC = () => {
+// Merchandise reception products list
+const MerchandiseReceptionCategories: React.FC = () => {
   const localize = i18(locales);
 
   return (
@@ -16,4 +16,4 @@ const MerchandiseReceptionAlert: React.FC = () => {
   );
 };
 
-export default MerchandiseReceptionAlert;
+export default MerchandiseReceptionCategories;
