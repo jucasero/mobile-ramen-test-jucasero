@@ -1,31 +1,31 @@
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
-import { IonContent, IonFooter, IonIcon, IonPage } from "@ionic/react";
+import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { IonContent, IonFooter, IonIcon, IonPage } from '@ionic/react';
 import {
   InAppBrowser,
   InAppBrowserEvent,
-} from "@awesome-cordova-plugins/in-app-browser";
-import { arrowBack } from "ionicons/icons";
-import LoginHeader from "../../assets/media/graphic-profile.svg";
+} from '@awesome-cordova-plugins/in-app-browser';
+import { arrowBack } from 'ionicons/icons';
+import LoginHeader from '../../assets/media/graphic-profile.svg';
 import {
   AuthenticationClient,
   Expr,
   IJwt,
   i18,
   XConsole,
-} from "@team_eureka/eureka-ionic-core";
-import { IUser } from "../../models/users/IUser";
-import { ICustomer } from "../../models/users/ICustomer";
-import locales from "./locales";
-import "./index.sass";
+} from '@team_eureka/eureka-ionic-core';
+import { IUser } from '../../models/users/IUser';
+import { ICustomer } from '../../models/users/ICustomer';
+import locales from './locales';
+import './index.sass';
 
-import { XButton, XGrid, XImage, XSpace, XText } from "@ramenx/ui-library";
-import UserClient from "../../clients/UserClient";
-import { AxiosResponse } from "axios";
+import { XButton, XGrid, XImage, XSpace, XText } from '@ramenx/ui-library';
+import UserClient from '../../clients/UserClient';
+import { AxiosResponse } from 'axios';
 
 const localize = i18(locales);
-const colorGray = "rgba(0,0,0,0.6)";
-const cencosudx = XConsole({ label: "signin-page" });
+const colorGray = 'rgba(0,0,0,0.6)';
+const cencosudx = XConsole({ label: 'signin-page' });
 
 export type onSignInCallbackHandler = (miLocalUser: IUser) => void;
 
@@ -40,7 +40,7 @@ interface IProps {
 
 const SignInPage: React.FC<IProps> = (props) => {
   const [swiper, setSwiper] = useState<any>();
-  const [slideState, setSlideStates] = useState<Number>(0);
+  const [slideState, setSlideStates] = useState<number>(0);
 
   const onGoBackHandler = () => {
     swiper!.slidePrev();
@@ -62,15 +62,15 @@ const SignInPage: React.FC<IProps> = (props) => {
     try {
       //const myInfo = await UserClient.meWithJwt(jwt);
       //const link = myInfo.links?.find((item, key) => item.rel === 'update_device_token');
-      let deviceToken: string = "";
+      let deviceToken = '';
       const updateToken = async (deviceToken: string) => {
         try {
           await UserClient.updateNotificationTokenWithJwt(deviceToken, jwt);
         } catch (error) {
           cencosudx.error(
-            "An error has ocurred trying to update the device token"
+            'An error has ocurred trying to update the device token'
           );
-          cencosudx.debug("xhr error", error);
+          cencosudx.debug('xhr error', error);
         }
       };
       /* Expr.whenInNativePhone(async () => {
@@ -79,35 +79,35 @@ const SignInPage: React.FC<IProps> = (props) => {
         await updateToken(deviceToken);
       }) */
       Expr.whenNotInNativePhone(async () => {
-        deviceToken = "fake_token_when_browser";
+        deviceToken = 'fake_token_when_browser';
         await updateToken(deviceToken);
       });
 
-      authenticateUser("google", jwt);
+      authenticateUser('google', jwt);
     } catch (ex: any) {
       if (!ex.response) {
         return;
       }
+      const customer = ex.data as ICustomer;
 
       switch ((ex.response as AxiosResponse).status) {
         case 404:
           props.onAuthenticated(true, jwt, () => {
-            authenticateUser("cencosud", jwt);
+            authenticateUser('cencosud', jwt);
           });
           break;
         case 206:
-          const customer = ex.data as ICustomer;
           props.onAuthenticated(
             true,
             jwt,
             () => {
-              authenticateUser("cencosud", jwt);
+              authenticateUser('cencosud', jwt);
             },
             customer
           );
           break;
         default:
-          cencosudx.error("unhandled response meWithJwt");
+          cencosudx.error('unhandled response meWithJwt');
       }
       cencosudx.debug(ex);
     }
@@ -117,26 +117,26 @@ const SignInPage: React.FC<IProps> = (props) => {
     const loginUrl = `${process.env.REACT_APP_SSO_API_ENDPOINT}/saml/101010101010101010101/login`;
 
     Expr.whenInNativePhone(async () => {
-      let inAppBrowserRef = InAppBrowser.create(loginUrl, "_blank", {
-        location: "no",
+      const inAppBrowserRef = InAppBrowser.create(loginUrl, '_blank', {
+        location: 'no',
       });
       inAppBrowserRef.show();
 
       inAppBrowserRef
-        .on("loadstop")
+        .on('loadstop')
         .subscribe(async (evt: InAppBrowserEvent) => {
-          if (evt.url && evt.url.includes("access_token")) {
+          if (evt.url && evt.url.includes('access_token')) {
             //url interceptor
-            const queryString = evt.url.split("#")[1];
+            const queryString = evt.url.split('#')[1];
             const urlParams = new URLSearchParams(queryString);
 
             const authData: IJwt = {
-              access_token: urlParams.get("access_token") || "",
-              token_type: urlParams.get("token_type") || "",
-              expires_in: parseInt(urlParams.get("expires_in") || "0"),
+              access_token: urlParams.get('access_token') || '',
+              token_type: urlParams.get('token_type') || '',
+              expires_in: parseInt(urlParams.get('expires_in') || '0'),
             };
 
-            console.log("data", authData); //this.authenticateBySamlToken(authData, () => { }, () => { })
+            console.log('data', authData); //this.authenticateBySamlToken(authData, () => { }, () => { })
             onSSOCallbackHandler(authData);
             inAppBrowserRef.close();
           }
@@ -147,31 +147,31 @@ const SignInPage: React.FC<IProps> = (props) => {
         if (e.origin === e.data.origin) {
           const authData = e.data;
 
-          console.log("data", authData); //this.authenticateBySamlToken(authData, () => { }, () => { });
+          console.log('data', authData); //this.authenticateBySamlToken(authData, () => { }, () => { });
           onSSOCallbackHandler(authData);
         }
       };
 
-      window.addEventListener("message", onPopupMessage);
+      window.addEventListener('message', onPopupMessage);
       const loginPopUp = window.open(
         loginUrl,
-        "_blank",
-        "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=500,height=600"
+        '_blank',
+        'toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=500,height=600'
       );
 
       // Only in web
       const timer = setInterval(function () {
         if (loginPopUp && loginPopUp.closed) {
-          console.log("Closed ....");
+          console.log('Closed ....');
           clearInterval(timer);
-          window.removeEventListener("message", onPopupMessage);
+          window.removeEventListener('message', onPopupMessage);
         }
       }, 500);
     });
   };
 
   return (
-    <IonPage className="signin-page">
+    <IonPage className='signin-page'>
       <IonContent>
         <Swiper
           onInit={onGetSwiperHandler}
@@ -179,36 +179,36 @@ const SignInPage: React.FC<IProps> = (props) => {
           speed={400}
           onSlideChange={(e) => setSlideStates(e.activeIndex)}
         >
-          <SwiperSlide className="login-entry">
-            <XSpace level="2" />
+          <SwiperSlide className='login-entry'>
+            <XSpace level='2' />
             <XImage src={LoginHeader} />
-            <XSpace level="4" />
-            <XText level="4" leading="title" background="black">
-              {localize("LOGIN_TITLE", "")}
+            <XSpace level='4' />
+            <XText level='4' leading='title' background='black'>
+              {localize('LOGIN_TITLE', '')}
             </XText>
-            <XText level="9" leading="title" background={colorGray}>
-              {localize("LOGIN_SUBTITLE", "")}
+            <XText level='9' leading='title' background={colorGray}>
+              {localize('LOGIN_SUBTITLE', '')}
             </XText>
           </SwiperSlide>
-          <SwiperSlide className="login-data">
-            <XSpace level="3" />
+          <SwiperSlide className='login-data'>
+            <XSpace level='3' />
             <div onClick={() => onGoBackHandler()}>
               <IonIcon icon={arrowBack}></IonIcon>
             </div>
-            <XSpace level="8" />
+            <XSpace level='8' />
             <XGrid></XGrid>
           </SwiperSlide>
         </Swiper>
       </IonContent>
       <IonFooter>
         <XButton
-          background="black"
-          size="xlarge"
+          background='black'
+          size='xlarge'
           onClick={() => onCencosudLogin()}
         >
-          {localize("LOGIN_CENCOSUD", "")}
+          {localize('LOGIN_CENCOSUD', '')}
         </XButton>
-        <XSpace level="4" />
+        <XSpace level='4' />
       </IonFooter>
     </IonPage>
   );
