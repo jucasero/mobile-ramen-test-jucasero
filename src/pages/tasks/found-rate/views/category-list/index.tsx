@@ -11,7 +11,7 @@ const FoundRateCategoryList: React.FC = () => {
   return (
     <IonPage>
       <TaskHeader title={localize('CATEGORY_LIST_TITLE', '')} />
-      <CategoryList />;
+      <CategoryList />
     </IonPage>
   );
 };
