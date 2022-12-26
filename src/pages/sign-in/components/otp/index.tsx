@@ -1,16 +1,20 @@
-import { IonHeader, IonIcon, IonPage } from "@ionic/react";
-import { arrowBack } from 'ionicons/icons'
+import { IonHeader, IonIcon, IonPage } from '@ionic/react';
+import { arrowBack } from 'ionicons/icons';
 
 const OtpSignIn: React.FC = () => {
   return (
     <IonPage>
-			<IonHeader>
-				<div onClick={() => {console.log('close')}}>
+      <IonHeader>
+        <div
+          onClick={() => {
+            console.log('close');
+          }}
+        >
           <IonIcon icon={arrowBack}></IonIcon>
         </div>
-			</IonHeader>
-		</IonPage>
-  )
-}
+      </IonHeader>
+    </IonPage>
+  );
+};
 
 export default OtpSignIn;

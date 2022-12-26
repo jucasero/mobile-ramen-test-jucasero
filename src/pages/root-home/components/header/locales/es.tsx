@@ -1,7 +1,7 @@
 export default {
-  SUMMARY : "Resumen",
-  STATISTICS : "Estadísticas",
+  SUMMARY: 'Resumen',
+  STATISTICS: 'Estadísticas',
   TASKS: 'Tareas',
-  TOOLS: "Herramientas",
-  WELCOME_TITLE: "Hola",
+  TOOLS: 'Herramientas',
+  WELCOME_TITLE: 'Hola',
 };

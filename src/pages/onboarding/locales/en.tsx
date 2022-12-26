@@ -9,7 +9,7 @@ const locale = {
 
   dummy_title3: 'Aliquam vel facilisis nibh, et luctus.',
   dummy_description3:
-    'Aliquam vel facilisis nibh, et luctus purus. Etiam egestas placerat lacus.'
-}
+    'Aliquam vel facilisis nibh, et luctus purus. Etiam egestas placerat lacus.',
+};
 
-export default locale
+export default locale;
