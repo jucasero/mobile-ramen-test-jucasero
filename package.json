@@ -62,7 +62,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -89,7 +90,8 @@
     "gulp": "^4.0.2",
     "plop-pack-npm-install-packages": "0.0.3",
     "postcss": "8.4.6",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "husky": "^8.0.0"
   },
   "description": "An Ionic project"
 }
