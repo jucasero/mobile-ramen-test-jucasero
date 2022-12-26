@@ -22,7 +22,6 @@ const TaskBody = () => {
 
   useEffect(() => {
     fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Redirection to merchandise reception products list
@@ -39,7 +38,7 @@ const TaskBody = () => {
   };
 
   return (
-    <IonContent className="ion-padding">
+    <IonContent className='ion-padding'>
       {isLoading && <TaskSkeleton cardsNumber={locationState.total} />}
       {categories &&
         categories.map((category: ICategory) => (

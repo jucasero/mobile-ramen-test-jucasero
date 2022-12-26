@@ -50,7 +50,7 @@ const Product: React.FC<IProps> = (props) => {
       return (
         <span
           key={productOffer.key}
-          className="product-task-badge"
+          className='product-task-badge'
           style={{ backgroundColor: productOffer.color }}
         >
           {productOffer.text}
@@ -61,41 +61,41 @@ const Product: React.FC<IProps> = (props) => {
   };
 
   return (
-    <div className="product-container">
+    <div className='product-container'>
       <IonItem
-        className="product-task-card"
+        className='product-task-card'
         detail={true}
         detailIcon={chevronForwardSharp}
-        lines="none"
+        lines='none'
       >
         <IonGrid>
           <IonRow>
-            <div className="product-chip-container">{renderProductChips()}</div>
+            <div className='product-chip-container'>{renderProductChips()}</div>
           </IonRow>
-          <div className="divider" />
+          <div className='divider' />
           <IonRow>
-            <IonCol size="3" className="product-image">
+            <IonCol size='3' className='product-image'>
               <IonThumbnail>
                 <IonImg src={product.image} alt={product.description} />
               </IonThumbnail>
             </IonCol>
             <IonCol>
               <IonRow>
-                <span className="product-title">{product.description}</span>
+                <span className='product-title'>{product.description}</span>
               </IonRow>
-              <IonRow className="product-tag">
-                <span className="product-measure">
+              <IonRow className='product-tag'>
+                <span className='product-measure'>
                   {`${localize('EAN', '')}:`}
                 </span>
-                <span className="product-ean">{product.ean}</span>
+                <span className='product-ean'>{product.ean}</span>
               </IonRow>
               <IonRow>
-                <span className="product-task-badge badge-nrt">
+                <span className='product-task-badge badge-nrt'>
                   {`${product.units_found} ${localize('STOCK_NRT', '')}`}
                 </span>
                 <div>
-                  <span className="unit-timestamp">
-                    <IonIcon icon={clock} className="clock-icon" />
+                  <span className='unit-timestamp'>
+                    <IonIcon icon={clock} className='clock-icon' />
                     {getElapsedTime(product.last_reception_date).result}
                   </span>
                 </div>

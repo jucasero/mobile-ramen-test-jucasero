@@ -53,7 +53,7 @@ const Products: React.FC = () => {
         backRoute={routes.merchandiseReception}
         data={locationState.merchandise_reception}
       />
-      <IonContent className="ion-padding">
+      <IonContent className='ion-padding'>
         {isLoading ? renderLoadingProducts() : renderProductsList()}
       </IonContent>
     </IonPage>

@@ -2,8 +2,8 @@ import en from './en';
 import es from './es';
 
 const locale = {
-    en,
-    es
-}
+  en,
+  es,
+};
 
-export default locale
+export default locale;
