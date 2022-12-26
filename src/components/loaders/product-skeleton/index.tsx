@@ -22,8 +22,8 @@ const ProductSkeleton: React.FC<IProps> = (props) => {
       <IonListHeader>
         <IonSkeletonText animated={true} />
       </IonListHeader>
-      <IonItem lines="none">
-        <IonThumbnail slot="start">
+      <IonItem lines='none'>
+        <IonThumbnail slot='start'>
           <IonSkeletonText animated={true} />
         </IonThumbnail>
         <IonLabel>

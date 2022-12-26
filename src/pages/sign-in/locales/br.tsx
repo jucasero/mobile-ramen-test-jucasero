@@ -24,7 +24,7 @@ const locale = {
   EMAIL_VALIDATE_RESENT_CODE: 'Solicitar un nuevo código',
   EMAIL_VALIDATE_REQUEST_CODE: 'Solicitar un nuevo código',
   NAME_ERROR: 'Nombre inválido',
-  TELEPHONE_ERROR: 'Teléfono inválido'
-}
+  TELEPHONE_ERROR: 'Teléfono inválido',
+};
 
-export default locale
+export default locale;

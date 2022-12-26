@@ -1,5 +1,5 @@
 const locale = {
-  EXPLORE_HI: 'Hola, '
-}
+  EXPLORE_HI: 'Hola, ',
+};
 
-export default locale
+export default locale;

@@ -1,9 +1,9 @@
-import { IonImg, IonItem } from "@ionic/react";
-import { chevronForwardSharp } from "ionicons/icons";
-import { XText } from "@ramenx/ui-library";
-import Badge from "../badge";
-import defaultImage from "../../assets/media/task/task.svg";
-import "./index.sass";
+import { IonImg, IonItem } from '@ionic/react';
+import { chevronForwardSharp } from 'ionicons/icons';
+import { XText } from '@ramenx/ui-library';
+import Badge from '../badge';
+import defaultImage from '../../assets/media/task/task.svg';
+import './index.sass';
 
 interface ITaskCardProps {
   title: string;
@@ -18,15 +18,15 @@ const TaskCard: React.FC<ITaskCardProps> = ({
   image,
   total,
   onClick,
-  boxIcon
+  boxIcon,
 }) => {
   return (
     <IonItem
-      class="task-card"
+      class='task-card'
       onClick={() => onClick()}
       detail={true}
       detailIcon={chevronForwardSharp}
-      lines="none"
+      lines='none'
     >
       <div className={boxIcon ? 'task-box' : ''}>
         <IonImg
@@ -34,7 +34,7 @@ const TaskCard: React.FC<ITaskCardProps> = ({
           className={boxIcon ? 'task-image' : ''}
         />
       </div>
-      <XText spacing="2" level="10" background="black">
+      <XText spacing='2' level='10'>
         {title}
       </XText>
       <Badge total={total}></Badge>

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function useHook () {
+export default function useHook() {
   const [isShowing, setIsShowing] = useState(false);
 
   const toggle = () => {
@@ -11,4 +11,4 @@ export default function useHook () {
     isShowing,
     toggle,
   };
-};
+}

@@ -8,6 +8,7 @@ class MerchandiseReceptionProdcutClient
   extends RESTClient
   implements WithBootedClient
 {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async boot() {}
 
   // TODO: Obtener tareas de recepcion de mercaderia (polling) / jwt / TasksClient
