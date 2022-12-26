@@ -39,7 +39,10 @@ import { ICustomer } from './models/users/ICustomer';
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 // Merchandise reception imports
-import FoundRateAlert from './pages/tasks/found-rate';
+import {
+  FoundRateCategories,
+  // FoundRateSubCategories,
+} from './pages/tasks/found-rate/views';
 import { routes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
@@ -99,7 +102,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (!authenticated) {
+  if (authenticated) {
     return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (
@@ -113,7 +116,7 @@ const App: React.FC = () => {
           {/* Merchandise reception routes */}
           <Route
             path={routes.foundRate.root}
-            component={FoundRateAlert}
+            component={FoundRateCategories}
             exact
           />
         </IonRouterOutlet>
