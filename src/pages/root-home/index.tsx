@@ -1,32 +1,44 @@
-import './index.sass'
-import 'swiper/swiper.min.css'
-import '@ionic/react/css/ionic-swiper.css'
-import { IonContent, IonHeader, IonPage, IonSkeletonText, IonToolbar } from "@ionic/react";
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+import './index.sass';
+import 'swiper/swiper.min.css';
+import '@ionic/react/css/ionic-swiper.css';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonSkeletonText,
+  IonToolbar,
+} from '@ionic/react';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import { SplashScreen } from '@capacitor/splash-screen';
-import { RouteComponentProps } from "react-router";
-import FooterIrisImage from "./../../assets/media/footer-iris.svg"
-import { AuthenticationClient, i18, IJwtEntity } from "@team_eureka/eureka-ionic-core";
-import locales from "./locales";
-import { Fragment, useEffect, useState } from "react";
+import { RouteComponentProps } from 'react-router';
+import FooterIrisImage from './../../assets/media/footer-iris.svg';
+import {
+  AuthenticationClient,
+  i18,
+  IJwtEntity,
+} from '@team_eureka/eureka-ionic-core';
+import locales from './locales';
+import { Fragment, useEffect, useState } from 'react';
 import Header from './components/header';
 import TasksContent from './components/tasks-content';
 import UserMenu from '../../components/user-menu';
 
 const localize = i18(locales);
 
-const welcomeBackground = { backgroundImage: `url(${FooterIrisImage})` }
+const welcomeBackground = { backgroundImage: `url(${FooterIrisImage})` };
 
-interface IProps extends RouteComponentProps<{}> {}
+type IProps = RouteComponentProps<any>;
 
 const RootHomePage: React.FC<IProps> = (props) => {
   const handleTool = (tool: string) => {
     props.history.push(`/${tool}`);
   };
 
-  const [swiper, setSwiper] = useState<any>()
-  const [slideState, setSlideStates] = useState<Number>(0)
-  const [mode, setMode] = useState<"INITIAL_STATE" | "HOME_LOADED">("INITIAL_STATE");
+  const [swiper, setSwiper] = useState<any>();
+  const [slideState, setSlideStates] = useState<number>(0);
+  const [mode, setMode] = useState<'INITIAL_STATE' | 'HOME_LOADED'>(
+    'INITIAL_STATE'
+  );
   const [user, setUser] = useState<IJwtEntity | undefined>(undefined);
   const [menu_is_open, setMenuIsOpen] = useState<boolean>(false);
   const [activeTasks, setActiveTasks] = useState<boolean>(false);
@@ -38,71 +50,99 @@ const RootHomePage: React.FC<IProps> = (props) => {
 
   const onCloseMenuHandler = () => {
     setMenuIsOpen(false);
-  }
+  };
 
   const onSlideClickHandler = (slider: number | string, swiper: any) => {
-    swiper!.slideTo(slider)
-
-  }
+    swiper!.slideTo(slider);
+  };
 
   const load = async () => {
-    setMode("HOME_LOADED");
+    setMode('HOME_LOADED');
     setUser(AuthenticationClient.getInfo());
-  }
+  };
 
   useEffect(() => {
     load();
     SplashScreen.hide();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    switch(slideState) {
+    switch (slideState) {
       case 0: {
-        setActiveTasks(true)
-        setActiveTools(false)
+        setActiveTasks(true);
+        setActiveTools(false);
         break;
       }
       case 1: {
-        setActiveTools(true)
-        setActiveTasks(false)
+        setActiveTools(true);
+        setActiveTasks(false);
         break;
       }
     }
-  }, [slideState])
+  }, [slideState]);
 
   const onGetSwiperHandler = (e: any) => {
-    setSwiper(e)
-  }
+    setSwiper(e);
+  };
 
   const renderINITIAL_STATE = () => {
-    return <Fragment>
-      <IonHeader>
-        <IonToolbar>
-          <div className="custom-skeleton">
-            <div >
-              <IonSkeletonText animated={true} className='skeleton-avatar'></IonSkeletonText>
+    return (
+      <Fragment>
+        <IonHeader>
+          <IonToolbar>
+            <div className='custom-skeleton'>
+              <div>
+                <IonSkeletonText
+                  animated={true}
+                  className='skeleton-avatar'
+                ></IonSkeletonText>
+              </div>
             </div>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div className='custom-skeleton'>
+            <div>
+              <IonSkeletonText
+                animated={true}
+                className='skeleton-title'
+              ></IonSkeletonText>
+              <IonSkeletonText
+                animated={true}
+                className='skeleton-subtitle'
+              ></IonSkeletonText>
+            </div>
+            <div>
+              <IonSkeletonText
+                animated={true}
+                className='skeleton-stadistic'
+              ></IonSkeletonText>
+              <IonSkeletonText
+                animated={true}
+                className='skeleton-slide'
+              ></IonSkeletonText>
+            </div>
+            <IonSkeletonText
+              animated={true}
+              className='skeleton-card'
+            ></IonSkeletonText>
+            <IonSkeletonText
+              animated={true}
+              className='skeleton-card-tool'
+            ></IonSkeletonText>
+            <IonSkeletonText
+              animated={true}
+              className='skeleton-card-tool'
+            ></IonSkeletonText>
+            <IonSkeletonText
+              animated={true}
+              className='skeleton-card-tool'
+            ></IonSkeletonText>
           </div>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <div className="custom-skeleton">
-          <div>
-            <IonSkeletonText animated={true} className='skeleton-title'></IonSkeletonText>
-            <IonSkeletonText animated={true} className='skeleton-subtitle'></IonSkeletonText>
-          </div>
-          <div>
-            <IonSkeletonText animated={true} className='skeleton-stadistic'></IonSkeletonText>
-            <IonSkeletonText animated={true} className='skeleton-slide'></IonSkeletonText>
-          </div>
-          <IonSkeletonText animated={true} className='skeleton-card'></IonSkeletonText>
-          <IonSkeletonText animated={true} className='skeleton-card-tool'></IonSkeletonText>
-          <IonSkeletonText animated={true} className='skeleton-card-tool'></IonSkeletonText>
-          <IonSkeletonText animated={true} className='skeleton-card-tool'></IonSkeletonText>
-        </div>
-      </IonContent>
-    </Fragment >;
-  }
+        </IonContent>
+      </Fragment>
+    );
+  };
 
   const renderHOME_LOADED = () => {
     return (
@@ -119,14 +159,10 @@ const RootHomePage: React.FC<IProps> = (props) => {
             onInit={onGetSwiperHandler}
             initialSlide={0}
             speed={400}
-            onSlideChange={(e) =>
-              setSlideStates(e.activeIndex)
-            }
+            onSlideChange={(e) => setSlideStates(e.activeIndex)}
           >
             <SwiperSlide className='tasks-slide'>
-              <TasksContent
-                pendingInPercent={0}
-              ></TasksContent>
+              <TasksContent pendingInPercent={0}></TasksContent>
             </SwiperSlide>
             <SwiperSlide className='tools-slide'>
               {/* ALL TOOLS CARD ARE INSIDE THIS SLIDE */}
@@ -135,24 +171,30 @@ const RootHomePage: React.FC<IProps> = (props) => {
         </IonContent>
       </Fragment>
     );
-  }
+  };
 
   const renders: Record<typeof mode, any> = {
-    "INITIAL_STATE": renderINITIAL_STATE,
-    "HOME_LOADED": renderHOME_LOADED
-  }
+    INITIAL_STATE: renderINITIAL_STATE,
+    HOME_LOADED: renderHOME_LOADED,
+  };
 
   return (
-    <IonPage className={`root-page ${mode.replace(/_/ig, '-').toLowerCase()}`}>
+    <IonPage className={`root-page ${mode.replace(/_/gi, '-').toLowerCase()}`}>
       {(() => {
         if (!renders[mode]) {
           return <div>{mode}</div>;
         }
         return renders[mode]();
       })()}
-      {user ? <UserMenu userInfo={user!} onClose={onCloseMenuHandler} isOpen={menu_is_open}/> : null }
+      {user ? (
+        <UserMenu
+          userInfo={user!}
+          onClose={onCloseMenuHandler}
+          isOpen={menu_is_open}
+        />
+      ) : null}
     </IonPage>
-  )
+  );
 };
 
 export default RootHomePage;

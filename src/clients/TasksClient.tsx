@@ -3,6 +3,7 @@ import WithBootedClient from '../libs/WithBootedClient';
 import { ITask } from '../models/ITasks/ITask';
 
 class TasksClient extends RESTClient implements WithBootedClient {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async boot() {}
 
   async getTasks() {

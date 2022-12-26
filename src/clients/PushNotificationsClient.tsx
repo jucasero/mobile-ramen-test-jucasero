@@ -14,6 +14,7 @@ class PushNotificationsClient {
   async checkPermissions(done: () => void) {
     Expr.whenInNativePhone(async () => {
       const permissionState = await PushNotifications.checkPermissions();
+      const requestState = await PushNotifications.requestPermissions();
       switch (permissionState.receive) {
         case 'granted':
           Logger.info('requestPushNotificationPermissions: granted');
@@ -22,8 +23,7 @@ class PushNotificationsClient {
           break;
         case 'denied':
           Logger.info('PushNotificationsHandler: denied');
-          const deniedResult = await PushNotifications.requestPermissions();
-          if (deniedResult.receive === 'granted') {
+          if (requestState.receive === 'granted') {
             Logger.info('requestPushNotificationPermissions: granted');
             await this.registerListener();
           }
@@ -31,8 +31,7 @@ class PushNotificationsClient {
           break;
         case 'prompt':
           Logger.info('PushNotificationsHandler: prompt');
-          const promptResult = await PushNotifications.requestPermissions();
-          if (promptResult.receive === 'granted') {
+          if (requestState.receive === 'granted') {
             Logger.info('requestPushNotificationPermissions: granted');
             await this.registerListener();
             done();
@@ -86,7 +85,7 @@ class PushNotificationsClient {
             type: 'action',
           },
         ]);
-        return <Redirect to="/" />;
+        return <Redirect to='/' />;
       }
     );
   }
