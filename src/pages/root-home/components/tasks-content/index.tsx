@@ -6,7 +6,6 @@ import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
-import { routes } from '../../../../routes';
 import useFetch from '../../../../hooks/useFetch';
 import TasksClient from '../../../../clients/TasksClient';
 import { TaskSkeleton } from '../../../../components/loaders';

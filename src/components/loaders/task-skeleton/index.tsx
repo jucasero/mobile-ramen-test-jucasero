@@ -20,8 +20,8 @@ const TaskSkeleton: React.FC<IProps> = (props) => {
   const skeletonComponent = (key: string) => (
     <Fragment key={key}>
       <IonListHeader />
-      <IonItem lines="none">
-        <IonThumbnail slot="start">
+      <IonItem lines='none'>
+        <IonThumbnail slot='start'>
           <IonSkeletonText animated={true} />
         </IonThumbnail>
         <IonLabel style={{ width: '80%' }}>

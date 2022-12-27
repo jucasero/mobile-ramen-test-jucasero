@@ -38,10 +38,9 @@ import { ICustomer } from './models/users/ICustomer';
 
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
-// Merchandise reception imports
 // Found Rate Alert imports
-import FoundRateCategoryList from "./pages/tasks/found-rate/views/category-list";
-import { routes } from "./routes";
+import FoundRateCategoryList from './pages/tasks/found-rate/views/category-list';
+import { routes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
 

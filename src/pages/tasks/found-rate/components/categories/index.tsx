@@ -22,7 +22,6 @@ const CategoryList: React.FC = () => {
 
   useEffect(() => {
     fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Redirection to found rate sub-category list
@@ -33,7 +32,7 @@ const CategoryList: React.FC = () => {
   };
 
   return (
-    <IonContent className="ion-padding">
+    <IonContent className='ion-padding'>
       {isLoading && <TaskSkeleton cardsNumber={taskState.total} />}
       {categories &&
         categories.map((category: ICategory) => (
