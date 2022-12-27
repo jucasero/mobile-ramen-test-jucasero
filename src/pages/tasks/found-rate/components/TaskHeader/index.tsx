@@ -1,9 +1,9 @@
-import { IonButton, IonHeader, IonIcon, IonToolbar } from "@ionic/react";
-import { XText } from "@ramenx/ui-library";
-import { arrowBack } from "ionicons/icons";
-import { useHistory } from "react-router";
+import { IonButton, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
+import { XText } from '@ramenx/ui-library';
+import { arrowBack } from 'ionicons/icons';
+import { useHistory } from 'react-router';
 
-import "./index.sass";
+import './index.sass';
 
 interface ITaskHeaderProps {
   title: string;
@@ -13,22 +13,22 @@ interface ITaskHeaderProps {
 
 const TaskHeader: React.FC<ITaskHeaderProps> = ({
   title,
-  backRoute = "/",
+  backRoute = '/',
   data = {},
 }) => {
   const history = useHistory();
 
   return (
-    <IonHeader className="task-header" mode="md">
-      <IonToolbar mode="md">
+    <IonHeader className='task-header' mode='md'>
+      <IonToolbar mode='md'>
         <IonButton
-          fill="clear"
+          fill='clear'
           onClick={() => history.replace(backRoute, data)}
         >
-          <IonIcon icon={arrowBack} slot="icon-only" size="large"></IonIcon>
+          <IonIcon icon={arrowBack} slot='icon-only' size='large'></IonIcon>
         </IonButton>
-        <XText className="ion-padding">
-          <h1 style={{ margin: 0, whiteSpace: "pre-line" }}>{title}</h1>
+        <XText className='ion-padding'>
+          <h1 style={{ margin: 0, whiteSpace: 'pre-line' }}>{title}</h1>
         </XText>
       </IonToolbar>
     </IonHeader>

@@ -1,4 +1,1 @@
-
-
-export default class SingInClient {
-}
+export default class SingInClient {}

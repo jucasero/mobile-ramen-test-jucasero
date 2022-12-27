@@ -32,6 +32,7 @@
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.26.0",
     "cordova-plugin-inappbrowser": "^5.0.0",
+    "ionicons": "^6.0.4",
     "react": "^17.0.1",
     "react-customizable-progressbar": "^1.2.0",
     "react-dom": "^17.0.1",
@@ -60,13 +61,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "craco eject",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -82,11 +79,21 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.4.0",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "@types/gulp": "^4.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "craco-sass-resources-loader": "^1.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
     "gulp": "^4.0.2",
+    "husky": "^8.0.0",
     "plop-pack-npm-install-packages": "0.0.3",
-    "postcss": "8.4.6"
+    "postcss": "8.4.6",
+    "prettier": "^2.8.1"
   },
   "description": "An Ionic project"
 }
