@@ -1,7 +1,7 @@
 export interface IProduct {
   id: string;
   image?: string;
-  category?: string; 
+  category?: string;
   shop: string;
   description?: string;
   stock_nrt?: number;
@@ -19,4 +19,4 @@ export interface IProduct {
   units_requested?: number;
   delivery_date?: string;
   isAvailable?: boolean;
-};
+}
