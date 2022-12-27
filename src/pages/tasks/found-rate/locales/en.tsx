@@ -1,6 +1,6 @@
 const locale = {
   FILTER_TITLE: 'Filters',
-  CATEGORY_LIST_TITLE: 'Found Rate Alert',
+  FOUND_RATE_ALERT_TITLE: 'Alertas de Found Rate',
 };
 
 export default locale;
