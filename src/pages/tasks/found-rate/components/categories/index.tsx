@@ -17,7 +17,7 @@ const CategoryList: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!taskState) history.replace('/');
+    if (!taskState) history.replace(routes.root);
   }, [history, taskState]);
 
   useEffect(() => {
@@ -26,9 +26,12 @@ const CategoryList: React.FC = () => {
 
   // Redirection to found rate sub-category list
   const redirectToSubCategories = (category: ICategory) => {
-    const state: any = { category };
-    // TODO: Add navigation from categories to sub-category list
-    history.replace(routes.root, state);
+    const state: any = { category, task: taskState }; // TODO: Should be replaced by Context?
+    const subCategoryRoute = routes.foundRate.subCategories.replace(
+      ':categoryType',
+      category.type
+    );
+    history.replace(subCategoryRoute, state);
   };
 
   return (
