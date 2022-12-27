@@ -1,8 +1,4 @@
-const foundRate = {
-  root: '/found-rate',
-};
-
 export const routes = {
-  root: '/',
-  foundRate,
+  foundRate: '/found-rate',
+  foundRAteProductDetail: '/found-rate/product-detail',
 };

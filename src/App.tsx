@@ -41,7 +41,7 @@ import { ICustomer } from './models/users/ICustomer';
 // Merchandise reception imports
 import {
   FoundRateCategories,
-  // FoundRateSubCategories,
+  FoundRateProductDetail,
 } from './pages/tasks/found-rate/views';
 import { routes } from './routes';
 
@@ -110,13 +110,17 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path={routes.root} component={RootHomePage} exact={true} />
+          <Route path='/' component={RootHomePage} exact={true} />
 
-          {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
-          {/* Merchandise reception routes */}
           <Route
-            path={routes.foundRate.root}
+            path={routes.foundRate}
             component={FoundRateCategories}
+            exact
+          />
+
+          <Route
+            path={routes.foundRAteProductDetail}
+            component={FoundRateProductDetail}
             exact
           />
         </IonRouterOutlet>
