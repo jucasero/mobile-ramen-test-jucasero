@@ -22,7 +22,7 @@ const TasksContent: React.FC<IProps> = (props) => {
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
 
   const handleOnClickTask = () => {
-    history.replace(routes.foundRate.root);
+    history.replace(routes.merchandiseReception);
   };
 
   useEffect(() => {

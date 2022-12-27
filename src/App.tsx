@@ -102,7 +102,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (authenticated) {
+  if (!authenticated) {
     return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   }
   return (
@@ -110,12 +110,16 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path={routes.root} component={RootHomePage} exact={true} />
+          <Route
+            path={routes.merchandiseReception}
+            component={RootHomePage}
+            exact={true}
+          />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/* Merchandise reception routes */}
           <Route
-            path={routes.foundRate.root}
+            path={routes.merchandiseReception}
             component={FoundRateCategories}
             exact
           />
