@@ -34,9 +34,8 @@ const TaskCard: React.FC<ITaskCardProps> = ({
           className={boxIcon ? 'task-image' : ''}
         />
       </div>
-      <XText spacing='2' level='10'>
-        {title}
-      </XText>
+      {/* TODO: Replace by XText from @ramenx/ui-library */}
+      <p className='task-card-title'>{title}</p>
       <Badge total={total}></Badge>
     </IonItem>
   );
