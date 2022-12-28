@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { IonContent } from '@ionic/react';
 import { useHistory } from 'react-router';
-import { i18 } from '@team_eureka/eureka-ionic-core';
 import {
   ICategory,
   ISubCategory,
@@ -10,7 +9,6 @@ import { ITask } from '../../../../../models/ITasks/ITask';
 import TaskHeader from '../../components/TaskHeader';
 import AccordionOption from '../../../../../components/accordion-option';
 import { rootRoute, foundRateRoutes } from '../../../../../routes';
-import locales from '../../locales';
 
 interface ILocationState {
   category: ICategory;
@@ -21,7 +19,6 @@ const SubCategories: React.FC = () => {
   const history = useHistory<ILocationState>();
   const locationState: ILocationState = history.location.state;
   const categoryState: ICategory = locationState.category || {};
-  const localize = i18(locales);
 
   useEffect(() => {
     if (!categoryState) history.replace(rootRoute);
@@ -31,7 +28,6 @@ const SubCategories: React.FC = () => {
     <>
       <TaskHeader
         title={categoryState.title}
-        subTitle={localize('FOUND_RATE_ALERT', '')}
         backRoute={foundRateRoutes.root}
         data={locationState.task}
       />
