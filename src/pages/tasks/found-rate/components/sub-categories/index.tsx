@@ -9,7 +9,7 @@ import {
 import { ITask } from '../../../../../models/ITasks/ITask';
 import TaskHeader from '../../components/TaskHeader';
 import AccordionOption from '../../../../../components/accordion-option';
-import { routes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
+import { rootRoute, foundRateRoutes } from '../../../../../routes';
 import locales from '../../locales';
 
 interface ILocationState {
@@ -24,15 +24,15 @@ const SubCategories: React.FC = () => {
   const localize = i18(locales);
 
   useEffect(() => {
-    if (!categoryState) history.replace('/');
+    if (!categoryState) history.replace(rootRoute);
   }, []);
 
   return (
     <>
       <TaskHeader
         title={categoryState.title}
-        subTitle={localize('FOUND_RATE_ALERT_TITLE', '')}
-        backRoute={routes.foundRate.root}
+        subTitle={localize('FOUND_RATE_ALERT', '')}
+        backRoute={foundRateRoutes.root}
         data={locationState.task}
       />
       <IonContent className='ion-padding'>

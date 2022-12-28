@@ -1,9 +1,3 @@
-const foundRate = {
-  root: '/found-rate',
-  subCategories: '/found-rate/:categoryType',
-};
+export { foundRateRoutes } from './found-rate';
 
-export const routes = {
-  root: '/',
-  foundRate,
-};
+export const rootRoute = '/';

@@ -1,7 +1,8 @@
 import { IonPage } from '@ionic/react';
 import SubCategories from '../../components/sub-categories';
 
-const SubCategoryList: React.FC = () => {
+// Found rate sub-category list
+const FoundRateSubCategories: React.FC = () => {
   return (
     <IonPage>
       <SubCategories />
@@ -9,4 +10,4 @@ const SubCategoryList: React.FC = () => {
   );
 };
 
-export default SubCategoryList;
+export default FoundRateSubCategories;
