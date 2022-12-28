@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonAccordionGroup, IonAccordion, IonItem } from '@ionic/react';
-import { XText } from '@ramenx/ui-library';
 import Badge from '../badge';
 import './index.sass';
 
@@ -19,9 +18,8 @@ const AccordionOption: React.FC<IAccordionOptionProps> = ({
     <IonAccordionGroup expand='compact'>
       <IonAccordion value='first' className='task-accordion'>
         <IonItem slot='header' lines='none'>
-          <XText spacing='2' level='10'>
-            {title}
-          </XText>
+          {/* TODO: Replace by XText from @ramenx/ui-library */}
+          <p className='accordion-title'>{title}</p>
           <Badge total={total}></Badge>
         </IonItem>
         <div className='ion-padding' slot='content'>
