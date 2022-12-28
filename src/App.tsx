@@ -43,7 +43,7 @@ import {
   FoundRateCategories,
   // FoundRateSubCategories,
 } from './pages/tasks/found-rate/views';
-import { routes } from './routes';
+import { rootRoute, foundRateRoutes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
 
@@ -110,16 +110,12 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route
-            path={routes.merchandiseReception}
-            component={RootHomePage}
-            exact={true}
-          />
+          <Route path={rootRoute} component={RootHomePage} exact={true} />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/* Merchandise reception routes */}
           <Route
-            path={routes.merchandiseReception}
+            path={foundRateRoutes.root}
             component={FoundRateCategories}
             exact
           />

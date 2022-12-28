@@ -6,7 +6,7 @@ import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
-import { routes } from '../../../../routes';
+import { foundRateRoutes } from '../../../../routes';
 import useFetch from '../../../../hooks/useFetch';
 import TasksClient from '../../../../clients/TasksClient';
 import CardSkeleton from '../../../../components/card-skeleton';
@@ -22,7 +22,7 @@ const TasksContent: React.FC<IProps> = (props) => {
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
 
   const handleOnClickTask = () => {
-    history.replace(routes.merchandiseReception);
+    history.replace(foundRateRoutes.root);
   };
 
   useEffect(() => {
