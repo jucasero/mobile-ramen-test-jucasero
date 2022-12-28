@@ -1,4 +1,3 @@
-export const routes = {
-  merchandiseReception: '/merchandise-reception',
-  productCategory: '/merchandise-reception/:productCategory',
-};
+export { foundRateRoutes } from './found-rate';
+
+export const rootRoute = '/';
