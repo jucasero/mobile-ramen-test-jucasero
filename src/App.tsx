@@ -39,7 +39,10 @@ import { ICustomer } from './models/users/ICustomer';
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 // Merchandise reception imports
-import FoundRateAlert from './pages/tasks/found-rate';
+import {
+  FoundRateCategories,
+  // FoundRateSubCategories,
+} from './pages/tasks/found-rate/views';
 import { routes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
@@ -107,13 +110,17 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path={routes.root} component={RootHomePage} exact={true} />
+          <Route
+            path={routes.merchandiseReception}
+            component={RootHomePage}
+            exact={true}
+          />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/* Merchandise reception routes */}
           <Route
-            path={routes.foundRate.root}
-            component={FoundRateAlert}
+            path={routes.merchandiseReception}
+            component={FoundRateCategories}
             exact
           />
         </IonRouterOutlet>

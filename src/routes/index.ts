@@ -1,8 +1,4 @@
-const foundRate = {
-  root: '/found-rate',
-};
-
 export const routes = {
-  root: '/',
-  foundRate,
+  merchandiseReception: '/merchandise-reception',
+  productCategory: '/merchandise-reception/:productCategory',
 };
