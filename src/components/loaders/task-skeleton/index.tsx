@@ -25,15 +25,9 @@ const TaskSkeleton: React.FC<IProps> = (props) => {
           <IonSkeletonText animated={true} />
         </IonThumbnail>
         <IonLabel style={{ width: '80%' }}>
-          <p>
-            <IonSkeletonText animated={true} />
-          </p>
-          <p>
-            <IonSkeletonText animated={true} />
-          </p>
-          <p>
-            <IonSkeletonText animated={true} />
-          </p>
+          <IonSkeletonText animated={true} />
+          <IonSkeletonText animated={true} />
+          <IonSkeletonText animated={true} />
         </IonLabel>
       </IonItem>
     </Fragment>

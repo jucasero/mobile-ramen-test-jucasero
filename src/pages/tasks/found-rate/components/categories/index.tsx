@@ -7,7 +7,7 @@ import { ITask } from '../../../../../models/ITasks/ITask';
 import { ICategory } from '../../../../../models/found-rate/ICategory';
 import { TaskSkeleton } from '../../../../../components/loaders';
 import TaskCard from '../../../../../components/task-card';
-import { rootRoute } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
+import { rootRoute, foundRateRoutes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
 
 const CategoryList: React.FC = () => {
   const history = useHistory<ITask>();
@@ -17,7 +17,7 @@ const CategoryList: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!taskState) history.replace('/');
+    if (!taskState) history.replace(rootRoute);
   }, [history, taskState]);
 
   useEffect(() => {
@@ -26,9 +26,12 @@ const CategoryList: React.FC = () => {
 
   // Redirection to found rate sub-category list
   const redirectToSubCategories = (category: ICategory) => {
-    const state: any = { category };
-    // TODO: Add navigation from categories to sub-category list
-    history.replace(rootRoute, state);
+    const state: any = { category, task: taskState }; // TODO: Should be replaced by Context
+    const subCategoryRoute = foundRateRoutes.subCategories.replace(
+      ':categoryType',
+      category.type
+    );
+    history.replace(subCategoryRoute, state);
   };
 
   return (

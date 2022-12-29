@@ -1,4 +1,4 @@
 import FoundRateCategories from './categories';
-import FoundRateSubCategories from './subCategories';
+import FoundRateSubCategories from './sub-categories';
 
 export { FoundRateCategories, FoundRateSubCategories };

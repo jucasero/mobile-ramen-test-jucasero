@@ -39,7 +39,10 @@ import { ICustomer } from './models/users/ICustomer';
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 // Found Rate Alert imports
-import { FoundRateCategories } from './pages/tasks/found-rate/views';
+import {
+  FoundRateCategories,
+  FoundRateSubCategories,
+} from './pages/tasks/found-rate/views';
 import { rootRoute, foundRateRoutes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
@@ -114,6 +117,11 @@ const App: React.FC = () => {
           <Route
             path={foundRateRoutes.root}
             component={FoundRateCategories}
+            exact
+          />
+          <Route
+            path={foundRateRoutes.subCategories}
+            component={FoundRateSubCategories}
             exact
           />
         </IonRouterOutlet>
