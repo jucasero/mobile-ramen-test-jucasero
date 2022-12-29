@@ -40,6 +40,7 @@ import { ICustomer } from './models/users/ICustomer';
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 
 import animationBuilder from './libs/AnimationBuilder';
+import { rootRoute } from './routes';
 
 /* Set the lenguage (spanish if the default lenguage if you dont set any other) */
 /* setLocale('br') */
@@ -104,7 +105,7 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path='/' component={RootHomePage} exact={true} />
+          <Route path={rootRoute} component={RootHomePage} exact={true} />
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/*<Route
