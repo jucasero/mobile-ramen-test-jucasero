@@ -2,6 +2,7 @@ import { IonButton, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
 import { XText } from '@ramenx/ui-library';
 import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router';
+import { rootRoute } from '../../../../../routes';
 
 import './index.sass';
 
@@ -13,7 +14,7 @@ interface ITaskHeaderProps {
 
 const TaskHeader: React.FC<ITaskHeaderProps> = ({
   title,
-  backRoute = '/',
+  backRoute = rootRoute,
   data = {},
 }) => {
   const history = useHistory();

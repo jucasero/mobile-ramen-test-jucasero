@@ -7,7 +7,7 @@ import { ICategory } from '../../../../../models/ITasks/ICategory';
 import MerchandiseReceptionClient from '../../../../../clients/MerchandiseReceptionClient';
 import useFetch from '../../../../../hooks/useFetch';
 import { TaskSkeleton } from '../../../../../components/loaders';
-import { routes } from '../../constants';
+import { rootRoute, merchandiseReceptionRoutes } from '../../../../../routes';
 
 const TaskBody = () => {
   const history = useHistory<ITask>();
@@ -17,7 +17,7 @@ const TaskBody = () => {
   );
 
   useEffect(() => {
-    if (!locationState) history.replace('/');
+    if (!locationState) history.replace(rootRoute);
   }, [history, locationState]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const TaskBody = () => {
       productCategory: category,
       merchandise_reception: locationState,
     };
-    const productCategoryRoute = `${routes.productCategory.replace(
+    const productCategoryRoute = `${merchandiseReceptionRoutes.productCategory.replace(
       ':productCategory',
       category.type.toLocaleLowerCase()
     )}`;

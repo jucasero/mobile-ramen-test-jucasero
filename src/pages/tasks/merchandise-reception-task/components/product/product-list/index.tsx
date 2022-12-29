@@ -9,7 +9,10 @@ import { ProductSkeleton } from '../../../../../../components/loaders';
 import Product from '../product';
 import useFetch from '../../../../../../hooks/useFetch';
 import MerchandiseReceptionClient from '../../../../../../clients/MerchandiseReceptionClient';
-import { routes } from '../../../constants';
+import {
+  rootRoute,
+  merchandiseReceptionRoutes,
+} from '../../../../../../routes';
 import './index.sass';
 
 interface ILocationState {
@@ -27,7 +30,7 @@ const Products: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!locationState) history.replace('/');
+    if (!locationState) history.replace(rootRoute);
   }, [history, locationState]);
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const Products: React.FC = () => {
     <IonPage>
       <TaskHeader
         title={productCategory.title}
-        backRoute={routes.merchandiseReception}
+        backRoute={merchandiseReceptionRoutes.root}
         data={locationState.merchandise_reception}
       />
       <IonContent className='ion-padding'>

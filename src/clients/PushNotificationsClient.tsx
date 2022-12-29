@@ -7,6 +7,7 @@ import {
 } from '@capacitor/push-notifications';
 import SettingsClient from './SettingsClient';
 import { Redirect } from 'react-router';
+import { rootRoute } from '../routes';
 
 const Logger = XConsole({ label: 'pushnotification-client' });
 
@@ -85,7 +86,7 @@ class PushNotificationsClient {
             type: 'action',
           },
         ]);
-        return <Redirect to='/' />;
+        return <Redirect to={rootRoute} />;
       }
     );
   }
