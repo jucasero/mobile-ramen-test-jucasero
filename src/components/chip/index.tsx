@@ -1,6 +1,5 @@
 import React from 'react';
-import { IonChip, IonAvatar, IonLabel, IonIcon } from '@ionic/react';
-import { closeCircle, pin } from 'ionicons/icons';
+import { IonChip, IonAvatar, IonLabel } from '@ionic/react';
 import './index.sass';
 
 interface IProps {
