@@ -7,7 +7,7 @@ export interface IProduct {
   stock_nrt?: number;
   units_found?: number;
   units_sold?: number;
-  ean?: string;
+  ean?: number;
   article_number?: number;
   provider?: string;
   brand?: string;
