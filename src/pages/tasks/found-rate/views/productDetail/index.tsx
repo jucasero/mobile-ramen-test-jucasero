@@ -12,8 +12,6 @@ import Check from '../../../../../assets/media/check-background.svg';
 
 import { mock_products } from '../../../../../mocks/tasks';
 
-import { foundRateRoutes } from '../../../../../routes';
-
 export const FoundRateProductDetail: React.FC = () => {
   const localize = i18(locales);
 
@@ -32,10 +30,7 @@ export const FoundRateProductDetail: React.FC = () => {
 
   return (
     <IonPage>
-      <TaskHeader
-        backRoute={foundRateRoutes.subCategories}
-        section='CornerShop'
-      />
+      <TaskHeader section='CornerShop' />
       <IonContent className='ion-padding'>
         <IonGrid>
           <IonRow>

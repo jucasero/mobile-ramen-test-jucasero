@@ -25,7 +25,9 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
       <IonToolbar mode='md'>
         <IonButton
           fill='clear'
-          onClick={() => history.replace(backRoute, data)}
+          onClick={() =>
+            backRoute ? history.replace(backRoute, data) : history.goBack()
+          }
         >
           <IonIcon icon={arrowBack} slot='icon-only' size='large'></IonIcon>
         </IonButton>
