@@ -42,6 +42,7 @@ import { ICustomer } from './models/users/ICustomer';
 import {
   FoundRateCategories,
   FoundRateSubCategories,
+  FoundRateProductDetail,
 } from './pages/tasks/found-rate/views';
 import { rootRoute, foundRateRoutes } from './routes';
 
@@ -122,6 +123,11 @@ const App: React.FC = () => {
           <Route
             path={foundRateRoutes.subCategories}
             component={FoundRateSubCategories}
+            exact
+          />
+          <Route
+            path={foundRateRoutes.productDetail}
+            component={FoundRateProductDetail}
             exact
           />
         </IonRouterOutlet>
