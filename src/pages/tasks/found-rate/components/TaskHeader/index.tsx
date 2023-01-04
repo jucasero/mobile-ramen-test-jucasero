@@ -1,5 +1,4 @@
 import { IonButton, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
-import { XText } from '@ramenx/ui-library';
 import Chip from '../../../../../components/chip';
 import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router';
@@ -10,6 +9,7 @@ interface ITaskHeaderProps {
   backRoute?: string;
   data?: unknown;
   section?: string;
+  icon?: unknown;
 }
 
 const TaskHeader: React.FC<ITaskHeaderProps> = ({
@@ -17,6 +17,7 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
   backRoute = '/',
   data = {},
   section,
+  icon,
 }) => {
   const history = useHistory();
 
@@ -32,7 +33,7 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
           <IonIcon icon={arrowBack} slot='icon-only' size='large'></IonIcon>
         </IonButton>
 
-        {section && <Chip name={section} />}
+        {section && <Chip name={section} icon={icon} />}
       </IonToolbar>
 
       {title && <p className='ion-padding task-header-title'>{title}</p>}
