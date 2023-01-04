@@ -4,16 +4,17 @@ import { useHistory } from 'react-router';
 import useFetch from '../../../../../hooks/useFetch';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import { ITask } from '../../../../../models/ITasks/ITask';
-import { ICategory } from '../../../../../models/found-rate/ICategory';
+import { IFoundRateData } from '../../../../../models/found-rate/IData';
 import { TaskSkeleton } from '../../../../../components/loaders';
 import TaskCard from '../../../../../components/task-card';
 import { rootRoute, foundRateRoutes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
 
+// Found Rate Category list
 const CategoryList: React.FC = () => {
   const history = useHistory<ITask>();
   const taskState: ITask = history.location.state;
-  const [fetchCategories, categories, isLoading] = useFetch(
-    FoundRateClient.getCategories()
+  const [fetchData, data, isLoading] = useFetch(
+    FoundRateClient.getFoundRateData()
   );
 
   useEffect(() => {
@@ -21,15 +22,15 @@ const CategoryList: React.FC = () => {
   }, [history, taskState]);
 
   useEffect(() => {
-    fetchCategories();
+    fetchData();
   }, []);
 
   // Redirection to found rate sub-category list
-  const redirectToSubCategories = (category: ICategory) => {
-    const state: any = { category, task: taskState }; // TODO: Should be replaced by Context
+  const redirectToSubCategories = (foundRateData: IFoundRateData) => {
+    const state: any = { data: foundRateData, task: taskState }; // TODO: Should be replaced by Context
     const subCategoryRoute = foundRateRoutes.subCategories.replace(
       ':categoryType',
-      category.type
+      foundRateData.category.type
     );
     history.replace(subCategoryRoute, state);
   };
@@ -37,14 +38,14 @@ const CategoryList: React.FC = () => {
   return (
     <IonContent className='ion-padding'>
       {isLoading && <TaskSkeleton cardsNumber={taskState.total} />}
-      {categories &&
-        categories.map((category: ICategory) => (
+      {data &&
+        data.map((record) => (
           <TaskCard
-            key={category.id}
-            image={category.image}
-            title={category.title}
-            onClick={() => redirectToSubCategories(category)}
-            total={category.total}
+            key={record.category.id}
+            image={record.category.image}
+            title={record.category.title}
+            onClick={() => redirectToSubCategories(record)}
+            total={record.total}
             boxIcon
           />
         ))}
