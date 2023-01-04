@@ -3,7 +3,6 @@ import { XText } from '@ramenx/ui-library';
 import Chip from '../../../../../components/chip';
 import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router';
-
 import './index.sass';
 
 interface ITaskHeaderProps {
@@ -34,11 +33,7 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
         {section && <Chip name={section} />}
       </IonToolbar>
 
-      {title && (
-        <XText className='ion-padding'>
-          <h1 style={{ margin: 0, whiteSpace: 'pre-line' }}>{title}</h1>
-        </XText>
-      )}
+      {title && <p className='ion-padding task-header-title'>{title}</p>}
     </IonHeader>
   );
 };

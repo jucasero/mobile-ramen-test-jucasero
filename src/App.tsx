@@ -38,12 +38,13 @@ import { ICustomer } from './models/users/ICustomer';
 
 /* Parte de la documentacion para equipos regionales (agregar modulo) */
 //import ProductScanTool from "./pages/tools/tool-product-scan";
-// Merchandise reception imports
+// Found Rate Alert imports
 import {
   FoundRateCategories,
+  FoundRateSubCategories,
   FoundRateProductDetail,
 } from './pages/tasks/found-rate/views';
-import { routes } from './routes';
+import { rootRoute, foundRateRoutes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
 
@@ -102,24 +103,30 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (authenticated) {
-    return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
-  }
+  // if (!authenticated) {
+  //   return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
+  // }
   return (
     <IonApp>
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path='/' component={RootHomePage} exact={true} />
+          <Route path={rootRoute} component={RootHomePage} exact={true} />
 
+          {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
+          {/* Found Rate Alert routes */}
           <Route
-            path={routes.foundRate}
+            path={foundRateRoutes.root}
             component={FoundRateCategories}
             exact
           />
-
           <Route
-            path={routes.foundRAteProductDetail}
+            path={foundRateRoutes.subCategories}
+            component={FoundRateSubCategories}
+            exact
+          />
+          <Route
+            path={foundRateRoutes.productDetail}
             component={FoundRateProductDetail}
             exact
           />
