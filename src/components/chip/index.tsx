@@ -8,15 +8,17 @@ interface IProps {
 
 const Chip: React.FC<IProps> = (props) => {
   return (
-    <IonChip className='ion-chip'>
-      <IonAvatar>
-        <img
-          alt="Silhouette of a person's head"
-          src='https://ionicframework.com/docs/img/demos/avatar.svg'
-        />
-      </IonAvatar>
-      <IonLabel className='ion-label'>{props.name}</IonLabel>
-    </IonChip>
+    <div className='chip-container'>
+      <IonChip className='ion-chip'>
+        <IonAvatar>
+          <img
+            alt="Silhouette of a person's head"
+            src='https://ionicframework.com/docs/img/demos/avatar.svg'
+          />
+        </IonAvatar>
+        <IonLabel className='ion-label'>{props.name}</IonLabel>
+      </IonChip>
+    </div>
   );
 };
 

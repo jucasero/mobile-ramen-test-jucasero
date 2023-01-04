@@ -1,0 +1,83 @@
+.color--light
+  color: #FFFFFF
+
+.color--gray
+  color: #333333
+
+.color--dark
+  color: #000000
+
+%product-detail--text
+  font-family: 'Open Sans'
+  font-style: normal
+  line-height: 100%
+  letter-spacing: -0.05em
+  margin: 0px
+
+.product-detail--text-sm
+  @extend %product-detail--text
+  font-size: 12px
+
+.product-detail--text-md
+  @extend %product-detail--text
+  font-size: 14px
+
+.product-detail--text-bg
+  @extend %product-detail--text
+  font-size: 16px
+
+.product-detail--container
+  margin: 24px
+
+.product-detail--card
+  background-color: #000000
+  padding: 16px 24px
+  border-radius: 24px
+
+.product-detail--title
+  @extend %product-detail--text
+  font-size: 14px
+  font-weight: 600
+  color: #333333
+
+.product-detail--description
+  @extend %product-detail--text
+  font-size: 16px
+  font-weight: 700
+  color: #000000
+
+.flex-row
+  display: flex
+  flex: 1
+  flex-direction: row
+
+.flex-column
+  display: flex
+  flex: 1
+  flex-direction: column
+
+.flex--align-items__center
+  display: flex
+  flex-direction: row
+  flex: 1
+  align-items: center
+
+.cross
+  margin: 0px
+
+.product-detail--rack-question
+  @extend .flex--align-items__center
+  border: 1px solid #F0F0F0
+  border-radius: 24px
+  width: 327px
+  height: 72px
+
+  .product-container
+  padding: 5px
+
+.product-detail-tag
+  @extend %product-detail--text
+  font-size: 14px
+
+.product-detail--padding
+  padding: 24px
