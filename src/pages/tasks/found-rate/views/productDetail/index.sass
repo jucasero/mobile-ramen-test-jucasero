@@ -101,3 +101,27 @@
 
 .font-weight--700
   font-weight: 700
+
+.product-detail--info
+  display: flex
+  flex-direction: column
+  border: 1px solid #F0F0F0
+  border-radius: 24px
+  padding: 20px 24px
+  
+.product-detail--info-title
+  @extend %product-detail--text
+  color: #1C7CD5
+  font-size: 16px
+  font-weight: 700
+  margin-bottom: 16px
+
+.product-detail--info-description
+  @extend %product-detail--text
+  font-size: 12px
+  font-weight: 600
+  margin: 4px 0px
+
+.product-detail--info-icon
+  margin-right: 4px
+

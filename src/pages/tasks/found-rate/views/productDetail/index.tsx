@@ -1,18 +1,29 @@
+import { useState } from 'react';
 import { IonContent, IonPage } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import { IonCol, IonRow, IonGrid, IonThumbnail, IonImg } from '@ionic/react';
+import {
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonThumbnail,
+  IonImg,
+  IonIcon,
+} from '@ionic/react';
 import { XImage } from '@ramenx/ui-library';
 
 import './index.sass';
 
 import locales from './locales';
 import TaskHeader from '../../components/TaskHeader';
+import Button from '../../../../../components/button';
 import Cross from '../../../../../assets/media/cross-background.svg';
 import Check from '../../../../../assets/media/check-background.svg';
+import CheckBlue from '../../../../../assets/media/check-blue.svg';
 
 import { mock_products } from '../../../../../mocks/tasks';
 
 export const FoundRateProductDetail: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const localize = i18(locales);
 
   const product = mock_products[0];
@@ -25,6 +36,42 @@ export const FoundRateProductDetail: React.FC = () => {
       <p className='product-detail--text-bg color--light'>
         {localize('UNITS_REQUESTED_TEXT_2', '')}
       </p>
+    </div>
+  );
+
+  const handleFinishAlert = () => {
+    setLoading(true);
+  };
+
+  const ProductInRack = () => (
+    <div>
+      <div className='product-detail--info'>
+        <span className='product-detail--info-title'>
+          {localize('INFO_DESCRIPTION', '')}
+        </span>
+        {['INFO_TEXT_1', 'INFO_TEXT_2', 'INFO_TEXT_3', 'INFO_TEXT_4'].map(
+          (name, i) => (
+            <span key={i} className='product-detail--info-description'>
+              <IonIcon className='product-detail--info-icon' src={CheckBlue} />
+              {localize(name, '')}
+            </span>
+          )
+        )}
+      </div>
+
+      <Button
+        text={localize('PRINT_BUTTON', '')}
+        color='light'
+        type='primary'
+      />
+
+      <Button
+        text={localize('FINISH_TASK_BUTTON', '')}
+        color='dark'
+        type='secondary'
+        onClick={handleFinishAlert}
+        loading={loading}
+      />
     </div>
   );
 
@@ -174,10 +221,12 @@ export const FoundRateProductDetail: React.FC = () => {
             {localize('PRODUCT_RACK_QUESTION', '')}
           </span>
           <div className='product-detail--icons'>
-            <XImage src={Check} width='75' />
-            <XImage src={Cross} width='75' />
+            <IonIcon src={Check} />
+            <IonIcon src={Cross} />
           </div>
         </div>
+
+        {true && <ProductInRack />}
       </IonContent>
     </IonPage>
   );
