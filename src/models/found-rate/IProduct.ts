@@ -19,6 +19,7 @@ export interface IProduct {
   average_sale?: number;
   units_sold?: number;
   category: string;
+  subCategory: string;
   product_offer: {
     no_stock: boolean;
     promotion: boolean;
