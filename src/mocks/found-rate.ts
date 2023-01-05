@@ -27,6 +27,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670575680,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -54,6 +55,7 @@ const dairyProducts: IProduct[] = [
     units_requested: 810,
     transit_stock_date: 1670056440,
     shop: 'CornerShop',
+    subCategory: 'milk',
     category: 'dairy',
     product_offer: {
       no_stock: false,
@@ -83,6 +85,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670662740,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -111,6 +114,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670230020,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -139,6 +143,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670575020,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -167,6 +172,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670057340,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -195,6 +201,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670403180,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'milk',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -223,6 +230,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670143620,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'eggs',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -251,6 +259,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670661660,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'eggs',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -279,6 +288,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1669884600,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'eggs',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -307,6 +317,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1669882500,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'butter',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -335,6 +346,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670662500,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'butter',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -363,6 +375,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670488860,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'butter',
     product_offer: {
       no_stock: true,
       promotion: false,
@@ -373,7 +386,7 @@ const dairyProducts: IProduct[] = [
     id: '639754933ed9331f19c98522',
     image:
       'https://santaisabel.vtexassets.com/arquivos/ids/156872-750-750?width=750&height=750&aspect=true',
-    description: 'Yoghurt batido light frutilla 125 g',
+    description: 'Yogurt batido light frutilla 125 g',
     unit_of_meansure: 'Gramos',
     provider: 'Colun',
     brand: 'Colun',
@@ -391,6 +404,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670575140,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'yogurt',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -401,7 +415,7 @@ const dairyProducts: IProduct[] = [
     id: '639754d83f2867d8fa0787fe',
     image:
       'https://santaisabel.vtexassets.com/arquivos/ids/156873-750-750?width=750&height=750&aspect=true',
-    description: 'Yoghurt batido light vainilla 125 g',
+    description: 'Yogurt batido light vainilla 125 g',
     unit_of_meansure: 'Gramos',
     provider: 'Colun',
     brand: 'Colun',
@@ -419,6 +433,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1669883040,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'yogurt',
     product_offer: {
       no_stock: true,
       promotion: false,
@@ -429,7 +444,7 @@ const dairyProducts: IProduct[] = [
     id: '63975519d6bc963c4ca207a4',
     image:
       'https://santaisabel.vtexassets.com/arquivos/ids/158338-750-750?width=750&height=750&aspect=true',
-    description: 'Yoghurt griego light berries Quillayes 110 g',
+    description: 'Yogurt griego light berries Quillayes 110 g',
     unit_of_meansure: 'Gramos',
     provider: 'Quillayes',
     brand: 'Quillayes',
@@ -447,6 +462,7 @@ const dairyProducts: IProduct[] = [
     transit_stock_date: 1670144040,
     shop: 'CornerShop',
     category: 'dairy',
+    subCategory: 'yogurt',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -478,6 +494,7 @@ const bakedProducts: IProduct[] = [
     transit_stock_date: 1670141880,
     shop: 'CornerShop',
     category: 'baked',
+    subCategory: 'packaged',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -506,6 +523,7 @@ const bakedProducts: IProduct[] = [
     transit_stock_date: 1670573940,
     shop: 'CornerShop',
     category: 'baked',
+    subCategory: 'bulk',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -534,6 +552,7 @@ const bakedProducts: IProduct[] = [
     transit_stock_date: 1670661960,
     shop: 'CornerShop',
     category: 'baked',
+    subCategory: 'bulk',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -562,6 +581,7 @@ const bakedProducts: IProduct[] = [
     transit_stock_date: 1670575260,
     shop: 'CornerShop',
     category: 'baked',
+    subCategory: 'packaged',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -590,6 +610,7 @@ const bakedProducts: IProduct[] = [
     transit_stock_date: 1670056560,
     shop: 'CornerShop',
     category: 'baked',
+    subCategory: 'cakes',
     product_offer: {
       no_stock: false,
       promotion: false,
@@ -621,6 +642,7 @@ const frozenProducts: IProduct[] = [
     transit_stock_date: 1670055780,
     shop: 'CornerShop',
     category: 'frozen',
+    subCategory: 'icecream',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -649,6 +671,7 @@ const frozenProducts: IProduct[] = [
     transit_stock_date: 1670228880,
     shop: 'CornerShop',
     category: 'frozen',
+    subCategory: 'icecream',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -677,6 +700,7 @@ const frozenProducts: IProduct[] = [
     transit_stock_date: 1669971120,
     shop: 'CornerShop',
     category: 'frozen',
+    subCategory: 'fruits',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -705,6 +729,7 @@ const frozenProducts: IProduct[] = [
     transit_stock_date: 1670315460,
     shop: 'CornerShop',
     category: 'frozen',
+    subCategory: 'vegetables',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -736,6 +761,7 @@ const winesProducts: IProduct[] = [
     transit_stock_date: 1670228400,
     shop: 'CornerShop',
     category: 'wines',
+    subCategory: 'wines',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -767,6 +793,7 @@ const beautyProducts: IProduct[] = [
     transit_stock_date: 1670662560,
     shop: 'CornerShop',
     category: 'beauty',
+    subCategory: 'hygiene',
     product_offer: {
       no_stock: true,
       promotion: false,
@@ -795,6 +822,7 @@ const beautyProducts: IProduct[] = [
     transit_stock_date: 1670056920,
     shop: 'CornerShop',
     category: 'beauty',
+    subCategory: 'hygiene',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -826,6 +854,7 @@ const fruitsVegetablesProducts: IProduct[] = [
     transit_stock_date: 1670402640,
     shop: 'CornerShop',
     category: 'fruits-vegetables',
+    subCategory: 'fruits',
     product_offer: {
       no_stock: true,
       promotion: false,
@@ -854,6 +883,7 @@ const fruitsVegetablesProducts: IProduct[] = [
     transit_stock_date: 1670747940,
     shop: 'CornerShop',
     category: 'fruits-vegetables',
+    subCategory: 'vegetables',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -882,6 +912,7 @@ const fruitsVegetablesProducts: IProduct[] = [
     transit_stock_date: 1669970700,
     shop: 'CornerShop',
     category: 'fruits-vegetables',
+    subCategory: 'vegetables',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -913,6 +944,7 @@ const seafoodProducts: IProduct[] = [
     transit_stock_date: 1670403120,
     shop: 'CornerShop',
     category: 'seafood',
+    subCategory: 'fish',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -941,6 +973,7 @@ const seafoodProducts: IProduct[] = [
     transit_stock_date: 1670057220,
     shop: 'CornerShop',
     category: 'seafood',
+    subCategory: 'fish',
     product_offer: {
       no_stock: true,
       promotion: true,
@@ -969,6 +1002,7 @@ const seafoodProducts: IProduct[] = [
     transit_stock_date: 1670489280,
     shop: 'CornerShop',
     category: 'seafood',
+    subCategory: 'fish',
     product_offer: {
       no_stock: false,
       promotion: true,
@@ -993,32 +1027,44 @@ const dairySubCategories: ISubCategory[] = [
   {
     id: '200',
     categoryId: '20',
+    type: 'milk',
     title: 'Leches',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 20',
   },
   {
     id: '201',
     categoryId: '20',
+    type: 'yogurt',
     title: 'Yogurt',
+    marketArea: 'Sector estantes, Pasillo 4, Estante 36',
   },
   {
     id: '202',
     categoryId: '20',
+    type: 'eggs',
     title: 'Huevos',
+    marketArea: 'Sector estantes, Pasillo 5, Estante 10',
   },
   {
     id: '203',
     categoryId: '20',
+    type: 'milkdrink',
     title: 'Bebidas Lácteas',
+    marketArea: 'Sector estantes, Pasillo 5, Estante 11',
   },
   {
     id: '204',
     categoryId: '20',
+    type: 'butter',
     title: 'Mantequillas y Margarinas',
+    marketArea: 'Sector estantes, Pasillo 5, Estante 12',
   },
   {
     id: '205',
     categoryId: '20',
+    type: 'desserts',
     title: 'Postres',
+    marketArea: 'Sector estantes, Pasillo 5, Estante 13',
   },
 ];
 
@@ -1026,22 +1072,30 @@ const bakedSubCategories: ISubCategory[] = [
   {
     id: '250',
     categoryId: '21',
+    type: 'packaged',
     title: 'Panadería envasada',
+    marketArea: 'Sector estantes, Pasillo 6, Estante 2',
   },
   {
     id: '251',
     categoryId: '21',
+    type: 'bulk',
     title: 'Panadería granel',
+    marketArea: 'Sector estantes, Pasillo 6, Estante 3',
   },
   {
     id: '252',
     categoryId: '21',
+    type: 'mass',
     title: 'Masas y Tortillas',
+    marketArea: 'Sector estantes, Pasillo 6, Estante 4',
   },
   {
     id: '253',
     categoryId: '21',
+    type: 'cakes',
     title: 'Pastelería',
+    marketArea: 'Sector estantes, Pasillo 6, Estante 5',
   },
 ];
 
@@ -1049,27 +1103,37 @@ const frozenSubCategories: ISubCategory[] = [
   {
     id: '300',
     categoryId: '22',
+    type: 'vegetables',
     title: 'Verduras Congeladas',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 3',
   },
   {
     id: '301',
     categoryId: '22',
+    type: 'burguer',
     title: 'Hamburguesas',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 4',
   },
   {
     id: '302',
     categoryId: '22',
+    type: 'icecream',
     title: 'Helados',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 5',
   },
   {
     id: '303',
     categoryId: '22',
+    type: 'fruits',
     title: 'Frutas Congeladas',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 6',
   },
   {
     id: '304',
     categoryId: '22',
+    type: 'meats',
     title: 'Churrascos, Lomitos y Otros',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 7',
   },
 ];
 
@@ -1077,17 +1141,23 @@ const winesSubCategories: ISubCategory[] = [
   {
     id: '350',
     categoryId: '23',
+    type: 'wines',
     title: 'Vinos y Espumantes',
+    marketArea: 'Sector estantes, Pasillo 8, Estante 10',
   },
   {
     id: '351',
     categoryId: '23',
+    type: 'beers',
     title: 'Cervezas',
+    marketArea: 'Sector estantes, Pasillo 8, Estante 11',
   },
   {
     id: '352',
     categoryId: '23',
+    type: 'liquors',
     title: 'Licores y Cócteles',
+    marketArea: 'Sector estantes, Pasillo 8, Estante 12',
   },
 ];
 
@@ -1095,12 +1165,16 @@ const beautySubCategories: ISubCategory[] = [
   {
     id: '400',
     categoryId: '24',
+    type: 'creams',
     title: 'Cremas',
+    marketArea: 'Sector estantes, Pasillo 7, Estante 9',
   },
   {
     id: '401',
     categoryId: '24',
+    type: 'hygiene',
     title: 'Higiene Personal',
+    marketArea: 'Sector estantes, Pasillo 7, Estante 10',
   },
 ];
 
@@ -1108,17 +1182,23 @@ const fruitsSubCategories: ISubCategory[] = [
   {
     id: '450',
     categoryId: '25',
+    type: 'fruits',
     title: 'Frutas',
+    marketArea: 'Sector estantes, Pasillo 2, Estante 5',
   },
   {
     id: '451',
     categoryId: '25',
+    type: 'vegetables',
     title: 'Verduras',
+    marketArea: 'Sector estantes, Pasillo 2, Estante 6',
   },
   {
     id: '452',
     categoryId: '25',
+    type: 'seeds',
     title: 'Frutos Secos y Semillas',
+    marketArea: 'Sector estantes, Pasillo 2, Estante 7',
   },
 ];
 
@@ -1126,7 +1206,9 @@ const seafoodSubCategories: ISubCategory[] = [
   {
     id: '500',
     categoryId: '26',
+    type: 'fish',
     title: 'Pescados',
+    marketArea: 'Sector congelados, Pasillo 15, Estante 17',
   },
 ];
 
@@ -1187,60 +1269,33 @@ export const categories: ICategory[] = [
   },
 ];
 
-export const foundRateAlertDataDB = [
-  {
-    category: '20',
-    detail: [
-      {
-        subCategory: '200',
-        products: [
-          { id: '63974ff8b0086567dcc1d08d' },
-          { id: '63972c2181cff6147395ec83' },
-        ],
-        marketArea: 'Sector estantes, Pasillo 4, Estante 36',
-      },
-      {
-        subCategory: '201',
-        products: [{ id: '639749e19286966efb0a4227' }],
-        marketArea: 'Sector estantes, Pasillo 5, Estante 15',
-      },
-    ],
-  },
-];
-
 // Build mock data ( this should be bff logic )
 export const buildMockData = () => {
-  const foundRateData: IFoundRateData[] = foundRateAlertDataDB.map((record) => {
-    // Searching Category relation data
-    const category =
-      categories.find((category) => category.id === record.category) ||
-      categories[0];
-    // Building detail with related data
-    const detail: IDetailData[] = record.detail.map((detailData) => {
-      // Searching Sub-Category relation data
-      const subCategory =
-        subCategories.find(
-          (subCategory) => subCategory.id === detailData.subCategory
-        ) || dairySubCategories[0];
-      // Searching Product relation data
-      const productData = detailData.products.map(
-        (productDetail) =>
-          products.find((product) => product.id === productDetail.id) ||
-          dairyProducts[0]
+  const foundRateRelatedData: IFoundRateData[] = [];
+  categories.forEach((category) => {
+    const foundRateData: IFoundRateData = { category, detail: [], total: 0 };
+    const subCategoriesByCategory = subCategories.filter(
+      (subCategory) => subCategory.categoryId === category.id
+    );
+    if (subCategoriesByCategory.length === 0) return;
+    subCategoriesByCategory.forEach((subCategory) => {
+      const filteredProducts = products.filter(
+        (product) =>
+          product.category === category.type &&
+          product.subCategory === subCategory.type
       );
-      return {
-        ...detailData,
+      if (filteredProducts.length === 0) return;
+      const detailData: IDetailData = {
         subCategory,
-        total: productData.length,
-        products: productData,
+        products: filteredProducts,
+        total: filteredProducts.length,
+        marketArea: subCategory.marketArea,
       };
+      foundRateData.detail.push(detailData);
     });
-    // Built object result
-    return {
-      category,
-      total: detail.length,
-      detail,
-    };
+    if (foundRateData.detail.length === 0) return;
+    foundRateData.total = foundRateData.detail.length;
+    foundRateRelatedData.push(foundRateData);
   });
-  return foundRateData;
+  return foundRateRelatedData;
 };
