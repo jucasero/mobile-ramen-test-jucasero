@@ -18,15 +18,16 @@ import Button from '../../../../../components/button';
 import Cross from '../../../../../assets/media/cross-gray.svg';
 import Check from '../../../../../assets/media/check-gray.svg';
 import CheckBlue from '../../../../../assets/media/check-blue.svg';
-import ChevronIcon from '../../../../../assets/media/Chevron';
+import { ReactComponent as ChevronIcon } from '../../../../../assets/media/chevron.svg';
 
 import { mock_products } from '../../../../../mocks/tasks';
 
-import useShow from '../../../../../hooks/useShow';
+import useToggle from '../../../../../hooks/useToggle';
 
 export const FoundRateProductDetail: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const { isShowing, toggle } = useShow();
+  const { isShowing, toggle } = useToggle();
+
   const localize = i18(locales);
 
   const product = mock_products[0];
@@ -85,7 +86,7 @@ export const FoundRateProductDetail: React.FC = () => {
         className={isShowing ? 'dropdown--arrow-active' : 'dropdown--arrow'}
         onClick={toggle}
       >
-        <ChevronIcon color={isShowing ? '#FFFFFF' : '#333333'} />
+        <ChevronIcon stroke={isShowing ? '#FFFFFF' : '#333333'} />
       </div>
       <div className='dropdown--line' />
     </div>

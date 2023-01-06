@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function useShow() {
+export default function useToggle() {
   const [isShowing, setIsShowing] = useState(false);
 
   const toggle = () => {
