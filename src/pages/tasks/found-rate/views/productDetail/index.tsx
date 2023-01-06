@@ -9,21 +9,24 @@ import {
   IonImg,
   IonIcon,
 } from '@ionic/react';
-import { XImage } from '@ramenx/ui-library';
 
 import './index.sass';
 
 import locales from './locales';
 import TaskHeader from '../../components/TaskHeader';
 import Button from '../../../../../components/button';
-import Cross from '../../../../../assets/media/cross-background.svg';
-import Check from '../../../../../assets/media/check-background.svg';
+import Cross from '../../../../../assets/media/cross-gray.svg';
+import Check from '../../../../../assets/media/check-gray.svg';
 import CheckBlue from '../../../../../assets/media/check-blue.svg';
+import ChevronIcon from '../../../../../assets/media/Chevron';
 
 import { mock_products } from '../../../../../mocks/tasks';
 
+import useShow from '../../../../../hooks/useShow';
+
 export const FoundRateProductDetail: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const { isShowing, toggle } = useShow();
   const localize = i18(locales);
 
   const product = mock_products[0];
@@ -49,7 +52,7 @@ export const FoundRateProductDetail: React.FC = () => {
         <span className='product-detail--info-title'>
           {localize('INFO_DESCRIPTION', '')}
         </span>
-        {['INFO_TEXT_1', 'INFO_TEXT_2', 'INFO_TEXT_3', 'INFO_TEXT_4'].map(
+        {['CORRECT_LOCATION', 'CORRECT_CODE', 'CORRECT_BULLET', 'STOCK'].map(
           (name, i) => (
             <span key={i} className='product-detail--info-description'>
               <IonIcon className='product-detail--info-icon' src={CheckBlue} />
@@ -113,116 +116,129 @@ export const FoundRateProductDetail: React.FC = () => {
 
         <RequestedUnits />
 
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <IonRow>
+        <div className='dropdown'>
+          <div className='dropdown--line' />
+          <div
+            className={isShowing ? 'dropdown--arrow-active' : 'dropdown--arrow'}
+            onClick={toggle}
+          >
+            <ChevronIcon color={isShowing ? '#FFFFFF' : '#333333'} />
+          </div>
+          <div className='dropdown--line' />
+        </div>
+
+        {isShowing && (
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('ARTICLE', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.article_number}
+                  </span>
+                </IonRow>
+              </IonCol>
+
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('HEADING', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.article_number}
+                  </span>
+                </IonRow>
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('BRAND', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.brand}
+                  </span>
+                </IonRow>
+              </IonCol>
+
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('PROVIDER', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.provider}
+                  </span>
+                </IonRow>
+              </IonCol>
+            </IonRow>
+
+            <div className='divider' />
+
+            <IonRow>
+              <IonCol>
                 <span className='product-detail--tag-title'>
-                  {localize('ARTICLE', '')}
+                  {localize('LAST_RECEPTION', '')}
                 </span>
-              </IonRow>
-              <IonRow>
+              </IonCol>
+              <IonCol>
                 <span className='product-detail--tag-description'>
-                  {product.article_number}
+                  {product.last_reception_date}
                 </span>
-              </IonRow>
-            </IonCol>
+              </IonCol>
+            </IonRow>
 
-            <IonCol>
-              <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('HEADING', '')}
-                </span>
-              </IonRow>
-              <IonRow>
-                <span className='product-detail--tag-description'>
-                  {product.article_number}
-                </span>
-              </IonRow>
-            </IonCol>
-          </IonRow>
+            <div className='divider' />
 
-          <IonRow>
-            <IonCol>
-              <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('BRAND', '')}
-                </span>
-              </IonRow>
-              <IonRow>
-                <span className='product-detail--tag-description'>
-                  {product.brand}
-                </span>
-              </IonRow>
-            </IonCol>
+            <IonRow>
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('UNITS_REQUESTED', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.units_requested}
+                  </span>
+                </IonRow>
+              </IonCol>
 
-            <IonCol>
-              <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('PROVIDER', '')}
-                </span>
-              </IonRow>
-              <IonRow>
-                <span className='product-detail--tag-description'>
-                  {product.provider}
-                </span>
-              </IonRow>
-            </IonCol>
-          </IonRow>
-
-          <div className='divider' />
-
-          <IonRow>
-            <IonCol>
-              <span className='product-detail--tag-title'>
-                {localize('LAST_RECEPTION', '')}
-              </span>
-            </IonCol>
-            <IonCol>
-              <span className='product-detail--tag-description'>
-                {product.last_reception_date}
-              </span>
-            </IonCol>
-          </IonRow>
-
-          <div className='divider' />
-
-          <IonRow>
-            <IonCol>
-              <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('UNITS_REQUESTED', '')}
-                </span>
-              </IonRow>
-              <IonRow>
-                <span className='product-detail--tag-description'>
-                  {product.units_requested}
-                </span>
-              </IonRow>
-            </IonCol>
-
-            <IonCol>
-              <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('DELIVERY_DATE', '')}
-                </span>
-              </IonRow>
-              <IonRow>
-                <span className='product-detail--tag-description'>
-                  {product.delivery_date}
-                </span>
-              </IonRow>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+              <IonCol>
+                <IonRow>
+                  <span className='product-detail--tag-title'>
+                    {localize('DELIVERY_DATE', '')}
+                  </span>
+                </IonRow>
+                <IonRow>
+                  <span className='product-detail--tag-description'>
+                    {product.delivery_date}
+                  </span>
+                </IonRow>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        )}
 
         <div className='product-detail--rack-question'>
           <span className='product-detail--rack-question__text'>
             {localize('PRODUCT_RACK_QUESTION', '')}
           </span>
           <div className='product-detail--icons'>
-            <IonIcon src={Check} />
-            <IonIcon src={Cross} />
+            <IonImg src={Check} className='product-detail--check' />
+            <IonIcon src={Cross} className='product-detail--cross' />
           </div>
         </div>
 

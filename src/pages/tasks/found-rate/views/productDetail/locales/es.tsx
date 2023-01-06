@@ -18,10 +18,10 @@ const locale = {
   PRINT_BUTTON: 'Imprimir viñeta',
   INFO_DESCRIPTION:
     'Asegúrate que el producto cumpla con los siguientes puntos',
-  INFO_TEXT_1: 'Ubicación correcta',
-  INFO_TEXT_2: 'Código correcto',
-  INFO_TEXT_3: 'Viñeta correspondiente',
-  INFO_TEXT_4: 'Stock',
+  CORRECT_LOCATION: 'Ubicación correcta',
+  CORRECT_CODE: 'Código correcto',
+  CORRECT_BULLET: 'Viñeta correspondiente',
+  STOCK: 'Stock',
 };
 
 export default locale;
