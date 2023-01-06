@@ -78,6 +78,19 @@ export const FoundRateProductDetail: React.FC = () => {
     </div>
   );
 
+  const DropDown = () => (
+    <div className='dropdown'>
+      <div className='dropdown--line' />
+      <div
+        className={isShowing ? 'dropdown--arrow-active' : 'dropdown--arrow'}
+        onClick={toggle}
+      >
+        <ChevronIcon color={isShowing ? '#FFFFFF' : '#333333'} />
+      </div>
+      <div className='dropdown--line' />
+    </div>
+  );
+
   return (
     <IonPage>
       <TaskHeader section='CornerShop' />
@@ -116,16 +129,7 @@ export const FoundRateProductDetail: React.FC = () => {
 
         <RequestedUnits />
 
-        <div className='dropdown'>
-          <div className='dropdown--line' />
-          <div
-            className={isShowing ? 'dropdown--arrow-active' : 'dropdown--arrow'}
-            onClick={toggle}
-          >
-            <ChevronIcon color={isShowing ? '#FFFFFF' : '#333333'} />
-          </div>
-          <div className='dropdown--line' />
-        </div>
+        <DropDown />
 
         {isShowing && (
           <IonGrid>
