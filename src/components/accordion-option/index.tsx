@@ -22,9 +22,7 @@ const AccordionOption: React.FC<IAccordionOptionProps> = ({
           <p className='accordion-title'>{title}</p>
           <Badge total={total}></Badge>
         </IonItem>
-        <div className='ion-padding' slot='content'>
-          {children}
-        </div>
+        <div slot='content'>{children}</div>
       </IonAccordion>
     </IonAccordionGroup>
   );

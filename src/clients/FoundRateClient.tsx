@@ -1,7 +1,8 @@
 import { RESTClient } from '@team_eureka/eureka-ionic-core';
 import WithBootedClient from '../libs/WithBootedClient';
 import { ICategory } from '../models/found-rate/ICategory';
-import { categories } from '../mocks/found-rate';
+import { IFoundRateData } from '../models/found-rate/IData';
+import { categories, buildMockData } from '../mocks/found-rate';
 import { apiCallMock } from '../mocks/utils';
 
 class FoundRateClient extends RESTClient implements WithBootedClient {
@@ -11,6 +12,12 @@ class FoundRateClient extends RESTClient implements WithBootedClient {
 
   async getCategories(): Promise<ICategory[]> {
     const response = await apiCallMock(categories);
+    return response;
+  }
+
+  async getFoundRateData(): Promise<IFoundRateData[]> {
+    const mockData = buildMockData();
+    const response = await apiCallMock(mockData);
     return response;
   }
 }
