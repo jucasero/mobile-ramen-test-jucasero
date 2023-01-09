@@ -247,7 +247,7 @@ export const FoundRateProductDetail: React.FC = () => {
           </div>
         </div>
 
-        {true && <ProductInRack />}
+        <ProductInRack />
       </IonContent>
     </IonPage>
   );
