@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { IonContent, IonPage } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import {
+  IonContent,
+  IonPage,
   IonCol,
   IonRow,
   IonGrid,
@@ -14,13 +15,13 @@ import './index.sass';
 
 import locales from './locales';
 import TaskHeader from '../../components/TaskHeader';
+import Dropdown from '../../components/dropdown';
 import Button from '../../../../../components/button';
 import Cross from '../../../../../assets/media/cross-gray.svg';
 import Check from '../../../../../assets/media/check-gray.svg';
 import CheckBlue from '../../../../../assets/media/check-blue.svg';
-import { ReactComponent as ChevronIcon } from '../../../../../assets/media/chevron.svg';
 
-import { mock_products } from '../../../../../mocks/tasks';
+import { products } from '../../../../../mocks/found-rate';
 
 import useToggle from '../../../../../hooks/useToggle';
 
@@ -30,7 +31,7 @@ export const FoundRateProductDetail: React.FC = () => {
 
   const localize = i18(locales);
 
-  const product = mock_products[0];
+  const product = products[0];
 
   const RequestedUnits = () => (
     <div className='product-detail--card'>
@@ -46,51 +47,6 @@ export const FoundRateProductDetail: React.FC = () => {
   const handleFinishAlert = () => {
     setLoading(true);
   };
-
-  const ProductInRack = () => (
-    <div>
-      <div className='product-detail--info'>
-        <span className='product-detail--info-title'>
-          {localize('INFO_DESCRIPTION', '')}
-        </span>
-        {['CORRECT_LOCATION', 'CORRECT_CODE', 'CORRECT_BULLET', 'STOCK'].map(
-          (name, i) => (
-            <span key={i} className='product-detail--info-description'>
-              <IonIcon className='product-detail--info-icon' src={CheckBlue} />
-              {localize(name, '')}
-            </span>
-          )
-        )}
-      </div>
-
-      <Button
-        text={localize('PRINT_BUTTON', '')}
-        color='light'
-        type='primary'
-      />
-
-      <Button
-        text={localize('FINISH_TASK_BUTTON', '')}
-        color='dark'
-        type='secondary'
-        onClick={handleFinishAlert}
-        loading={loading}
-      />
-    </div>
-  );
-
-  const DropDown = () => (
-    <div className='dropdown'>
-      <div className='dropdown--line' />
-      <div
-        className={isShowing ? 'dropdown--arrow-active' : 'dropdown--arrow'}
-        onClick={toggle}
-      >
-        <ChevronIcon stroke={isShowing ? '#FFFFFF' : '#333333'} />
-      </div>
-      <div className='dropdown--line' />
-    </div>
-  );
 
   return (
     <IonPage>
@@ -142,7 +98,7 @@ export const FoundRateProductDetail: React.FC = () => {
 
         <RequestedUnits />
 
-        <DropDown />
+        <Dropdown isShowing={isShowing} toggle={toggle} />
 
         {isShowing && (
           <IonGrid>
@@ -259,7 +215,41 @@ export const FoundRateProductDetail: React.FC = () => {
           </div>
         </div>
 
-        <ProductInRack />
+        <div>
+          <div className='product-detail--info'>
+            <span className='product-detail--info-title'>
+              {localize('INFO_DESCRIPTION', '')}
+            </span>
+            {[
+              'CORRECT_LOCATION',
+              'CORRECT_CODE',
+              'CORRECT_BULLET',
+              'STOCK',
+            ].map((name, i) => (
+              <span key={i} className='product-detail--info-description'>
+                <IonIcon
+                  className='product-detail--info-icon'
+                  src={CheckBlue}
+                />
+                {localize(name, '')}
+              </span>
+            ))}
+          </div>
+
+          <Button
+            text={localize('PRINT_BUTTON', '')}
+            color='light'
+            type='primary'
+          />
+
+          <Button
+            text={localize('FINISH_TASK_BUTTON', '')}
+            color='dark'
+            type='secondary'
+            onClick={handleFinishAlert}
+            loading={loading}
+          />
+        </div>
       </IonContent>
     </IonPage>
   );
