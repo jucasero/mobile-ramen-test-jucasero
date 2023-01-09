@@ -4,7 +4,7 @@ import TaskHeader from '../../components/TaskHeader';
 import CategoryList from '../../components/categories';
 import locales from '../../locales';
 
-// Found rate category list
+// Found Rate Category list View
 const FoundRateCategories: React.FC = () => {
   const localize = i18(locales);
 
