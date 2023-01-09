@@ -33,17 +33,6 @@ export const FoundRateProductDetail: React.FC = () => {
 
   const product = products[0];
 
-  const RequestedUnits = () => (
-    <div className='product-detail--card'>
-      <p className='product-detail--text-sm color--light'>
-        {localize('UNITS_REQUESTED_TEXT', '')}
-      </p>
-      <p className='product-detail--text-bg color--light'>
-        {localize('UNITS_REQUESTED_TEXT_2', '')}
-      </p>
-    </div>
-  );
-
   const handleFinishAlert = () => {
     setLoading(true);
   };
@@ -96,7 +85,14 @@ export const FoundRateProductDetail: React.FC = () => {
           </IonRow>
         </IonGrid>
 
-        <RequestedUnits />
+        <div className='product-detail--card'>
+          <p className='product-detail--text-sm color--light'>
+            {localize('UNITS_REQUESTED_TEXT', '')}
+          </p>
+          <p className='product-detail--text-bg color--light'>
+            {localize('UNITS_REQUESTED_TEXT_2', '')}
+          </p>
+        </div>
 
         <Dropdown isShowing={isShowing} toggle={toggle} />
 
