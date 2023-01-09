@@ -94,8 +94,6 @@ export const FoundRateProductDetail: React.FC = () => {
           </p>
         </div>
 
-        <Dropdown isShowing={isShowing} toggle={toggle} />
-
         {isShowing && (
           <IonGrid>
             <IonRow>
@@ -200,6 +198,8 @@ export const FoundRateProductDetail: React.FC = () => {
             </IonRow>
           </IonGrid>
         )}
+
+        <Dropdown isShowing={isShowing} toggle={toggle} />
 
         <div className='product-detail--rack-question'>
           <span className='product-detail--rack-question__text'>
