@@ -97,14 +97,18 @@ export const FoundRateProductDetail: React.FC = () => {
       <TaskHeader section='CornerShop' />
       <IonContent className='ion-padding'>
         <IonGrid>
-          <IonRow>
-            <IonCol className='product-image' size='3'>
-              <IonThumbnail>
-                <IonImg src={product.image} alt={product.description} />
+          <IonRow className='product-detail--header'>
+            <IonCol size='3'>
+              <IonThumbnail className='product-image-container'>
+                <IonImg
+                  className='product-image'
+                  src={product.image}
+                  alt={product.description}
+                />
               </IonThumbnail>
             </IonCol>
 
-            <IonCol size='6'>
+            <IonCol size='4'>
               <IonRow>
                 <span className='product-detail--title'>
                   {product.description}
@@ -122,6 +126,14 @@ export const FoundRateProductDetail: React.FC = () => {
                 </span>
                 <span className='product-detail--tag-title'>
                   {product.stock_nrt}
+                </span>
+              </IonRow>
+            </IonCol>
+
+            <IonCol size='5'>
+              <IonRow className='product-detail--location'>
+                <span className='product-detail--tag-title'>
+                  {product.location}
                 </span>
               </IonRow>
             </IonCol>

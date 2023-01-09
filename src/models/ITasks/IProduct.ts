@@ -4,6 +4,7 @@ export interface IProduct {
   category?: string;
   shop: string;
   description?: string;
+  location?: string;
   stock_nrt?: number;
   units_found?: number;
   units_sold?: number;

@@ -17,6 +17,7 @@ export const mock_products = [
     category: 'Panificados',
     shop: 'CornerShop',
     description: 'Bebida lactea Trencito 200ml',
+    location: 'Pasillo D Torre 9 Nivel 3',
     stock_nrt: 115,
     ean: 789123456,
     units_found: 30,
