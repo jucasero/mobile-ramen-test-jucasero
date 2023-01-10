@@ -3,6 +3,7 @@ export interface IProduct {
   shop: string;
   units_found?: number;
   description?: string;
+  location?: string;
   ean?: string;
   image?: string;
   stock_nrt?: number;
@@ -13,6 +14,7 @@ export interface IProduct {
   block_type?: string;
   brand?: string;
   last_reception_date?: string;
+  delivery_date?: string;
   transit_stock?: number;
   units_requested?: number;
   transit_stock_date?: number;

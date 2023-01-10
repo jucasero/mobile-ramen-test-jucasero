@@ -1,5 +1,26 @@
 const locale = {
-  FILTER_TITLE: 'Filters',
+  STOCK_NRT: 'Stock NRT',
+  ARTICLE: 'Article',
+  PROVIDER: 'Provider',
+  BRAND: 'Brand',
+  HEADING: 'Item',
+  PRE_ORIGIN_CAUSE: 'Pre-root cause',
+  BLOCK_TYPE: 'Block type',
+  AVERAGE_SALE: 'Sales. average',
+  LAST_RECEPTION: 'Last reception',
+  UNITS_REQUESTED: 'Un. requested',
+  DELIVERY_DATE: 'Delivery date',
+  UNITS_REQUESTED_TEXT: 'Shopper just found',
+  UNITS_REQUESTED_TEXT_2: '20 of 45 units requested',
+  PRODUCT_RACK_QUESTION: 'Is the product on the rack?',
+  PRODUCT_EAN: 'EAN',
+  FINISH_TASK_BUTTON: 'Done, finish task',
+  PRINT_BUTTON: 'Print bullet',
+  INFO_DESCRIPTION: 'Make sure the product meets the following points',
+  CORRECT_LOCATION: 'Correct location',
+  CORRECT_CODE: 'Correct code',
+  CORRECT_BULLET: 'Corresponding bullet',
+  STOCK: 'Stock',
 };
 
 export default locale;
