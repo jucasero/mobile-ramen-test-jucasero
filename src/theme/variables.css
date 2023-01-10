@@ -11,19 +11,20 @@ http://ionicframework.com/docs/theming/ */
   --ion-card-background-color: #F2F4F4;
 
   /** primary **/
+  --ion-color-primary-linear: linear-gradient(to right, #32E0A1, #F0FE0A);
   --ion-color-primary: #000;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #FFFFFF;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #000;
-  --ion-color-primary-tint: rgba(0,0,0,.6);
-  --ion-color-primary-dark-tint: rgba(0,0,0,.8);
+  --ion-color-primary-tint: rgba(0, 0, 0, .6);
+  --ion-color-primary-dark-tint: rgba(0, 0, 0, .8);
 
   /** secondary **/
   --ion-color-secondary-linear: linear-gradient(79.78deg, #32E0A1 20.82%, #F0FE0A 89.45%);
   --ion-color-secondary: #2CDFA6;
   --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast: #f0f0f0;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #36abe0;
   --ion-color-secondary-tint: #F2F4F4;
