@@ -48,6 +48,8 @@ import { rootRoute, foundRateRoutes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
 
+import { FoundRateProvider } from './context';
+
 /* Set the lenguage (spanish if the default lenguage if you dont set any other) */
 /* setLocale('br') */
 
@@ -103,9 +105,9 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (!authenticated) {
-    return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
-  }
+  // if (!authenticated) {
+  //   return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
+  // }
   return (
     <IonApp>
       <IonReactRouter keyLength={1}>
@@ -115,21 +117,23 @@ const App: React.FC = () => {
 
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/* Found Rate Alert routes */}
-          <Route
-            path={foundRateRoutes.root}
-            component={FoundRateCategories}
-            exact
-          />
-          <Route
-            path={foundRateRoutes.subCategories}
-            component={FoundRateSubCategories}
-            exact
-          />
-          <Route
-            path={foundRateRoutes.productDetail}
-            component={FoundRateProductDetail}
-            exact
-          />
+          <FoundRateProvider>
+            <Route
+              path={foundRateRoutes.root}
+              component={FoundRateCategories}
+              exact
+            />
+            <Route
+              path={foundRateRoutes.subCategories}
+              component={FoundRateSubCategories}
+              exact
+            />
+            <Route
+              path={foundRateRoutes.productDetail}
+              component={FoundRateProductDetail}
+              exact
+            />
+          </FoundRateProvider>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
