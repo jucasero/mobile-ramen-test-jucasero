@@ -1367,3 +1367,9 @@ export const buildMockData = () => {
   });
   return foundRateRelatedData;
 };
+
+//send found rate data
+export const sendFoundRateData = {
+  message: 'Found rate data sent successfully',
+  status: 200,
+};

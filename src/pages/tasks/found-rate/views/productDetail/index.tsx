@@ -26,6 +26,8 @@ import { products } from '../../../../../mocks/found-rate';
 
 import useToggle from '../../../../../hooks/useToggle';
 import { rootRoute } from '../../../../../routes';
+import useFetch from '../../../../../hooks/useFetch';
+import FoundRateClient from '../../../../../clients/FoundRateClient';
 import './index.sass';
 
 export const FoundRateProductDetail: React.FC = () => {
@@ -42,15 +44,19 @@ export const FoundRateProductDetail: React.FC = () => {
     placeStatus: '',
   });
   const { isShowing, toggle } = useToggle();
-
+  const [postData, data, isLoading] = useFetch(
+    FoundRateClient.postFoundRateData()
+  );
   const product = products[0];
 
   const handleFinishAlert = () => {
-    setButtonState({ ...buttonState, loading: true });
-    setTimeout(() => {
-      history.replace(rootRoute);
-    }, 1000);
+    postData();
   };
+
+  useEffect(() => {
+    if (isLoading && !data) setButtonState({ ...buttonState, loading: true });
+    else if (!isLoading && data) history.replace(rootRoute);
+  }, [isLoading, data]);
 
   useEffect(() => {
     if (!isInTheRack) {
