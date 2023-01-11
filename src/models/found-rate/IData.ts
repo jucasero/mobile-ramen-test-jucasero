@@ -13,3 +13,8 @@ export interface IFoundRateData {
   total: number;
   detail: IDetailData[];
 }
+
+export interface ISendFounRateData {
+  message: string;
+  status: number;
+}
