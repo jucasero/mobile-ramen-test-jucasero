@@ -25,9 +25,13 @@ import { products } from '../../../../../mocks/found-rate';
 
 import useToggle from '../../../../../hooks/useToggle';
 
+import { useTasks, useTasksDispatch } from '../../../../../context';
+
 export const FoundRateProductDetail: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { isShowing, toggle } = useToggle();
+
+  const tasks = useTasks();
 
   const localize = i18(locales);
 
