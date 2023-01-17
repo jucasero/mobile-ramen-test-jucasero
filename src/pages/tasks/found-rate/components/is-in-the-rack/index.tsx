@@ -1,11 +1,11 @@
 import { IonIcon } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import Button from '../../../../../components/button';
-import locales from '../../views/productDetail/locales';
+import locales from '../../views/product-detail/locales';
 import CheckBlue from '../../../../../assets/media/check-blue.svg';
 import './index.sass';
 
-const IsInTheRack = () => {
+const IsInTheRack: React.FC = () => {
   const localize = i18(locales);
 
   return (

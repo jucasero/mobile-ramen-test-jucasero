@@ -7,12 +7,6 @@
 .color--light
   color: #FFFFFF
 
-.color--gray
-  color: #333333
-
-.color--dark
-  color: #000000
-
 %product-detail--text
   font-family: 'Open Sans'
   font-style: normal
@@ -23,10 +17,6 @@
 .product-detail--text-sm
   @extend %product-detail--text
   font-size: 12px
-
-.product-detail--text-md
-  @extend %product-detail--text
-  font-size: 14px
 
 .product-detail--text-bg
   @extend %product-detail--text
@@ -49,36 +39,6 @@
   margin: 24px 0px
   border-radius: 24px
 
-.product-detail--description
-  @extend %product-detail--text
-  font-size: 16px
-  font-weight: 700
-  color: #000000
-
-.product-detail--rack-question
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  align-items: center
-  border: 1px solid #F0F0F0
-  border-radius: 24px
-  padding: 16px 24px
-  margin: 40px 0px
-
-.product-detail--rack-question__text
-  @extend %product-detail--text
-  font-size: 16px
-  font-weight: 700
-  color: #000000
-  width: 55%
-
-.product-detail--icons
-  display: flex
-  flex-direction: row
-
-.product-container
-  padding: 5px
-
 .product-detail--tag-title
   @extend %product-detail--text
   font-size: 14px
@@ -99,13 +59,6 @@
   width: 100%
   margin: 8px 0px
 
-.font-weight--700
-  font-weight: 700
-
-.product-detail--check
-
-.product-detail--cross
-
 .product-detail--location
   border: 2px solid #F0F0F0
   border-radius: 8px
@@ -118,5 +71,3 @@
   border: 2px solid #F0F0F0
   border-radius: 12px
   padding: 8px
-
-.product-image

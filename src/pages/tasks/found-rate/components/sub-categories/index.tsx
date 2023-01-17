@@ -7,9 +7,8 @@ import {
   IDetailData,
 } from '../../../../../models/found-rate/IData';
 import { ITask } from '../../../../../models/ITasks/ITask';
-import TaskHeader from '../../components/TaskHeader';
+import { TaskHeader, Product } from '../../components';
 import AccordionOption from '../../../../../components/accordion-option';
-import Product from '../product';
 import { rootRoute, foundRateRoutes } from '../../../../../routes';
 import location from '../../../../../assets/media/location.svg';
 import './index.sass';
@@ -23,7 +22,7 @@ interface ILocationState {
 const SubCategories: React.FC = () => {
   const history = useHistory<ILocationState>();
   const locationState: ILocationState = history.location.state;
-  const categoryState: ICategory = locationState.data?.category || {};
+  const categoryState: ICategory = locationState.data?.category || null;
   const detailDataState: IDetailData[] = locationState.data?.detail || [];
 
   useEffect(() => {

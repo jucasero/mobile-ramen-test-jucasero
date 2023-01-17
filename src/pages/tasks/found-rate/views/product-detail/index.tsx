@@ -9,24 +9,26 @@ import {
   IonGrid,
   IonThumbnail,
   IonImg,
-  IonIcon,
 } from '@ionic/react';
 
 import locales from './locales';
-import TaskHeader from '../../components/TaskHeader';
-import Dropdown from '../../components/dropdown';
+import {
+  TaskHeader,
+  Dropdown,
+  NoIsInTheRack,
+  IsInTheRack,
+  RackQuestionCard,
+} from '../../components';
 import Button from '../../../../../components/button';
-import NoIsInTheRack from '../../components/no-is-in-the-rack';
-import IsInTheRack from '../../components/is-in-the-rack';
 import TouchScreenLock from '../../../../../components/touch-screen-lock';
-import Cross from '../../../../../assets/media/cross-gray.svg';
-import Check from '../../../../../assets/media/check-gray.svg';
+
+import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
 import { products } from '../../../../../mocks/found-rate';
 
 import useToggle from '../../../../../hooks/useToggle';
-import { rootRoute } from '../../../../../routes';
 import useFetch from '../../../../../hooks/useFetch';
+import { rootRoute } from '../../../../../routes';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import './index.sass';
 
@@ -78,7 +80,7 @@ export const FoundRateProductDetail: React.FC = () => {
 
   return (
     <IonPage>
-      <TaskHeader section='CornerShop' />
+      <TaskHeader section='CornerShop' icon={cornerShopIcon} />
       <IonContent className='ion-padding'>
         <IonGrid>
           <IonRow className='product-detail--header'>
@@ -240,23 +242,10 @@ export const FoundRateProductDetail: React.FC = () => {
 
         <Dropdown isShowing={isShowing} toggle={toggle} />
 
-        <div className='product-detail--rack-question'>
-          <span className='product-detail--rack-question__text'>
-            {localize('PRODUCT_RACK_QUESTION', '')}
-          </span>
-          <div className='product-detail--icons'>
-            <IonImg
-              src={Check}
-              className='product-detail--check'
-              onClick={() => setIsInTheRack(true)}
-            />
-            <IonIcon
-              src={Cross}
-              className='product-detail--cross'
-              onClick={() => setIsInTheRack(false)}
-            />
-          </div>
-        </div>
+        <RackQuestionCard
+          isInTheRack={isInTheRack}
+          setIsInTheRack={setIsInTheRack}
+        />
 
         {isInTheRack !== null ? (
           isInTheRack ? (

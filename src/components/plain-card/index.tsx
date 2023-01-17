@@ -4,6 +4,6 @@ interface IProps {
 }
 
 const PlainCard: React.FC<IProps> = ({ className = '', children }) => (
-  <div className={`card-container${className && className}`}>{children}</div>
+  <div className={`card-container ${className && className}`}>{children}</div>
 );
 export default PlainCard;
