@@ -1,4 +1,4 @@
-import { IonButton } from '@ionic/react';
+import { IonButton, IonSpinner } from '@ionic/react';
 
 import './index.sass';
 
@@ -7,10 +7,18 @@ interface IProps {
   type?: string;
   color: string;
   onClick?: () => any; // TODO: remove ? in the future
+  disabled?: boolean;
   loading?: boolean;
 }
 
-const Button: React.FC<IProps> = ({ text, type, color, onClick, loading }) => {
+const Button: React.FC<IProps> = ({
+  text,
+  type,
+  color,
+  onClick,
+  disabled,
+  loading,
+}) => {
   const styles = () => {
     switch (type) {
       case 'primary':
@@ -30,9 +38,9 @@ const Button: React.FC<IProps> = ({ text, type, color, onClick, loading }) => {
         shape='round'
         className={styles()}
         onClick={onClick}
-        disabled={loading}
+        disabled={disabled}
       >
-        {text}
+        {loading ? <IonSpinner name='crescent' color='light' /> : text}
       </IonButton>
     </div>
   );

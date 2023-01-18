@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import {
   IonContent,
@@ -11,31 +12,69 @@ import {
   IonIcon,
 } from '@ionic/react';
 
-import './index.sass';
-
 import locales from './locales';
 import TaskHeader from '../../components/TaskHeader';
 import Dropdown from '../../components/dropdown';
 import Button from '../../../../../components/button';
+import NoIsInTheRack from '../../components/no-is-in-the-rack';
+import IsInTheRack from '../../components/is-in-the-rack';
+import TouchScreenLock from '../../../../../components/touch-screen-lock';
 import Cross from '../../../../../assets/media/cross-gray.svg';
 import Check from '../../../../../assets/media/check-gray.svg';
-import CheckBlue from '../../../../../assets/media/check-blue.svg';
 
 import { products } from '../../../../../mocks/found-rate';
 
 import useToggle from '../../../../../hooks/useToggle';
+import { rootRoute } from '../../../../../routes';
+import useFetch from '../../../../../hooks/useFetch';
+import FoundRateClient from '../../../../../clients/FoundRateClient';
+import './index.sass';
 
 export const FoundRateProductDetail: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const { isShowing, toggle } = useToggle();
-
   const localize = i18(locales);
-
+  const history = useHistory();
+  const [buttonState, setButtonState] = useState({
+    text: localize('FINISH_TASK_BUTTON', ''),
+    loading: false,
+    disabled: false,
+  });
+  const [isInTheRack, setIsInTheRack] = useState<boolean | null>(null);
+  const [radioButtonState, setRadioButtonState] = useState({
+    stockStatus: '',
+    placeStatus: '',
+  });
+  const { isShowing, toggle } = useToggle();
+  const [postData, data, isLoading] = useFetch(
+    FoundRateClient.postFoundRateData()
+  );
   const product = products[0];
 
   const handleFinishAlert = () => {
-    setLoading(true);
+    postData();
   };
+
+  useEffect(() => {
+    if (isLoading && !data) setButtonState({ ...buttonState, loading: true });
+    else if (!isLoading && data) history.replace(rootRoute);
+  }, [isLoading, data]);
+
+  useEffect(() => {
+    if (!isInTheRack) {
+      if (
+        (radioButtonState.stockStatus === 'si' ||
+          !radioButtonState.stockStatus) &&
+        !radioButtonState.placeStatus
+      )
+        setButtonState({ ...buttonState, disabled: true, text: 'Finalizar' });
+      else
+        setButtonState({ ...buttonState, disabled: false, text: 'Finalizar' });
+    } else
+      setButtonState({
+        ...buttonState,
+        text: localize('FINISH_TASK_BUTTON', ''),
+        disabled: false,
+      });
+  }, [isInTheRack, radioButtonState]);
 
   return (
     <IonPage>
@@ -206,46 +245,39 @@ export const FoundRateProductDetail: React.FC = () => {
             {localize('PRODUCT_RACK_QUESTION', '')}
           </span>
           <div className='product-detail--icons'>
-            <IonImg src={Check} className='product-detail--check' />
-            <IonIcon src={Cross} className='product-detail--cross' />
+            <IonImg
+              src={Check}
+              className='product-detail--check'
+              onClick={() => setIsInTheRack(true)}
+            />
+            <IonIcon
+              src={Cross}
+              className='product-detail--cross'
+              onClick={() => setIsInTheRack(false)}
+            />
           </div>
         </div>
 
-        <div>
-          <div className='product-detail--info'>
-            <span className='product-detail--info-title'>
-              {localize('INFO_DESCRIPTION', '')}
-            </span>
-            {[
-              'CORRECT_LOCATION',
-              'CORRECT_CODE',
-              'CORRECT_BULLET',
-              'STOCK',
-            ].map((name, i) => (
-              <span key={i} className='product-detail--info-description'>
-                <IonIcon
-                  className='product-detail--info-icon'
-                  src={CheckBlue}
-                />
-                {localize(name, '')}
-              </span>
-            ))}
-          </div>
+        {isInTheRack !== null ? (
+          isInTheRack ? (
+            <IsInTheRack />
+          ) : (
+            <NoIsInTheRack setRadioButtonState={setRadioButtonState} />
+          )
+        ) : null}
 
+        {isInTheRack !== null ? (
           <Button
-            text={localize('PRINT_BUTTON', '')}
-            color='light'
-            type='primary'
-          />
-
-          <Button
-            text={localize('FINISH_TASK_BUTTON', '')}
+            text={buttonState.text}
             color='dark'
             type='secondary'
             onClick={handleFinishAlert}
-            loading={loading}
+            loading={buttonState.loading}
+            disabled={buttonState.disabled}
           />
-        </div>
+        ) : null}
+
+        <TouchScreenLock activate={buttonState.loading} />
       </IonContent>
     </IonPage>
   );
