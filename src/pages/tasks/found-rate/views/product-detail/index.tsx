@@ -57,7 +57,8 @@ export const FoundRateProductDetail: React.FC = () => {
 
   useEffect(() => {
     if (isLoading && !data) setButtonState({ ...buttonState, loading: true });
-    else if (!isLoading && data) history.replace(rootRoute);
+    else if (!isLoading && data)
+      history.replace({ pathname: rootRoute, state: { isTaskDone: true } });
   }, [isLoading, data]);
 
   useEffect(() => {

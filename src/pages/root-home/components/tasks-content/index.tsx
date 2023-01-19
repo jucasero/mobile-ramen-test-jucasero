@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import ProgressBar from 'react-customizable-progressbar';
-import { IonContent } from '@ionic/react';
+import { IonContent, useIonToast } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
-import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import useFetch from '../../../../hooks/useFetch';
 import TasksClient from '../../../../clients/TasksClient';
 import { TaskSkeleton } from '../../../../components/loaders';
 import alarmImage from '../../../../assets/media/task/alarm.svg';
 import { ITask } from '../../../../models/ITasks/ITask';
+import checkIcon from '../../../../assets/media/check.svg';
+import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import locales from './locales';
 
 const localize = i18(locales);
@@ -19,11 +20,22 @@ interface IProps {
 }
 const TasksContent: React.FC<IProps> = (props) => {
   const history = useHistory();
+  const locationState = history.location.state as { isTaskDone: boolean };
+  const [present] = useIonToast();
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
 
   const handleOnClickTask = (task: ITask) => {
     history.replace({ pathname: task.type, state: task });
   };
+
+  if (locationState?.isTaskDone) {
+    present({
+      message: 'Se ha gestionado la alerta correctamente.',
+      duration: 2000,
+      cssClass: 'custom-toast',
+      icon: checkIcon,
+    });
+  }
 
   useEffect(() => {
     fecthTask();

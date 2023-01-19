@@ -25,6 +25,10 @@ const SubCategories: React.FC = () => {
   const categoryState: ICategory = locationState.data?.category || null;
   const detailDataState: IDetailData[] = locationState.data?.detail || [];
 
+  const handleOnClickProduct = () => {
+    history.replace(foundRateRoutes.productDetail);
+  };
+
   useEffect(() => {
     if (!categoryState) history.replace(rootRoute);
   }, []);
@@ -44,7 +48,11 @@ const SubCategories: React.FC = () => {
             total={detail.total}
           >
             {detail.products.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product
+                key={product.id}
+                product={product}
+                onClick={handleOnClickProduct}
+              />
             ))}
             <div className='sub-category-footer  '>
               <IonIcon icon={location} />
