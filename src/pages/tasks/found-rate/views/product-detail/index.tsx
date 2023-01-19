@@ -24,17 +24,17 @@ import TouchScreenLock from '../../../../../components/touch-screen-lock';
 
 import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
-import { products } from '../../../../../mocks/found-rate';
-
 import useToggle from '../../../../../hooks/useToggle';
 import useFetch from '../../../../../hooks/useFetch';
 import { rootRoute } from '../../../../../routes';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import './index.sass';
+import { IProduct } from '../../../../../models/found-rate/IProduct';
 
 export const FoundRateProductDetail: React.FC = () => {
   const localize = i18(locales);
   const history = useHistory();
+  const product = history.location.state as IProduct;
   const [buttonState, setButtonState] = useState({
     text: localize('FINISH_TASK_BUTTON', ''),
     loading: false,
@@ -49,7 +49,6 @@ export const FoundRateProductDetail: React.FC = () => {
   const [postData, data, isLoading] = useFetch(
     FoundRateClient.postFoundRateData()
   );
-  const product = products[0];
 
   const handleFinishAlert = () => {
     postData();
@@ -132,7 +131,7 @@ export const FoundRateProductDetail: React.FC = () => {
             {localize('UNITS_REQUESTED_TEXT', '')}
           </p>
           <p className='product-detail--text-bg color--light'>
-            {localize('UNITS_REQUESTED_TEXT_2', '')}
+            {`${product.units_sold} de ${product.units_requested} unidades solicitadas`}
           </p>
         </div>
 
