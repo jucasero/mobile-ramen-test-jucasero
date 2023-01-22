@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import ProgressBar from 'react-customizable-progressbar';
 import { IonContent, useIonToast } from '@ionic/react';
@@ -13,6 +13,7 @@ import { ITask } from '../../../../models/ITasks/ITask';
 import checkIcon from '../../../../assets/media/check.svg';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import locales from './locales';
+import { TaskContext } from '../../../../context';
 
 const localize = i18(locales);
 interface IProps {
@@ -23,6 +24,7 @@ const TasksContent: React.FC<IProps> = (props) => {
   const locationState = history.location.state as { isTaskDone: boolean };
   const [present] = useIonToast();
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
+  const { taskState, dispatch } = useContext(TaskContext);
 
   const handleOnClickTask = (task: ITask) => {
     history.replace({ pathname: task.type, state: task });
@@ -66,6 +68,19 @@ const TasksContent: React.FC<IProps> = (props) => {
         </div>
       </div>
       {loading && <TaskSkeleton cardsNumber={1} />}
+      <button
+        onClick={() =>
+          dispatch({
+            type: 'ADD_TASK',
+            payload: {
+              id: '20',
+              title: 'recepcion de mercaderia',
+              total: 5,
+              type: 'merchandise',
+            },
+          })
+        }
+      >{`cantidad de tareas ${taskState.tasks.length}`}</button>
 
       {tasks &&
         tasks.map((task) => (
