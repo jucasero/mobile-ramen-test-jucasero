@@ -1,17 +1,17 @@
 import { IInitialState } from '.';
 import { ITask } from '../../models/ITasks/ITask';
 
-export type TaskAction = { type: 'ADD_TASK'; payload: ITask };
+export type TaskAction = { type: 'SET_TASKS'; payload: ITask[] };
 
 export const taskReducer = (
   state: IInitialState,
   action: TaskAction
 ): IInitialState => {
   switch (action.type) {
-    case 'ADD_TASK':
+    case 'SET_TASKS':
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        tasks: action.payload,
         lastApiCall: new Date(),
       };
     default:

@@ -22,7 +22,6 @@ import { Fragment, useEffect, useState } from 'react';
 import Header from './components/header';
 import TasksContent from './components/tasks-content';
 import UserMenu from '../../components/user-menu';
-import { TaskProvider } from '../../context';
 
 const localize = i18(locales);
 
@@ -163,9 +162,7 @@ const RootHomePage: React.FC<IProps> = (props) => {
             onSlideChange={(e) => setSlideStates(e.activeIndex)}
           >
             <SwiperSlide className='tasks-slide'>
-              <TaskProvider>
-                <TasksContent pendingInPercent={0}></TasksContent>
-              </TaskProvider>
+              <TasksContent pendingInPercent={0}></TasksContent>
             </SwiperSlide>
             <SwiperSlide className='tools-slide'>
               {/* ALL TOOLS CARD ARE INSIDE THIS SLIDE */}

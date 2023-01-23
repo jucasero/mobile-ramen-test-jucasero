@@ -24,8 +24,7 @@ import TouchScreenLock from '../../../../../components/touch-screen-lock';
 
 import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
-import useToggle from '../../../../../hooks/useToggle';
-import useFetch from '../../../../../hooks/useFetch';
+import { useToggle, useFetch } from '../../../../../hooks';
 import { rootRoute } from '../../../../../routes';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import './index.sass';
@@ -45,7 +44,7 @@ export const FoundRateProductDetail: React.FC = () => {
     stockStatus: '',
     placeStatus: '',
   });
-  const { isShowing, toggle } = useToggle();
+  const [isShowing, toggle] = useToggle();
   const [postData, data, isLoading] = useFetch(
     FoundRateClient.postFoundRateData()
   );

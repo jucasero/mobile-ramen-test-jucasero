@@ -12,24 +12,24 @@ const initialState: IInitialState = {
   lastApiCall: null,
 };
 
-interface ITaskContext {
+interface IAppContext {
   taskState: IInitialState;
   dispatch: React.Dispatch<TaskAction>;
 }
 
-export const TaskContext = createContext<ITaskContext>(null);
+export const AppContext = createContext<IAppContext>(null);
 
-export const TaskProvider: React.FC = ({ children }) => {
+export const AppProvider: React.FC = ({ children }) => {
   const [taskState, dispatch] = useReducer(taskReducer, initialState);
 
   return (
-    <TaskContext.Provider
+    <AppContext.Provider
       value={{
         taskState,
         dispatch,
       }}
     >
       {children}
-    </TaskContext.Provider>
+    </AppContext.Provider>
   );
 };

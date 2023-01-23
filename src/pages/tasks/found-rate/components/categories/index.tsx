@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { IonContent } from '@ionic/react';
 import { useHistory } from 'react-router';
-import useFetch from '../../../../../hooks/useFetch';
+import { useFetch } from '../../../../../hooks';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import { ITask } from '../../../../../models/ITasks/ITask';
 import { IFoundRateData } from '../../../../../models/found-rate/IData';
