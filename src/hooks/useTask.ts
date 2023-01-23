@@ -14,7 +14,10 @@ export default function useTask<T>(
 ] {
   const [taskWithContext, setTaskWithContext] = useState(null);
   const [fecthTask, tasks, isLoading, error] = useFetch(promise);
-  const { taskState, dispatch } = useContext(AppContext);
+  const {
+    appState: { taskState },
+    dispatch,
+  } = useContext(AppContext);
 
   const isInvalidTime = () => {
     if (!taskState.lastApiCall) return true;

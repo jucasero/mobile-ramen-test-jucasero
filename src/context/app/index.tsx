@@ -1,31 +1,32 @@
 import { createContext, useReducer } from 'react';
-import { ITask } from '../../models/ITasks/ITask';
-import { TaskAction, taskReducer } from './reducer';
+import { ITaskState, TaskAction, taskReducer } from './reducers/tasks';
 
-export interface IInitialState {
-  tasks: ITask[];
-  lastApiCall: Date | null;
+export interface IAppState {
+  taskState: ITaskState;
 }
 
-const initialState: IInitialState = {
-  tasks: [],
-  lastApiCall: null,
+const initialState: IAppState = {
+  taskState: { tasks: [], lastApiCall: null },
 };
 
 interface IAppContext {
-  taskState: IInitialState;
+  appState: IAppState;
   dispatch: React.Dispatch<TaskAction>;
 }
 
 export const AppContext = createContext<IAppContext>(null);
 
+const appReducer = ({ taskState }: IAppState, action: TaskAction) => ({
+  taskState: taskReducer(taskState, action),
+});
+
 export const AppProvider: React.FC = ({ children }) => {
-  const [taskState, dispatch] = useReducer(taskReducer, initialState);
+  const [appState, dispatch] = useReducer(appReducer, initialState);
 
   return (
     <AppContext.Provider
       value={{
-        taskState,
+        appState,
         dispatch,
       }}
     >
