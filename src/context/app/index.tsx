@@ -6,7 +6,7 @@ export interface IAppState {
 }
 
 const initialState: IAppState = {
-  taskState: { tasks: [], lastApiCall: null },
+  taskState: { tasks: [], selectedTask: null, lastApiCall: null },
 };
 
 interface IAppContext {

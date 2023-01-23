@@ -1,13 +1,18 @@
 import { createContext, useReducer } from 'react';
 import { IFoundRateData } from '../../models/found-rate/IData';
+import { IProduct } from '../../models/found-rate/IProduct';
 import { FoundRateAction, taskReducer } from './reducer';
 
 export interface IInitialState {
   foundRateData: IFoundRateData[];
+  selectedCategory: IFoundRateData;
+  selectedProduct: IProduct;
 }
 
 const initialState: IInitialState = {
   foundRateData: [],
+  selectedCategory: null,
+  selectedProduct: null,
 };
 
 interface IFoundRateContext {

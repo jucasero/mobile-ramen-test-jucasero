@@ -5,6 +5,7 @@ import { IonContent, useIonToast } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
+import { AppContext } from '../../../../context';
 import { useTask } from '../../../../hooks';
 import TasksClient from '../../../../clients/TasksClient';
 import { TaskSkeleton } from '../../../../components/loaders';
@@ -19,18 +20,24 @@ interface IProps {
   pendingInPercent: any;
 }
 const TasksContent: React.FC<IProps> = (props) => {
+  const minutesToRefreshTasks = 1;
   const history = useHistory();
   const locationState = history.location.state as { isTaskDone: boolean };
   const [present] = useIonToast();
-  const [fecthTask, tasks, loading] = useTask(TasksClient.getTasks(), 1);
+  const [fecthTask, tasks, loading] = useTask(
+    TasksClient.getTasks(),
+    minutesToRefreshTasks
+  );
+  const { dispatch } = useContext(AppContext);
 
   const handleOnClickTask = (task: ITask) => {
-    history.replace({ pathname: task.type, state: task });
+    dispatch({ type: 'SET_SELECTED_TASK', payload: task });
+    history.replace(task.type);
   };
 
   if (locationState?.isTaskDone) {
     present({
-      message: 'Se ha gestionado la alerta correctamente.',
+      message: localize('ALERT_SUCCESSFULLY_HANDLED', ''),
       duration: 2000,
       cssClass: 'custom-toast',
       icon: checkIcon,
