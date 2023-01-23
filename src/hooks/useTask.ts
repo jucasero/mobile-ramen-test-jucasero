@@ -21,7 +21,6 @@ export default function useTask<T>(
     const now = new Date();
     const diff = now.getTime() - taskState.lastApiCall.getTime();
     const minutes = Math.floor(diff / 1000 / 60);
-    console.log({ minutes });
     return minutes >= minutesToRefresh;
   };
 
