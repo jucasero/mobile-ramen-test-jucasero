@@ -24,7 +24,7 @@ import TouchScreenLock from '../../../../../components/touch-screen-lock';
 
 import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
-import { FoundRateContext } from '../../../../../context';
+import { AppContext, FoundRateContext } from '../../../../../context';
 import { useToggle, useFetch } from '../../../../../hooks';
 import { rootRoute, foundRateRoutes } from '../../../../../routes';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
@@ -36,6 +36,7 @@ export const FoundRateProductDetail: React.FC = () => {
   const {
     foundRateState: { selectedProduct },
   } = useContext(FoundRateContext);
+  const { dispatch } = useContext(AppContext);
   const [buttonState, setButtonState] = useState({
     text: localize('FINISH_TASK_BUTTON', ''),
     loading: false,
@@ -57,8 +58,10 @@ export const FoundRateProductDetail: React.FC = () => {
 
   useEffect(() => {
     if (isLoading && !data) setButtonState({ ...buttonState, loading: true });
-    else if (!isLoading && data)
-      history.replace({ pathname: rootRoute, state: { isTaskDone: true } });
+    else if (!isLoading && data) {
+      dispatch({ type: 'SET_TASK_DONE', payload: true });
+      history.replace(rootRoute);
+    }
   }, [isLoading, data]);
 
   useEffect(() => {

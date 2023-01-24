@@ -5,6 +5,7 @@ import { IonContent, useIonToast } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
+import { rootRoute } from '../../../../routes';
 import { AppContext } from '../../../../context';
 import { useTask } from '../../../../hooks';
 import TasksClient from '../../../../clients/TasksClient';
@@ -22,20 +23,24 @@ interface IProps {
 const TasksContent: React.FC<IProps> = (props) => {
   const minutesToRefreshTasks = 1;
   const history = useHistory();
-  const locationState = history.location.state as { isTaskDone: boolean };
   const [present] = useIonToast();
   const [fecthTask, tasks, loading] = useTask(
     TasksClient.getTasks(),
     minutesToRefreshTasks
   );
-  const { dispatch } = useContext(AppContext);
+  const {
+    appState: {
+      taskState: { isTaskDone },
+    },
+    dispatch,
+  } = useContext(AppContext);
 
   const handleOnClickTask = (task: ITask) => {
     dispatch({ type: 'SET_SELECTED_TASK', payload: task });
     history.replace(task.type);
   };
 
-  if (locationState?.isTaskDone) {
+  if (isTaskDone && history.location.pathname === rootRoute) {
     present({
       message: localize('ALERT_SUCCESSFULLY_HANDLED', ''),
       duration: 2000,
@@ -46,6 +51,9 @@ const TasksContent: React.FC<IProps> = (props) => {
 
   useEffect(() => {
     fecthTask();
+    return () => {
+      dispatch({ type: 'SET_TASK_DONE', payload: false });
+    };
   }, []);
 
   return (
