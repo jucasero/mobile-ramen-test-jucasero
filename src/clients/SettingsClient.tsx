@@ -9,6 +9,7 @@ interface IState {
 enum SETTINGS_ENUM {
   'LANGUAGE',
   'FIRST_TIME',
+  'PUSH_TOKEN',
 }
 export type SettingTypes = keyof typeof SETTINGS_ENUM;
 
