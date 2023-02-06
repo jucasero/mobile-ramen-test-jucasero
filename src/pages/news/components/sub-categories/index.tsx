@@ -1,28 +1,26 @@
 import { useEffect } from 'react';
 import { IonContent, IonIcon } from '@ionic/react';
 import { useHistory } from 'react-router';
+import TaskHeader from '../TaskHeader';
 import { ICategory } from '../../../../models/INews/ICategory';
-import {
-  IFoundRateData,
-  IDetailData,
-} from '../../../../models/found-rate/IData';
-import { ITask } from '../../../../models/ITasks/ITask';
-import TaskHeader from '../../components/TaskHeader';
-import AccordionOption from '../../../../components/accordion-option';
-import { rootRoute, newsRoutes } from '../../../../routes';
-import location from '../../../../../assets/media/location.svg';
 import './index.sass';
 
+interface IFoundRateData {
+  category: ICategory;
+  total: number;
+}
+
 interface ILocationState {
-  data: IFoundRateData;
-  task: ITask;
+  title: string;
+  // data: IFoundRateData;
+  // task: ICategory;
 }
 
 // Found Rate Sub-Category list
 const SubCategories: React.FC = () => {
   const history = useHistory<ILocationState>();
   const locationState: ILocationState = history.location.state;
-  const categoryState: ICategory = locationState?.title || {};
+  // const categoryState: ICategory = locationState?.title || {};
   // const detailDataState: IDetailData[] = locationState.data?.detail || [];
 
   // useEffect(() => {
@@ -30,14 +28,13 @@ const SubCategories: React.FC = () => {
   // }, []);
 
   console.log(locationState);
-
   return (
     <>
-      {/* <TaskHeader
-        title={categoryState.title}
+      <TaskHeader
+        title={locationState.title}
         backRoute='/'
-        data={locationState.task}
-      /> */}
+        // data={locationState.task}
+      />
       {/* <IonContent className='ion-padding'>
         {detailDataState?.map((detail: IDetailData) => (
           <AccordionOption

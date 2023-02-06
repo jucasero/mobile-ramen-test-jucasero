@@ -3,6 +3,6 @@ export default {
   STATISTICS: 'Estadísticas',
   TASKS: 'Tareas',
   TOOLS: 'Herramientas',
-  NEWS: 'Comunicadoss',
+  NEWS: 'Comunicados',
   WELCOME_TITLE: 'Hola',
 };

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { IonContent } from '@ionic/react';
 import { useHistory } from 'react-router';
-import useFetch from '../../../../../hooks/useFetch';
-import FoundRateClient from '../../../../../clients/FoundRateClient';
-import { ITask } from '../../../../../models/ITasks/ITask';
-import { IFoundRateData } from '../../../../../models/found-rate/IData';
-import { TaskSkeleton } from '../../../../../components/loaders';
-import TaskCard from '../../../../../components/task-card';
-import { rootRoute, newsRoutes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
+import useFetch from '../../../../hooks/useFetch';
+import FoundRateClient from '../../../../clients/FoundRateClient';
+import { ITask } from '../../../../models/ITasks/ITask';
+import { IFoundRateData } from '../../../../models/found-rate/IData';
+import { TaskSkeleton } from '../../../../components/loaders';
+import TaskCard from '../../../../components/task-card';
+import { rootRoute, newsRoutes } from '../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
 
 // Found Rate Category list
 const CategoryList: React.FC = () => {
@@ -26,19 +26,19 @@ const CategoryList: React.FC = () => {
   }, []);
 
   // Redirection to found rate sub-category list
-  const redirectToSubCategories = (foundRateData: IFoundRateData) => {
-    const state: any = { data: foundRateData, task: taskState }; // TODO: Should be replaced by Context
-    const subCategoryRoute = newsRoutes.subCategories.replace(
-      ':categoryType',
-      foundRateData.category.type
-    );
-    history.replace(subCategoryRoute, state);
-  };
+  // const redirectToSubCategories = (foundRateData: IFoundRateData) => {
+  //   const state: any = { data: foundRateData, task: taskState }; // TODO: Should be replaced by Context
+  //   const subCategoryRoute = newsRoutes.productDetail.replace(
+  //     ':categoryType',
+  //     foundRateData.category.type
+  //   );
+  //   history.replace(subCategoryRoute, state);
+  // };
 
   return (
     <IonContent className='ion-padding'>
       {/* {isLoading && <TaskSkeleton cardsNumber={taskState.total} />} */}
-      {data &&
+      {/* {data &&
         data.map((record) => (
           <TaskCard
             key={record.category.id}
@@ -48,7 +48,7 @@ const CategoryList: React.FC = () => {
             total={record.total}
             boxIcon
           />
-        ))}
+        ))} */}
     </IonContent>
   );
 };
