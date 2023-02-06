@@ -56,6 +56,13 @@ const Header: React.FC<IProps> = (props) => {
           {localize('TASKS', '')}
         </IonButton>
         <IonButton
+          className={props.activeTasks ? 'white active' : 'white'}
+          onClick={() => onSlideClickHandler(1)}
+        >
+          {props.activeTasks ? <TaskIconActive /> : <TaskIcon />}
+          {localize('NEWS', '')}
+        </IonButton>
+        <IonButton
           className={props.activeTools ? 'white active' : 'white'}
           onClick={() => onSlideClickHandler(2)}
         >

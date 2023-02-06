@@ -22,6 +22,7 @@ import { Fragment, useEffect, useState } from 'react';
 import Header from './components/header';
 import TasksContent from './components/tasks-content';
 import UserMenu from '../../components/user-menu';
+import NewsContent from './components/news-content';
 
 const localize = i18(locales);
 
@@ -163,6 +164,9 @@ const RootHomePage: React.FC<IProps> = (props) => {
           >
             <SwiperSlide className='tasks-slide'>
               <TasksContent pendingInPercent={0}></TasksContent>
+            </SwiperSlide>
+            <SwiperSlide className='news-slide'>
+              <NewsContent />
             </SwiperSlide>
             <SwiperSlide className='tools-slide'>
               {/* ALL TOOLS CARD ARE INSIDE THIS SLIDE */}

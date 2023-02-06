@@ -7,7 +7,7 @@ import { ITask } from '../../../../../models/ITasks/ITask';
 import { IFoundRateData } from '../../../../../models/found-rate/IData';
 import { TaskSkeleton } from '../../../../../components/loaders';
 import TaskCard from '../../../../../components/task-card';
-import { rootRoute, foundRateRoutes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
+import { rootRoute, newsRoutes } from '../../../../../routes'; // TODO: Needs to be separated by found-rate directory ?
 
 // Found Rate Category list
 const CategoryList: React.FC = () => {
@@ -28,7 +28,7 @@ const CategoryList: React.FC = () => {
   // Redirection to found rate sub-category list
   const redirectToSubCategories = (foundRateData: IFoundRateData) => {
     const state: any = { data: foundRateData, task: taskState }; // TODO: Should be replaced by Context
-    const subCategoryRoute = foundRateRoutes.subCategories.replace(
+    const subCategoryRoute = newsRoutes.subCategories.replace(
       ':categoryType',
       foundRateData.category.type
     );
@@ -37,7 +37,7 @@ const CategoryList: React.FC = () => {
 
   return (
     <IonContent className='ion-padding'>
-      {isLoading && <TaskSkeleton cardsNumber={taskState.total} />}
+      {/* {isLoading && <TaskSkeleton cardsNumber={taskState.total} />} */}
       {data &&
         data.map((record) => (
           <TaskCard

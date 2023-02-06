@@ -1,3 +1,3 @@
-export { foundRateRoutes } from './found-rate';
+export { newsRoutes } from './news';
 
 export const rootRoute = '/';

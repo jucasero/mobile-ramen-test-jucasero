@@ -1,16 +1,15 @@
 import { useEffect } from 'react';
 import { IonContent, IonIcon } from '@ionic/react';
 import { useHistory } from 'react-router';
-import { ICategory } from '../../../../../models/found-rate/ICategory';
+import { ICategory } from '../../../../models/INews/ICategory';
 import {
   IFoundRateData,
   IDetailData,
-} from '../../../../../models/found-rate/IData';
-import { ITask } from '../../../../../models/ITasks/ITask';
+} from '../../../../models/found-rate/IData';
+import { ITask } from '../../../../models/ITasks/ITask';
 import TaskHeader from '../../components/TaskHeader';
-import AccordionOption from '../../../../../components/accordion-option';
-import Product from '../product';
-import { rootRoute, foundRateRoutes } from '../../../../../routes';
+import AccordionOption from '../../../../components/accordion-option';
+import { rootRoute, newsRoutes } from '../../../../routes';
 import location from '../../../../../assets/media/location.svg';
 import './index.sass';
 
@@ -23,21 +22,23 @@ interface ILocationState {
 const SubCategories: React.FC = () => {
   const history = useHistory<ILocationState>();
   const locationState: ILocationState = history.location.state;
-  const categoryState: ICategory = locationState.data?.category || {};
-  const detailDataState: IDetailData[] = locationState.data?.detail || [];
+  const categoryState: ICategory = locationState?.title || {};
+  // const detailDataState: IDetailData[] = locationState.data?.detail || [];
 
-  useEffect(() => {
-    if (!categoryState) history.replace(rootRoute);
-  }, []);
+  // useEffect(() => {
+  //   if (!categoryState) history.replace(rootRoute);
+  // }, []);
+
+  console.log(locationState);
 
   return (
     <>
-      <TaskHeader
+      {/* <TaskHeader
         title={categoryState.title}
-        backRoute={foundRateRoutes.root}
+        backRoute='/'
         data={locationState.task}
-      />
-      <IonContent className='ion-padding'>
+      /> */}
+      {/* <IonContent className='ion-padding'>
         {detailDataState?.map((detail: IDetailData) => (
           <AccordionOption
             key={detail.subCategory.id}
@@ -53,7 +54,7 @@ const SubCategories: React.FC = () => {
             </div>
           </AccordionOption>
         ))}
-      </IonContent>
+      </IonContent> */}
     </>
   );
 };
