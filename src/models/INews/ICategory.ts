@@ -16,4 +16,5 @@ export interface INew {
   image?: string;
   link?: string;
   readed: boolean;
+  date: string;
 }

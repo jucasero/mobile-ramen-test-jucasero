@@ -20,7 +20,6 @@ import {
 import locales from './locales';
 import { Fragment, useEffect, useState } from 'react';
 import Header from './components/header';
-import TasksContent from './components/tasks-content';
 import UserMenu from '../../components/user-menu';
 import NewsContent from './components/news-content';
 
@@ -44,6 +43,7 @@ const RootHomePage: React.FC<IProps> = (props) => {
   const [menu_is_open, setMenuIsOpen] = useState<boolean>(false);
   const [activeTasks, setActiveTasks] = useState<boolean>(false);
   const [activeTools, setActiveTools] = useState<boolean>(false);
+  const [activeNews, setActiveNews] = useState<boolean>(false);
 
   const showMenuHandler = async () => {
     setMenuIsOpen(true);
@@ -72,11 +72,19 @@ const RootHomePage: React.FC<IProps> = (props) => {
       case 0: {
         setActiveTasks(true);
         setActiveTools(false);
+        setActiveNews(false);
         break;
       }
       case 1: {
+        setActiveNews(true);
+        setActiveTasks(false);
+        setActiveTools(false);
+        break;
+      }
+      case 2: {
         setActiveTools(true);
         setActiveTasks(false);
+        setActiveNews(false);
         break;
       }
     }
@@ -154,6 +162,7 @@ const RootHomePage: React.FC<IProps> = (props) => {
           onSlideClick={(slider) => onSlideClickHandler(slider, swiper)}
           activeTasks={activeTasks}
           activeTools={activeTools}
+          activeNews={activeNews}
         ></Header>
         <IonContent style={welcomeBackground}>
           <Swiper
@@ -162,9 +171,7 @@ const RootHomePage: React.FC<IProps> = (props) => {
             speed={400}
             onSlideChange={(e) => setSlideStates(e.activeIndex)}
           >
-            <SwiperSlide className='tasks-slide'>
-              <TasksContent pendingInPercent={0}></TasksContent>
-            </SwiperSlide>
+            <SwiperSlide className='tasks-slide'>{/* ALL TASKS */}</SwiperSlide>
             <SwiperSlide className='news-slide'>
               <NewsContent />
             </SwiperSlide>

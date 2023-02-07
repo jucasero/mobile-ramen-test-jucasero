@@ -5,25 +5,25 @@ export const categories: ICategory[] = [
     id: '1',
     title: 'Category',
     type: 'news/category',
-    total: 3,
+    total: 1,
   },
   {
     id: '2',
     title: 'Comercial',
     type: 'news/comercial',
-    total: 1,
+    total: 2,
   },
   {
     id: '3',
     title: 'Ofertas',
     type: 'news/ofertas',
-    total: 2,
+    total: 1,
   },
   {
     id: '4',
     title: 'Logística',
     type: 'news/logistica',
-    total: 2,
+    total: 1,
   },
 ];
 
@@ -45,6 +45,7 @@ export const news: INew[] = [
     image: 'https://example.com/verano.jpg',
     link: 'https://cencosud.com/promociones',
     readed: false,
+    date: 'Mar 7 feb. 2023',
   },
   {
     id: '63974ff8b008652kk8jd99j8',
@@ -62,7 +63,8 @@ export const news: INew[] = [
     ],
     image: 'https://example.com/fin_de_semana.jpg',
     link: 'https://cencosud.com/ofertas',
-    readed: false,
+    readed: true,
+    date: 'Lun 30 ene. 2023',
   },
   {
     id: '63974ff8b00jk98sj781d08d',
@@ -80,6 +82,7 @@ export const news: INew[] = [
     ],
     link: 'https://cencosud.com/logistica',
     readed: false,
+    date: 'Mar 7 feb. 2023',
   },
   {
     id: '63974ff8b008653jd8g12223',
@@ -97,6 +100,7 @@ export const news: INew[] = [
     ],
     link: 'https://cencosud.com/categorias',
     readed: false,
+    date: 'Mar 7 feb. 2023',
   },
   {
     id: '63923k9dj8cnm567dcc1d357',
@@ -115,6 +119,7 @@ export const news: INew[] = [
     image: 'https://example.com/electronica.jpg',
     link: 'https://cencosud.com/electronica',
     readed: false,
+    date: 'Lun 30 ene. 2023',
   },
   {
     id: '63974ff8b008652kk8jd99j9',
@@ -132,7 +137,8 @@ export const news: INew[] = [
     ],
     image: 'https://example.com/venta_temporada.jpg',
     link: 'https://cencosud.com/ofertas',
-    readed: false,
+    readed: true,
+    date: 'Lun 30 ene. 2023',
   },
   {
     id: '63974ff8b00jk98sj781d08e',
@@ -149,7 +155,8 @@ export const news: INew[] = [
       },
     ],
     link: 'https://cencosud.com/logistica',
-    readed: false,
+    readed: true,
+    date: 'Lun 30 ene. 2023',
   },
   {
     id: '63974ff8b00sj638dk724d08d',
@@ -167,7 +174,8 @@ export const news: INew[] = [
     ],
     image: 'https://example.com/productos_exclusivos.jpg',
     link: 'https://cencosud.com/nuevos_productos',
-    readed: false,
+    readed: true,
+    date: 'Mar 7 feb. 2023',
   },
   {
     id: '63974ff8b00jk98sj781d06g',
@@ -186,5 +194,6 @@ export const news: INew[] = [
     image: 'https://example.com/oferta_belleza.jpg',
     link: 'https://cencosud.com/ofertas_belleza',
     readed: false,
+    date: 'Mar 7 feb. 2023',
   },
 ];

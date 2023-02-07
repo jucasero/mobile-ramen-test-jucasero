@@ -7,9 +7,20 @@ import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.s
 import useFetch from '../../../../hooks/useFetch';
 import NewsClient from '../../../../clients/NewsClient';
 import { TaskSkeleton } from '../../../../components/loaders';
-import alarmImage from '../../../../assets/media/task/alarm.svg';
 import { ICategory } from '../../../../models/INews/ICategory';
 import locales from './locales';
+
+import categoryImage from '../../../../assets/media/category.svg';
+import commercialImage from '../../../../assets/media/commercial.svg';
+import logisticImage from '../../../../assets/media/logistic.svg';
+import offerImage from '../../../../assets/media/offer.svg';
+
+const imageByCategory = {
+  '1': categoryImage,
+  '2': commercialImage,
+  '3': offerImage,
+  '4': logisticImage,
+};
 
 const localize = i18(locales);
 
@@ -33,7 +44,7 @@ const NewsContent = () => {
         categories.map((category) => (
           <TaskCard
             key={category.id}
-            image={alarmImage}
+            image={imageByCategory[category.id]} // TODO: change image
             title={category.title}
             total={category.total}
             onClick={() => handleOnClickTask(category)}

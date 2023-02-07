@@ -101,7 +101,7 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  // if (!authenticated) {
+  // if (!authenticated) { // TODO: descomentar código
   //   return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
   // }
   return (

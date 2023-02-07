@@ -1,0 +1,50 @@
+.sub-category-footer
+  border-top: 1px solid #F0F0F0
+  font-style: normal
+  font-weight: 600
+  font-size: 14px
+  line-height: 100%
+  letter-spacing: -0.05em
+  height: 50px
+  color: #666666
+  display: flex
+  align-items: center
+  justify-content: center
+
+.divider
+  height: 3px
+  background: #F0F0F0
+  width: 100%
+  margin: 8px 0px
+
+%communication-text
+  font-family: 'Open Sans'
+  font-style: normal
+  line-height: 100%
+  letter-spacing: -0.05em
+  margin: 0px
+
+.communication-text-communication-read
+  @extend %communication-text
+  font-size: 16px
+  font-weight: 700
+  color: #000000
+  width: 100%
+
+.communication-flex
+  padding: 20px
+
+.communication-page
+  justify-content: unset
+  
+.communication-text-unread
+  @extend %communication-text
+  font-weight: 700
+  font-size: 16px
+  color: #aba8a8
+
+.communication-unread-container
+  filter: opacity(0.6)
+
+.communication-display-unread
+  color: #000000

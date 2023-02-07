@@ -16,6 +16,7 @@ interface IProps {
   onSlideClick: (slider: number) => void;
   activeTasks: boolean;
   activeTools: boolean;
+  activeNews: boolean;
   onMenuClick: (toogle: boolean) => void;
 }
 
@@ -56,10 +57,10 @@ const Header: React.FC<IProps> = (props) => {
           {localize('TASKS', '')}
         </IonButton>
         <IonButton
-          className={props.activeTasks ? 'white active' : 'white'}
+          className={props.activeNews ? 'white active' : 'white'}
           onClick={() => onSlideClickHandler(1)}
         >
-          {props.activeTasks ? <TaskIconActive /> : <TaskIcon />}
+          {props.activeNews ? <TaskIconActive /> : <TaskIcon />}
           {localize('NEWS', '')}
         </IonButton>
         <IonButton
