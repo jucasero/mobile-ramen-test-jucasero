@@ -15,7 +15,7 @@ const localize = i18(locales);
 
 const NewsContent = () => {
   const history = useHistory();
-  const [fetchNews, news, loading] = useFetch(NewsClient.getNews());
+  const [fetchNews, categories, loading] = useFetch(NewsClient.getCategories());
 
   const handleOnClickTask = (category: ICategory) => {
     history.replace({ pathname: category.type, state: category });
@@ -29,8 +29,8 @@ const NewsContent = () => {
     <IonContent>
       {loading && <TaskSkeleton cardsNumber={1} />}
 
-      {news &&
-        news.map((category) => (
+      {categories &&
+        categories.map((category) => (
           <TaskCard
             key={category.id}
             image={alarmImage}
@@ -40,7 +40,7 @@ const NewsContent = () => {
           ></TaskCard>
         ))}
 
-      {!news && !loading && (
+      {!categories && !loading && (
         <div className='empty-tasks'>
           <AllDoneImage />
           <div>{localize('ALL_IN_ORDER', '')}</div>
