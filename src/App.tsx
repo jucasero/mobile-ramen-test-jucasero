@@ -101,9 +101,9 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  // if (!authenticated) { // TODO: descomentar código
-  //   return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
-  // }
+  if (!authenticated) {
+    return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
+  }
   return (
     <IonApp>
       <IonReactRouter keyLength={1}>
