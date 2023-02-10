@@ -28,6 +28,12 @@ const News: React.FC = () => {
     fetchNews();
   }, []);
 
+  console.log(locationState);
+
+  const handleOnClickDetail = () => {
+    // history.replace({ pathname: category.type, state: category });
+  };
+
   return (
     <NewsProvider>
       <IonPage className='communication-page'>

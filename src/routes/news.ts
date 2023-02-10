@@ -1,4 +1,4 @@
 export const newsRoutes = {
   news: '/news/:categoryType',
-  productDetail: '/new/:productDetail',
+  detailNew: '/new/:detailNew',
 };

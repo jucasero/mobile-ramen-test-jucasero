@@ -40,7 +40,7 @@ import { ICustomer } from './models/users/ICustomer';
 //import ProductScanTool from "./pages/tools/tool-product-scan";
 
 // News imports
-import { News } from './pages/news/views';
+import { News, DetailNew } from './pages/news/views';
 
 import { rootRoute, newsRoutes } from './routes';
 
@@ -101,9 +101,9 @@ const App: React.FC = () => {
       ></OnBoardingPage>
     );
   }
-  if (!authenticated) {
-    return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
-  }
+  // if (!authenticated) {
+  //   return <SignInPage onAuthenticated={onAuthenticatedHandler} />;
+  // }
   return (
     <IonApp>
       <IonReactRouter keyLength={1}>
@@ -114,6 +114,7 @@ const App: React.FC = () => {
           {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
           {/* News routes */}
           <Route path={newsRoutes.news} component={News} exact />
+          <Route path={newsRoutes.detailNew} component={DetailNew} exact />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
