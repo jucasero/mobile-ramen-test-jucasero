@@ -162,7 +162,7 @@ const RootHomePage: React.FC<IProps> = (props) => {
             onSlideChange={(e) => setSlideStates(e.activeIndex)}
           >
             <SwiperSlide className='tasks-slide'>
-              <TasksContent pendingInPercent={0}></TasksContent>
+              <TasksContent />
             </SwiperSlide>
             <SwiperSlide className='tools-slide'>
               {/* ALL TOOLS CARD ARE INSIDE THIS SLIDE */}

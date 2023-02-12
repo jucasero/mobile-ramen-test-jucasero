@@ -1,6 +1,7 @@
 const locale = {
   ALL_IN_ORDER: 'Você tem tudo em ordem!',
-  NO_PENDING_TASKS: 'sem tarefas pendentes',
+  TASKS_PROGRESS: 'Progresso\nem suas tarefas',
+  PENDING_TASKS: '{pendingTasks} tarefas pendentes',
 };
 
 export default locale;

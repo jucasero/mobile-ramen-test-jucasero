@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import ProgressBar from 'react-customizable-progressbar';
 import { IonContent } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import useFetch from '../../../../hooks/useFetch';
@@ -11,13 +9,12 @@ import TasksClient from '../../../../clients/TasksClient';
 import { TaskSkeleton } from '../../../../components/loaders';
 import alarmImage from '../../../../assets/media/task/alarm.svg';
 import { ITask } from '../../../../models/ITasks/ITask';
+import ProgressCard from '../progress-card';
 import locales from './locales';
 
 const localize = i18(locales);
-interface IProps {
-  pendingInPercent: any;
-}
-const TasksContent: React.FC<IProps> = (props) => {
+
+const TasksContent: React.FC = () => {
   const history = useHistory();
   const [fecthTask, tasks, loading] = useFetch(TasksClient.getTasks());
 
@@ -31,28 +28,10 @@ const TasksContent: React.FC<IProps> = (props) => {
 
   return (
     <IonContent>
-      <div className='progress-bar'>
-        <div>
-          <div>
-            <span />
-          </div>
-          <div className='progress-text'>
-            <EmojiIcon emoji={'🎉'} size='small' />
-            <div>&nbsp;&nbsp;&nbsp;{localize('NO_PENDING_TASKS', '')}</div>
-          </div>
-        </div>
-        <div>
-          <ProgressBar
-            progress={props.pendingInPercent}
-            radius={100}
-            trackStrokeWidth={13}
-            trackStrokeColor={'#273432'}
-            strokeWidth={15}
-            strokeColor={'#8ef46b'}
-          />
-          <div>{Math.floor(props.pendingInPercent)}%</div>
-        </div>
-      </div>
+      <ProgressCard pendingPercentage={25} />
+
+      <hr />
+
       {loading && <TaskSkeleton cardsNumber={1} />}
 
       {tasks &&
