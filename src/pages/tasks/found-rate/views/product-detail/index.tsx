@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import {
@@ -9,30 +9,34 @@ import {
   IonGrid,
   IonThumbnail,
   IonImg,
-  IonIcon,
 } from '@ionic/react';
 
 import locales from './locales';
-import TaskHeader from '../../components/TaskHeader';
-import Dropdown from '../../components/dropdown';
+import {
+  TaskHeader,
+  Dropdown,
+  NoIsInTheRack,
+  IsInTheRack,
+  RackQuestionCard,
+} from '../../components';
 import Button from '../../../../../components/button';
-import NoIsInTheRack from '../../components/no-is-in-the-rack';
-import IsInTheRack from '../../components/is-in-the-rack';
 import TouchScreenLock from '../../../../../components/touch-screen-lock';
-import Cross from '../../../../../assets/media/cross-gray.svg';
-import Check from '../../../../../assets/media/check-gray.svg';
 
-import { products } from '../../../../../mocks/found-rate';
+import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
-import useToggle from '../../../../../hooks/useToggle';
-import { rootRoute } from '../../../../../routes';
-import useFetch from '../../../../../hooks/useFetch';
+import { AppContext, FoundRateContext } from '../../../../../context';
+import { useToggle, useFetch } from '../../../../../hooks';
+import { rootRoute, foundRateRoutes } from '../../../../../routes';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import './index.sass';
 
 export const FoundRateProductDetail: React.FC = () => {
   const localize = i18(locales);
   const history = useHistory();
+  const {
+    foundRateState: { selectedProduct },
+  } = useContext(FoundRateContext);
+  const { dispatch } = useContext(AppContext);
   const [buttonState, setButtonState] = useState({
     text: localize('FINISH_TASK_BUTTON', ''),
     loading: false,
@@ -43,11 +47,10 @@ export const FoundRateProductDetail: React.FC = () => {
     stockStatus: '',
     placeStatus: '',
   });
-  const { isShowing, toggle } = useToggle();
+  const [isShowing, toggle] = useToggle();
   const [postData, data, isLoading] = useFetch(
     FoundRateClient.postFoundRateData()
   );
-  const product = products[0];
 
   const handleFinishAlert = () => {
     postData();
@@ -55,7 +58,10 @@ export const FoundRateProductDetail: React.FC = () => {
 
   useEffect(() => {
     if (isLoading && !data) setButtonState({ ...buttonState, loading: true });
-    else if (!isLoading && data) history.replace(rootRoute);
+    else if (!isLoading && data) {
+      dispatch({ type: 'SET_TASK_DONE', payload: true });
+      history.replace(rootRoute);
+    }
   }, [isLoading, data]);
 
   useEffect(() => {
@@ -78,7 +84,11 @@ export const FoundRateProductDetail: React.FC = () => {
 
   return (
     <IonPage>
-      <TaskHeader section='CornerShop' />
+      <TaskHeader
+        section='CornerShop'
+        icon={cornerShopIcon}
+        backRoute={foundRateRoutes.subCategories}
+      />
       <IonContent className='ion-padding'>
         <IonGrid>
           <IonRow className='product-detail--header'>
@@ -86,8 +96,8 @@ export const FoundRateProductDetail: React.FC = () => {
               <IonThumbnail className='product-image-container'>
                 <IonImg
                   className='product-image'
-                  src={product.image}
-                  alt={product.description}
+                  src={selectedProduct.image}
+                  alt={selectedProduct.description}
                 />
               </IonThumbnail>
             </IonCol>
@@ -95,21 +105,23 @@ export const FoundRateProductDetail: React.FC = () => {
             <IonCol size='4'>
               <IonRow>
                 <span className='product-detail--title'>
-                  {product.description}
+                  {selectedProduct.description}
                 </span>
               </IonRow>
               <IonRow>
                 <span className='product-detail--tag-title'>
                   {localize('PRODUCT_EAN', '')}
                 </span>
-                <span className='product-detail--tag-title'>{product.ean}</span>
+                <span className='product-detail--tag-title'>
+                  {selectedProduct.ean}
+                </span>
               </IonRow>
               <IonRow>
                 <span className='product-detail--tag-title'>
                   {localize('STOCK_NRT', '')}
                 </span>
                 <span className='product-detail--tag-title'>
-                  {product.stock_nrt}
+                  {selectedProduct.stock_nrt}
                 </span>
               </IonRow>
             </IonCol>
@@ -117,7 +129,7 @@ export const FoundRateProductDetail: React.FC = () => {
             <IonCol size='5'>
               <IonRow className='product-detail--location'>
                 <span className='product-detail--tag-title'>
-                  {product.location}
+                  {selectedProduct.location}
                 </span>
               </IonRow>
             </IonCol>
@@ -129,7 +141,7 @@ export const FoundRateProductDetail: React.FC = () => {
             {localize('UNITS_REQUESTED_TEXT', '')}
           </p>
           <p className='product-detail--text-bg color--light'>
-            {localize('UNITS_REQUESTED_TEXT_2', '')}
+            {`${selectedProduct.units_sold} de ${selectedProduct.units_requested} unidades solicitadas`}
           </p>
         </div>
 
@@ -144,7 +156,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.article_number}
+                    {selectedProduct.article_number}
                   </span>
                 </IonRow>
               </IonCol>
@@ -157,7 +169,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.article_number}
+                    {selectedProduct.article_number}
                   </span>
                 </IonRow>
               </IonCol>
@@ -172,7 +184,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.brand}
+                    {selectedProduct.brand}
                   </span>
                 </IonRow>
               </IonCol>
@@ -185,7 +197,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.provider}
+                    {selectedProduct.provider}
                   </span>
                 </IonRow>
               </IonCol>
@@ -201,7 +213,7 @@ export const FoundRateProductDetail: React.FC = () => {
               </IonCol>
               <IonCol>
                 <span className='product-detail--tag-description'>
-                  {product.last_reception_date}
+                  {selectedProduct.last_reception_date}
                 </span>
               </IonCol>
             </IonRow>
@@ -217,7 +229,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.units_requested}
+                    {selectedProduct.units_requested}
                   </span>
                 </IonRow>
               </IonCol>
@@ -230,7 +242,7 @@ export const FoundRateProductDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <span className='product-detail--tag-description'>
-                    {product.delivery_date}
+                    {selectedProduct.delivery_date}
                   </span>
                 </IonRow>
               </IonCol>
@@ -240,23 +252,10 @@ export const FoundRateProductDetail: React.FC = () => {
 
         <Dropdown isShowing={isShowing} toggle={toggle} />
 
-        <div className='product-detail--rack-question'>
-          <span className='product-detail--rack-question__text'>
-            {localize('PRODUCT_RACK_QUESTION', '')}
-          </span>
-          <div className='product-detail--icons'>
-            <IonImg
-              src={Check}
-              className='product-detail--check'
-              onClick={() => setIsInTheRack(true)}
-            />
-            <IonIcon
-              src={Cross}
-              className='product-detail--cross'
-              onClick={() => setIsInTheRack(false)}
-            />
-          </div>
-        </div>
+        <RackQuestionCard
+          isInTheRack={isInTheRack}
+          setIsInTheRack={setIsInTheRack}
+        />
 
         {isInTheRack !== null ? (
           isInTheRack ? (

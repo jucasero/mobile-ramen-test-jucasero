@@ -18,13 +18,14 @@ const localize = i18(locales);
 
 interface IProps {
   product: IProduct;
+  onClick: () => void;
 }
 
 // Product card detail
-const Product: React.FC<IProps> = ({ product }) => {
+const Product: React.FC<IProps> = ({ product, onClick }) => {
   return (
     <div className='product-container'>
-      <IonItem className='product-card-item' lines='none'>
+      <IonItem className='product-card-item' lines='none' onClick={onClick}>
         <IonGrid>
           <IonRow>
             <IonCol size='3'>

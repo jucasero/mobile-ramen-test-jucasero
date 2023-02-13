@@ -9,14 +9,10 @@ interface IProps {
 
 const Chip: React.FC<IProps> = ({ name, icon }) => {
   return (
-    <div className='chip-container'>
-      <IonChip className='ion-chip'>
-        <IonAvatar>
-          <IonIcon icon={icon} slot='icon-only' size='large'></IonIcon>
-        </IonAvatar>
-        <IonLabel className='ion-label'>{name}</IonLabel>
-      </IonChip>
-    </div>
+    <IonChip className='ion-chip' slot='end'>
+      <IonIcon icon={icon} size='large'></IonIcon>
+      <IonLabel className='ion-label'>{name}</IonLabel>
+    </IonChip>
   );
 };
 

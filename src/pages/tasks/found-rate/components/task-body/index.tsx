@@ -1,6 +1,6 @@
 import { IonContent } from '@ionic/react';
 
-const TaskBody = () => {
+const TaskBody: React.FC = () => {
   return <IonContent className='ion-padding'>body</IonContent>;
 };
 

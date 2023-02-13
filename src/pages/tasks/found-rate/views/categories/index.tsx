@@ -1,7 +1,7 @@
 import { IonPage } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import TaskHeader from '../../components/TaskHeader';
-import CategoryList from '../../components/categories';
+import { TaskHeader, CategoryList } from '../../components';
+
 import locales from '../../locales';
 
 // Found Rate Category list View

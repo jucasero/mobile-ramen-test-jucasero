@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { IonContent } from '@ionic/react';
 import { useHistory } from 'react-router';
-import useFetch from '../../../../../hooks/useFetch';
+import { AppContext, FoundRateContext } from '../../../../../context';
+import { useCategory } from '../../../../../hooks';
 import FoundRateClient from '../../../../../clients/FoundRateClient';
 import { ITask } from '../../../../../models/ITasks/ITask';
 import { IFoundRateData } from '../../../../../models/found-rate/IData';
@@ -12,14 +13,19 @@ import { rootRoute, foundRateRoutes } from '../../../../../routes'; // TODO: Nee
 // Found Rate Category list
 const CategoryList: React.FC = () => {
   const history = useHistory<ITask>();
-  const taskState: ITask = history.location.state;
-  const [fetchData, data, isLoading] = useFetch(
+  const {
+    appState: {
+      taskState: { selectedTask },
+    },
+  } = useContext(AppContext);
+  const { dispatch } = useContext(FoundRateContext);
+  const [fetchData, data, isLoading] = useCategory(
     FoundRateClient.getFoundRateData()
   );
 
   useEffect(() => {
-    if (!taskState) history.replace(rootRoute);
-  }, [history, taskState]);
+    if (!selectedTask) history.replace(rootRoute);
+  }, [history, selectedTask]);
 
   useEffect(() => {
     fetchData();
@@ -27,17 +33,17 @@ const CategoryList: React.FC = () => {
 
   // Redirection to found rate sub-category list
   const redirectToSubCategories = (foundRateData: IFoundRateData) => {
-    const state: any = { data: foundRateData, task: taskState }; // TODO: Should be replaced by Context
+    dispatch({ type: 'SET_SELECTED_CATEGORY', payload: foundRateData });
     const subCategoryRoute = foundRateRoutes.subCategories.replace(
       ':categoryType',
       foundRateData.category.type
     );
-    history.replace(subCategoryRoute, state);
+    history.replace(subCategoryRoute);
   };
 
   return (
     <IonContent className='ion-padding'>
-      {isLoading && <TaskSkeleton cardsNumber={taskState.total} />}
+      {isLoading && <TaskSkeleton cardsNumber={selectedTask.total} />}
       {data &&
         data.map((record) => (
           <TaskCard

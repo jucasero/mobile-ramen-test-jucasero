@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { i18 } from '@team_eureka/eureka-ionic-core';
+import locales from '../../views/product-detail/locales';
 import PlainCard from '../../../../../components/plain-card';
 import RadioButton from '../../../../../components/radio-button';
 import './index.sass';
@@ -10,6 +12,7 @@ interface IProps {
 }
 
 const NoIsInTheRack: React.FC<IProps> = ({ setRadioButtonState }) => {
+  const localize = i18(locales);
   const [stockStatus, setStockStatus] = useState('');
   const [placeStatus, setPlaceStatus] = useState('');
 
@@ -19,30 +22,30 @@ const NoIsInTheRack: React.FC<IProps> = ({ setRadioButtonState }) => {
 
   return (
     <PlainCard>
-      <p className='card-title'>¿Existe stock en bodega/cámara para reponer?</p>
+      <p className='card-title'>{localize('STOCK_RACK_QUESTION', '')}</p>
       <RadioButton
-        label='Sí, reponer'
+        label={localize('STOCK_RACK_AFFIRMATIVE', '')}
         value='si'
         onChange={() => setStockStatus('si')}
         checked={stockStatus === 'si'}
       />
       <RadioButton
-        label='No'
+        label={localize('STOCK_RACK_NEGATIVE', '')}
         value='no'
         onChange={() => setStockStatus('no')}
         checked={stockStatus === 'no'}
       />
       {stockStatus === 'si' ? (
         <>
-          <p className='card-subtitle'>¿Dónde lo encontraste?</p>
+          <p className='card-subtitle'>{localize('PLACE_RACK_QUESTION', '')}</p>
           <RadioButton
-            label='Reposición desde altillo'
+            label={localize('PLACE_RACK_AFFIRMATIVE', '')}
             value='altillo'
             onChange={() => setPlaceStatus('altillo')}
             checked={placeStatus === 'altillo'}
           />
           <RadioButton
-            label='Reposición desde bodega'
+            label={localize('PLACE_RACK_NEGATIVE', '')}
             value='bodega'
             onChange={() => setPlaceStatus('bodega')}
             checked={placeStatus === 'bodega'}

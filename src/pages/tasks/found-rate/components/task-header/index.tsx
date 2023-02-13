@@ -25,6 +25,7 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
     <IonHeader className='task-header' mode='md'>
       <IonToolbar mode='md'>
         <IonButton
+          slot='start'
           fill='clear'
           onClick={() =>
             backRoute ? history.replace(backRoute, data) : history.goBack()
@@ -32,10 +33,8 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
         >
           <IonIcon icon={arrowBack} slot='icon-only' size='large'></IonIcon>
         </IonButton>
-
         {section && <Chip name={section} icon={icon} />}
       </IonToolbar>
-
       {title && <p className='ion-padding task-header-title'>{title}</p>}
     </IonHeader>
   );
