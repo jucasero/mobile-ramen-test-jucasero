@@ -19,6 +19,7 @@ import OnboardingNotification from './../../assets/media/onboarding-notification
 
 // RAMEN componentes library
 import { XGrid, XSpace, XText, XButton, XImage } from '@ramenx/ui-library';
+import PushNotificationsClient from '../../clients/PushNotificationsClient';
 
 const cencosudx = XConsole({ label: 'Onboarding-page' });
 const localize = i18(locales);
@@ -60,6 +61,13 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
     setButtonState(localize('gps_button', ''));
     setModeState('GPS');
     swiper!.slideNext();
+  };
+
+  const onPushNotificationsHandler = async () => {
+    await PushNotificationsClient.checkPermissions(onEndOndboarding);
+    Expr.whenNotInNativePhone(() => {
+      onEndOndboarding();
+    });
   };
 
   const onEnableGPSHandler = async () => {
@@ -141,7 +149,7 @@ const OnBoardingPage: React.FC<IProps> = (props) => {
         break;
       }
       case 2: {
-        onEndOndboarding();
+        onPushNotificationsHandler();
         break;
       }
     }

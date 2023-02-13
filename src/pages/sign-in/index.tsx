@@ -14,6 +14,9 @@ import {
   i18,
   XConsole,
 } from '@team_eureka/eureka-ionic-core';
+
+import SettingsClient from '../../clients/SettingsClient';
+import PushNotificationsClient from '../../clients/PushNotificationsClient';
 import { IUser } from '../../models/users/IUser';
 import { ICustomer } from '../../models/users/ICustomer';
 import locales from './locales';
@@ -73,11 +76,15 @@ const SignInPage: React.FC<IProps> = (props) => {
           cencosudx.debug('xhr error', error);
         }
       };
-      /* Expr.whenInNativePhone(async () => {
-        const FCMResponse = await FCM.getToken();
-        deviceToken = FCMResponse.token;
+      Expr.whenInNativePhone(async () => {
+        const deviceToken = SettingsClient.get('PUSH_TOKEN');
+        if (!deviceToken) {
+          PushNotificationsClient.checkPermissions(async () => {
+            await updateToken(SettingsClient.get('PUSH_TOKEN'));
+          });
+        }
         await updateToken(deviceToken);
-      }) */
+      });
       Expr.whenNotInNativePhone(async () => {
         deviceToken = 'fake_token_when_browser';
         await updateToken(deviceToken);
