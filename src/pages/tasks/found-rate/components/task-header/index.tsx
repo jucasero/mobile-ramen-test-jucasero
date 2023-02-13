@@ -1,5 +1,11 @@
-import { IonButton, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
-import Chip from '../../../../../components/chip';
+import {
+  IonButton,
+  IonChip,
+  IonHeader,
+  IonIcon,
+  IonLabel,
+  IonToolbar,
+} from '@ionic/react';
 import { arrowBack } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import './index.sass';
@@ -9,7 +15,7 @@ interface ITaskHeaderProps {
   backRoute?: string;
   data?: unknown;
   section?: string;
-  icon?: unknown;
+  icon?: string;
 }
 
 const TaskHeader: React.FC<ITaskHeaderProps> = ({
@@ -33,7 +39,13 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
         >
           <IonIcon icon={arrowBack} slot='icon-only' size='large'></IonIcon>
         </IonButton>
-        {section && <Chip name={section} icon={icon} />}
+        {/* {section && <Chip name={section} icon={icon} />} */}
+        {section && (
+          <IonChip slot='end'>
+            <IonIcon icon={icon} />
+            <IonLabel color={'light'}>{section}</IonLabel>
+          </IonChip>
+        )}
       </IonToolbar>
       {title && <p className='ion-padding task-header-title'>{title}</p>}
     </IonHeader>

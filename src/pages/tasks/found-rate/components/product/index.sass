@@ -1,7 +1,7 @@
-ion-grid
+ion-grid.product-container
   padding-top: 16px
   border-top: 1px solid var(--ion-color-secondary-contrast)
-  .thumbnail-column
+  .product-thumbnail-column
     display: flex
     align-items: center
     padding: 0 12px 0 24px
@@ -10,6 +10,9 @@ ion-grid
       --border-radius: 14px
       border: 1.5px solid #EEEEEE
       padding: 5px
+  .product-description-column
+    display: grid
+    align-items: center
   ion-row
     h6
       margin: 0
@@ -18,5 +21,5 @@ ion-grid
       margin: 0 4px 0 0
       color: var(--ion-color-medium-tint)
   ion-chip
-    --background: black
+    --background: var(--ion-color-primary)
     margin: 18px 25px

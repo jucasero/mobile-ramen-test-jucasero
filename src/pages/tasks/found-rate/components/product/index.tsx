@@ -25,14 +25,14 @@ interface IProps {
 // Product card detail
 const Product: React.FC<IProps> = ({ product, onClick }) => {
   return (
-    <IonGrid onClick={onClick}>
+    <IonGrid className='product-container' onClick={onClick}>
       <IonRow>
-        <IonCol className='thumbnail-column' size='auto'>
+        <IonCol className='product-thumbnail-column' size='auto'>
           <IonThumbnail>
             <IonImg src={product.image} alt={product.description} />
           </IonThumbnail>
         </IonCol>
-        <IonCol>
+        <IonCol className='product-description-column'>
           <IonRow>
             <h6>{product.description}</h6>
           </IonRow>
@@ -49,7 +49,7 @@ const Product: React.FC<IProps> = ({ product, onClick }) => {
       <IonRow>
         <IonChip>
           <IonIcon icon={shop} />
-          <IonLabel color={'light'}>CornerShop</IonLabel>
+          <IonLabel color={'light'}>{localize('CORNER_SHOP', '')}</IonLabel>
         </IonChip>
       </IonRow>
     </IonGrid>
