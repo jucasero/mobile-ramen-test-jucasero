@@ -6,7 +6,7 @@ interface IProps {
   isShowing: boolean;
   toggle: () => any;
 }
-const DropDown = ({ isShowing, toggle }: IProps) => (
+const DropDown: React.FC<IProps> = ({ isShowing, toggle }) => (
   <div className='dropdown'>
     <div className='dropdown--line' />
     <div

@@ -1,7 +1,6 @@
 import React from 'react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import {
-  IonItem,
   IonCol,
   IonRow,
   IonThumbnail,
@@ -20,12 +19,13 @@ const localize = i18(locales);
 
 interface IProps {
   product: IProduct;
+  onClick: () => void;
 }
 
 // Product card detail
-const Product: React.FC<IProps> = ({ product }) => {
+const Product: React.FC<IProps> = ({ product, onClick }) => {
   return (
-    <IonGrid>
+    <IonGrid onClick={onClick}>
       <IonRow>
         <IonCol className='thumbnail-column' size='auto'>
           <IonThumbnail>
