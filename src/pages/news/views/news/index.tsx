@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
-import { IonPage, IonContent, IonIcon, IonRow, IonCol } from '@ionic/react';
+import { useEffect, useContext } from 'react';
+import { IonPage, IonRow, IonCol } from '@ionic/react';
 import { useHistory } from 'react-router';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import { NewsProvider } from '../../../../context';
 import useFetch from '../../../../hooks/useFetch';
 import NewsClient from '../../../../clients/NewsClient';
-import { ICategory, INew } from '../../../../models/INews/ICategory';
+import { ICategory } from '../../../../models/INews/ICategory';
 import CommunicationCard from '../../components/CommunicationCard';
 import TaskHeader from '../../components/TaskHeader';
 import { TaskSkeleton } from '../../../../components/loaders';
+import { NewsContext } from '../../../../context';
 
 import locales from './locales';
 
@@ -19,6 +20,7 @@ const News: React.FC = () => {
   const localize = i18(locales);
   const history = useHistory<ICategory>();
   const locationState: ICategory = history.location.state;
+  const { dispatch } = useContext(NewsContext);
 
   const [fetchNews, news, loading] = useFetch(
     NewsClient.getNews(locationState?.id)
@@ -28,10 +30,9 @@ const News: React.FC = () => {
     fetchNews();
   }, []);
 
-  console.log(locationState);
-
-  const handleOnClickDetail = () => {
-    // history.replace({ pathname: category.type, state: category });
+  const handleOnClickDetail = (detail) => {
+    dispatch({ type: 'SET_NEW_READED', payload: true });
+    history.replace({ pathname: 'detail/123', state: detail });
   };
 
   return (
@@ -64,7 +65,7 @@ const News: React.FC = () => {
                           key={detail.id}
                           data={detail}
                           category={locationState?.id}
-                          onClick={() => console.log('')} // TODO: add method in the next task
+                          onClick={() => handleOnClickDetail(detail)}
                         />
                       )
                   )}
@@ -87,7 +88,7 @@ const News: React.FC = () => {
                           key={detail.id}
                           data={detail}
                           category={locationState?.id}
-                          onClick={() => console.log('')} // TODO: add method in the next task
+                          onClick={() => handleOnClickDetail(detail)}
                         />
                       )
                   )}

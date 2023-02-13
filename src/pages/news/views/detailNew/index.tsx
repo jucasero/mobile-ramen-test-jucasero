@@ -1,89 +1,109 @@
-import { useEffect } from 'react';
-import { IonPage, IonContent, IonIcon, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonImg, IonButton } from '@ionic/react';
 import { useHistory } from 'react-router';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import { NewsProvider } from '../../../../context';
-import useFetch from '../../../../hooks/useFetch';
-import NewsClient from '../../../../clients/NewsClient';
-import { ICategory, INew } from '../../../../models/INews/ICategory';
-import CommunicationCard from '../../components/CommunicationCard';
+import { INew } from '../../../../models/INews/ICategory';
 import TaskHeader from '../../components/TaskHeader';
 import Button from '../../../../components/button';
-// import { TaskSkeleton } from '../../../../components/loaders';
+import downloadImage from '../../../../assets/media/download.svg';
+import notFoundImage from '../../../../assets/media/image-not-found-icon.svg';
 
 import locales from './locales';
 
 import './index.sass';
 
-// All communications for each category
+const categoriesByColor = {
+  '1': '#DA995D',
+  '2': '#7C7AE3',
+  '3': '#5DB5DA',
+  '4': '#2FCD9B',
+};
+
+// Detail of a communication
 const DetailNew: React.FC = () => {
   const localize = i18(locales);
-  const history = useHistory<ICategory>();
-  const locationState: ICategory = history.location.state;
+  const history = useHistory<INew>();
+  const locationState: INew = history.location.state;
 
   const redirectExternalLink = () => {
-    console.log('');
+    window.location.replace(locationState.link);
+  };
+
+  const handleDownloadFile = (file) => {
+    fetch(file).then((response) => {
+      response.blob().then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file;
+        a.click();
+      });
+    });
   };
 
   return (
-    <NewsProvider>
-      <IonPage className='communication-page'>
-        <>
-          <TaskHeader backRoute='/' />
+    <IonPage className='communication-page'>
+      <>
+        <TaskHeader backRoute='/' />
 
+        <div className='detail-new-flex'>
           <div className='detail-new-content'>
-            <span className='detail-new-title'>Título del comunicado</span>
+            <span className='detail-new-title'>{locationState?.title}</span>
 
-            <span className='detail-new-subtitle'>
-              Implmentación del planograma
+            <span
+              className='detail-new-subtitle'
+              style={{ color: categoriesByColor[locationState?.idCategory] }}
+            >
+              {locationState?.subtitle}
             </span>
 
             <div className='detail-new-files-content'>
-              <Button
-                text='archivo.pdf'
-                color='light'
-                type='secondary'
-                onClick={redirectExternalLink}
-              />
-              <Button
-                text='archivo.pdf'
-                color='light'
-                type='secondary'
-                onClick={redirectExternalLink}
-              />
-              <Button
-                text='archivo.pdf'
-                color='light'
-                type='secondary'
-                onClick={redirectExternalLink}
-              />
+              {locationState?.files?.map((file) => (
+                <IonButton
+                  key={file.id}
+                  className='detail-new-files-button'
+                  color={'white'}
+                  shape='round'
+                  onClick={() => {
+                    handleDownloadFile(file.name);
+                  }}
+                >
+                  <IonImg
+                    src={downloadImage}
+                    className='detail-new-no-image-download'
+                  />
+                  <span className='detail-new-files-text'>{file.name}</span>
+                </IonButton>
+              ))}
             </div>
 
-            <span className='detail-new-subtitle'>
+            <span className='detail-new-description-title'>
               {localize('NEW_DETAIL_DESCRIPTION', '')}
             </span>
             <span className='detail-new-description'>
-              Lorem ipsunLorem ipsunLorem ipsunLorem ipsunLorem ipsunLorem
-              ipsunLorem ipsunLorem ipsunLorem ipsunLorem ipsunLorem ipsunLorem
-              ipsunLorem ipsunLorem ipsunLorem ipsunLorem ipsun
+              {locationState?.description}
             </span>
 
-            <img />
-
-            <div className='detail-new-no-image'>
-              <p>NO FOTO</p>
-            </div>
-
-            <Button
-              text={localize('NEW_DETAIL_BUTTON', '')}
-              color='dark'
-              type='primary'
-              onClick={redirectExternalLink}
-            />
+            {locationState?.image ? (
+              <IonImg src={locationState?.image} className='detail-new-image' />
+            ) : (
+              <div className='detail-new-no-image'>
+                <IonImg
+                  src={notFoundImage}
+                  className='detail-new-no-image-found'
+                />
+              </div>
+            )}
           </div>
-        </>
-      </IonPage>
-    </NewsProvider>
+
+          <Button
+            text={localize('NEW_DETAIL_BUTTON', '')}
+            color='dark'
+            type='primary'
+            onClick={redirectExternalLink}
+          />
+        </div>
+      </>
+    </IonPage>
   );
 };
 
