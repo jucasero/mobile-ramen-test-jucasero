@@ -1,5 +1,5 @@
 const locale = {
-  STOCK_NRT: 'Stock NRT',
+  STOCK_NRT: 'Stock',
   EAN: 'EAN',
 };
 
