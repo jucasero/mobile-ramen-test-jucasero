@@ -17,4 +17,5 @@ export interface INew {
   link?: string;
   readed: boolean;
   date: string;
+  pathBack?: string;
 }

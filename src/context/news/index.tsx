@@ -8,9 +8,6 @@ export interface IAppState {
 const initialState: IAppState = {
   newsState: {
     news: [],
-    selectedNew: null,
-    isNewReaded: false,
-    lastApiCall: null,
   },
 };
 

@@ -28,13 +28,13 @@ const CommunicationCard: React.FC<ICommunicationCardProps> = ({
         <span className='communication-card-title'>
           {(data?.title).substring(0, 30)}...
         </span>
-        <span className='communication-card-footer'>
+        <div className='communication-card-footer'>
           <span className='communication-card-description'>
             {(data?.description).substring(0, 100)}...
           </span>
           <span className='communication-card-arrow'>{'>'}</span>
-        </span>
-        <span className='communication-card-footer'>
+        </div>
+        <div className='communication-card-footer'>
           <span className='communication-card-date'>{data?.date}</span>
           <span
             className='communication-card-subtitle'
@@ -42,7 +42,7 @@ const CommunicationCard: React.FC<ICommunicationCardProps> = ({
           >
             {(data?.subtitle).substring(0, 20)}...
           </span>
-        </span>
+        </div>
       </div>
     </div>
   );

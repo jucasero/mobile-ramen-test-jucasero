@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { NewsProvider } from './context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NewsProvider>
+      <App />
+    </NewsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

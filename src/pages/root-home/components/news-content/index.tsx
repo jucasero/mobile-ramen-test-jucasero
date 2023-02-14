@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { IonContent } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import TaskCard from '../../../../components/task-card';
+import CommunicationCard from '../../../../components/communication-card';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import useFetch from '../../../../hooks/useFetch';
 import NewsClient from '../../../../clients/NewsClient';
@@ -29,7 +29,10 @@ const NewsContent = () => {
   const [fetchNews, categories, loading] = useFetch(NewsClient.getCategories());
 
   const handleOnClickTask = (category: ICategory) => {
-    history.replace({ pathname: category.type, state: category });
+    history.replace({
+      pathname: category.type,
+      state: { type: category.type, ...category },
+    });
   };
 
   useEffect(() => {
@@ -42,13 +45,13 @@ const NewsContent = () => {
 
       {categories &&
         categories.map((category) => (
-          <TaskCard
+          <CommunicationCard
             key={category.id}
             image={imageByCategory[category.id]} // TODO: change image
             title={category.title}
             total={category.total}
             onClick={() => handleOnClickTask(category)}
-          ></TaskCard>
+          ></CommunicationCard>
         ))}
 
       {!categories && !loading && (

@@ -1,41 +1,43 @@
 import { INew } from '../../models/INews/ICategory';
 
 export interface INewsState {
-  news: INew[];
-  selectedNew: INew | null;
-  isNewReaded: boolean;
-  lastApiCall: Date | null;
+  news: Array<INew>;
 }
 
 export type NewsAction =
   | {
       type: 'SET_NEWS';
-      payload: INew[];
+      payload: any;
     }
-  | { type: 'SET_SELECTED_NEW'; payload: INew }
-  | { type: 'SET_NEW_READED'; payload: boolean };
+  | { type: 'SET_NEW_READED'; payload: any };
 
 export const newsReducer = (
   state: INewsState,
   action: NewsAction
 ): INewsState => {
   switch (action.type) {
-    case 'SET_NEWS':
+    case 'SET_NEWS': {
       return {
         ...state,
         news: action.payload,
-        lastApiCall: new Date(),
       };
-    case 'SET_SELECTED_NEW':
+    }
+    case 'SET_NEW_READED': {
+      const index = state.news.findIndex((item) => item.id === action.payload);
+      const updatedNewsItem = {
+        ...state.news[index],
+        readed: true,
+      };
+      const news = [
+        ...state.news.slice(0, index),
+        updatedNewsItem,
+        ...state.news.slice(index + 1),
+      ];
       return {
         ...state,
-        selectedNew: action.payload,
+        news,
       };
-    case 'SET_NEW_READED':
-      return {
-        ...state,
-        isNewReaded: action.payload,
-      };
+    }
     default:
       return state;
   }

@@ -4,25 +4,25 @@ export const categories: ICategory[] = [
   {
     id: '1',
     title: 'Category',
-    type: 'news/category',
+    type: '/news/category',
     total: 1,
   },
   {
     id: '2',
     title: 'Comercial',
-    type: 'news/comercial',
+    type: '/news/comercial',
     total: 2,
   },
   {
     id: '3',
     title: 'Ofertas',
-    type: 'news/ofertas',
+    type: '/news/ofertas',
     total: 1,
   },
   {
     id: '4',
     title: 'Logística',
-    type: 'news/logistica',
+    type: '/news/logistica',
     total: 1,
   },
 ];
