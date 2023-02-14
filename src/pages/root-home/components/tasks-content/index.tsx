@@ -1,26 +1,22 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import ProgressBar from 'react-customizable-progressbar';
 import { IonContent, useIonToast } from '@ionic/react';
 import { i18 } from '@team_eureka/eureka-ionic-core';
-import EmojiIcon from '../../../../components/emoji-icon';
 import TaskCard from '../../../../components/task-card';
 import { rootRoute } from '../../../../routes';
 import { AppContext } from '../../../../context';
 import { useTask } from '../../../../hooks';
 import TasksClient from '../../../../clients/TasksClient';
 import { TaskSkeleton } from '../../../../components/loaders';
+import ProgressCard from '../progress-card';
 import alarmImage from '../../../../assets/media/task/alarm.svg';
 import { ITask } from '../../../../models/ITasks/ITask';
 import checkIcon from '../../../../assets/media/check.svg';
 import { ReactComponent as AllDoneImage } from './../../../../assets/media/eye.svg';
 import locales from './locales';
 
-const localize = i18(locales);
-interface IProps {
-  pendingInPercent: any;
-}
-const TasksContent: React.FC<IProps> = (props) => {
+const TasksContent: React.FC = () => {
+  const localize = i18(locales);
   const minutesToRefreshTasks = 1;
   const history = useHistory();
   const [present] = useIonToast();
@@ -58,28 +54,10 @@ const TasksContent: React.FC<IProps> = (props) => {
 
   return (
     <IonContent>
-      <div className='progress-bar'>
-        <div>
-          <div>
-            <span />
-          </div>
-          <div className='progress-text'>
-            <EmojiIcon emoji={'🎉'} size='small' />
-            <div>&nbsp;&nbsp;&nbsp;{localize('NO_PENDING_TASKS', '')}</div>
-          </div>
-        </div>
-        <div>
-          <ProgressBar
-            progress={props.pendingInPercent}
-            radius={100}
-            trackStrokeWidth={13}
-            trackStrokeColor={'#273432'}
-            strokeWidth={15}
-            strokeColor={'#8ef46b'}
-          />
-          <div>{Math.floor(props.pendingInPercent)}%</div>
-        </div>
-      </div>
+      <ProgressCard pendingPercentage={25} />
+
+      <hr />
+
       {loading && <TaskSkeleton cardsNumber={1} />}
 
       {tasks &&

@@ -90,49 +90,33 @@ export const FoundRateProductDetail: React.FC = () => {
         backRoute={foundRateRoutes.subCategories}
       />
       <IonContent className='ion-padding'>
-        <IonGrid>
-          <IonRow className='product-detail--header'>
-            <IonCol size='3'>
-              <IonThumbnail className='product-image-container'>
+        <IonGrid className='product-detail-grid'>
+          <IonRow>
+            <IonCol className='product-detail-thumbnail' size='auto'>
+              <IonThumbnail>
                 <IonImg
-                  className='product-image'
                   src={selectedProduct.image}
                   alt={selectedProduct.description}
                 />
               </IonThumbnail>
             </IonCol>
 
-            <IonCol size='4'>
+            <IonCol className='product-detail-descriptions'>
               <IonRow>
-                <span className='product-detail--title'>
-                  {selectedProduct.description}
-                </span>
+                <h6>{selectedProduct.description}</h6>
               </IonRow>
               <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('PRODUCT_EAN', '')}
-                </span>
-                <span className='product-detail--tag-title'>
-                  {selectedProduct.ean}
-                </span>
+                <p>{localize('PRODUCT_EAN', '')}</p>
+                <span>{selectedProduct.ean}</span>
               </IonRow>
               <IonRow>
-                <span className='product-detail--tag-title'>
-                  {localize('STOCK_NRT', '')}
-                </span>
-                <span className='product-detail--tag-title'>
-                  {selectedProduct.stock_nrt}
-                </span>
+                <p>{localize('STOCK_NRT', '')}</p>
+                <span>{selectedProduct.stock_nrt}</span>
               </IonRow>
             </IonCol>
-
-            <IonCol size='5'>
-              <IonRow className='product-detail--location'>
-                <span className='product-detail--tag-title'>
-                  {selectedProduct.location}
-                </span>
-              </IonRow>
-            </IonCol>
+          </IonRow>
+          <IonRow className='product-detail-location'>
+            <p>{selectedProduct.location}</p>
           </IonRow>
         </IonGrid>
 
