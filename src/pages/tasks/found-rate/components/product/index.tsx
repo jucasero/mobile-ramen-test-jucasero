@@ -49,7 +49,7 @@ const Product: React.FC<IProps> = ({ product, onClick }) => {
       <IonRow>
         <IonChip>
           <IonIcon icon={shop} />
-          <IonLabel color={'light'}>{localize('CORNER_SHOP', '')}</IonLabel>
+          <IonLabel>{localize('CORNER_SHOP', '')}</IonLabel>
         </IonChip>
       </IonRow>
     </IonGrid>
