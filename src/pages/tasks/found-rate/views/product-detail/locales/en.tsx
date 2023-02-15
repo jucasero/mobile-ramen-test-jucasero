@@ -1,4 +1,5 @@
 const locale = {
+  SECTION: 'Cornershop',
   STOCK_NRT: 'Stock',
   ARTICLE: 'Article',
   PROVIDER: 'Provider',
