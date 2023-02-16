@@ -43,7 +43,7 @@ const TaskHeader: React.FC<ITaskHeaderProps> = ({
         {section && (
           <IonChip slot='end'>
             <IonIcon icon={icon} />
-            <IonLabel color={'light'}>{section}</IonLabel>
+            <IonLabel>{section}</IonLabel>
           </IonChip>
         )}
       </IonToolbar>

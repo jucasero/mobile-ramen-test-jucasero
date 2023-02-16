@@ -43,26 +43,35 @@ ion-grid.product-detail-grid
       p
         margin: 0 4px 0 0
         color: var(--ion-color-medium-tint)
+        font-weight: 600
+      span
+        color: var(--ion-color-medium-shade)
+        font-weight: 700
   ion-row.product-detail-location
-    p
-      width: 100%
-      margin: 12px 0 16px 0
-      text-align: center
-      padding: 10px 0
-      border: 1px solid var(--ion-color-secondary-contrast)
-      border-radius: 8px
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+    margin: 12px 0 16px 0
+    padding: 10px 0
+    border: 1px solid var(--ion-color-secondary-contrast)
+    border-radius: 8px
+    color: var(--ion-color-medium-shade)
+    font-weight: 600
+    span
+      margin-left: 5px
 
 .product-detail--card
   background-color: #000000
   padding: 16px 24px
-  margin: 24px 0px
-  border-radius: 24px
+  margin: 40px 0px 24px 0px
+  border-radius: 16px
 
 .product-detail--tag-title
   @extend %product-detail--text
   font-size: 14px
   font-weight: 600
-  color: #666666
+  color: var(--ion-color-medium-shade)
   margin-bottom: 4px
   margin-right: 4px
 
@@ -70,10 +79,17 @@ ion-grid.product-detail-grid
   @extend %product-detail--text
   font-size: 16px
   font-weight: 600
-  color: #000000
+  color: var(--ion-text-color)
+
+.section-divider
+  height: 1px
+  background: var(--ion-color-secondary-contrast)
+  width: 100%
+  position: absolute
+  left: 0
 
 .divider
   height: 1px
-  background: #F0F0F0
+  background: var(--ion-color-secondary-contrast)
   width: 100%
   margin: 8px 0px

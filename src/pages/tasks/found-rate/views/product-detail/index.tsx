@@ -9,6 +9,7 @@ import {
   IonGrid,
   IonThumbnail,
   IonImg,
+  IonIcon,
 } from '@ionic/react';
 
 import locales from './locales';
@@ -22,6 +23,7 @@ import {
 import Button from '../../../../../components/button';
 import TouchScreenLock from '../../../../../components/touch-screen-lock';
 
+import location from '../../../../../assets/media/location.svg';
 import cornerShopIcon from '../../../../../assets/media/task/corner-shop.svg';
 
 import { AppContext, FoundRateContext } from '../../../../../context';
@@ -85,7 +87,7 @@ export const FoundRateProductDetail: React.FC = () => {
   return (
     <IonPage>
       <TaskHeader
-        section='CornerShop'
+        section={localize('SECTION', '')}
         icon={cornerShopIcon}
         backRoute={foundRateRoutes.subCategories}
       />
@@ -116,9 +118,12 @@ export const FoundRateProductDetail: React.FC = () => {
             </IonCol>
           </IonRow>
           <IonRow className='product-detail-location'>
-            <p>{selectedProduct.location}</p>
+            <IonIcon icon={location} />
+            <span>{selectedProduct.location}</span>
           </IonRow>
         </IonGrid>
+
+        <div className='section-divider' />
 
         <div className='product-detail--card'>
           <p className='product-detail--text-sm color--light'>
