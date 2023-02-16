@@ -21,20 +21,20 @@ const CommunicationCard: React.FC<ICommunicationCardProps> = ({
 }) => {
   return (
     <IonItem
-      class='communication-card'
+      class='communication-category-card'
       onClick={() => onClick()}
       detail={true}
       detailIcon={chevronForwardSharp}
       lines='none'
     >
-      <div className={boxIcon ? 'communication-box' : ''}>
+      <div className={boxIcon ? 'communication-category-box' : ''}>
         <IonImg
           src={image ?? defaultImage}
-          className={boxIcon ? 'communication-image' : ''}
+          className={boxIcon ? 'communication-category-image' : ''}
         />
       </div>
       {/* TODO: Replace by XText from @ramenx/ui-library */}
-      <p className='communication-card-title'>{title}</p>
+      <p className='communication-category-card-title'>{title}</p>
       <Badge total={total}></Badge>
     </IonItem>
   );

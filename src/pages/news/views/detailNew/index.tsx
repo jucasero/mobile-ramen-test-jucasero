@@ -9,16 +9,11 @@ import Button from '../../../../components/button';
 import downloadImage from '../../../../assets/media/download.svg';
 import notFoundImage from '../../../../assets/media/image-not-found-icon.svg';
 
+import { categoryConfig } from '../../../../utils/news';
+
 import locales from './locales';
 
 import './index.sass';
-
-const categoriesByColor = {
-  '1': '#DA995D',
-  '2': '#7C7AE3',
-  '3': '#5DB5DA',
-  '4': '#2FCD9B',
-};
 
 // Detail of a communication
 const DetailNew: React.FC = () => {
@@ -58,7 +53,9 @@ const DetailNew: React.FC = () => {
 
             <span
               className='detail-new-subtitle'
-              style={{ color: categoriesByColor[locationState?.idCategory] }}
+              style={{
+                color: categoryConfig[locationState?.idCategory]?.color,
+              }}
             >
               {locationState?.subtitle}
             </span>

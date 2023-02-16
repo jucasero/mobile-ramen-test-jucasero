@@ -10,6 +10,7 @@ import CommunicationCard from '../../components/CommunicationCard';
 import TaskHeader from '../../components/TaskHeader';
 import { TaskSkeleton } from '../../../../components/loaders';
 
+import { rootRoute } from '../../../../routes';
 import locales from './locales';
 
 import './index.sass';
@@ -44,21 +45,24 @@ const News: React.FC = () => {
   return (
     <IonPage className='communication-page'>
       <>
-        <TaskHeader title={locationState.title} backRoute='/' />
+        <TaskHeader title={locationState.title} backRoute={rootRoute} />
 
-        {loading && <TaskSkeleton cardsNumber={4} />}
+        {loading && <TaskSkeleton cardsNumber={news?.length} />}
 
         {news && (
           <>
             <IonRow className='communication-flex'>
               <span className='communication-text-unread'>
-                {/* {localize('COMMUNICATIONS_UNREAD', '')} */}
-                Tienes{' '}
-                <span className='communication-display-unread'>
-                  {news.filter((detail) => !detail.readed).length} comunicados
-                  nuevos{' '}
-                </span>
-                por leer
+                {localize('COMMUNICATIONS_HAVE', '')}
+              </span>
+
+              <span className='communication-display-unread'>
+                {news.filter((detail) => !detail.readed).length} {''}
+                {localize('COMMUNICATIONS_NEWS', '')}
+              </span>
+
+              <span className='communication-text-unread'>
+                {localize('COMMUNICATIONS_UNREAD', '')}
               </span>
 
               <IonCol>
