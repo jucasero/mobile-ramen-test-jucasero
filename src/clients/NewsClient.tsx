@@ -1,6 +1,10 @@
 import { RESTClient } from '@team_eureka/eureka-ionic-core';
 import WithBootedClient from '../libs/WithBootedClient';
-import { categories, news } from '../mocks/news';
+import {
+  categories,
+  news,
+  responseUpdateCommunicateAsRead,
+} from '../mocks/news';
 import { apiCallMock } from '../mocks/utils';
 import { ICategory, INew } from '../models/INews/ICategory';
 
@@ -13,17 +17,17 @@ class NewsClient extends RESTClient implements WithBootedClient {
     return response;
   }
 
-  async getNews(category: string): Promise<INew[]> {
-    const apiCall = apiCallMock(news);
+  async getNews(): Promise<INew[]> {
+    const response = await apiCallMock(news);
+    return response;
+  }
 
-    const response = await apiCall;
-
-    // filter news by ID category
-    const filtered = response.filter(
-      ({ idCategory }) => idCategory === category
+  // Replace to API to update communicate as read
+  async updateCommunicateAsRead(communicationId: string) {
+    const response = await apiCallMock(
+      responseUpdateCommunicateAsRead(communicationId)
     );
-
-    return filtered;
+    return response;
   }
 }
 

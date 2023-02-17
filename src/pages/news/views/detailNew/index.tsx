@@ -1,7 +1,5 @@
-import { useContext, useEffect } from 'react';
 import { IonPage, IonImg, IonButton } from '@ionic/react';
 import { useHistory } from 'react-router';
-import { NewsContext } from '../../../../context';
 import { i18 } from '@team_eureka/eureka-ionic-core';
 import { INew } from '../../../../models/INews/ICategory';
 import TaskHeader from '../../components/TaskHeader';
@@ -20,13 +18,12 @@ const DetailNew: React.FC = () => {
   const localize = i18(locales);
   const history = useHistory<INew>();
   const locationState: INew = history.location.state;
-  const { dispatch } = useContext(NewsContext);
 
   const redirectExternalLink = () => {
     window.location.replace(locationState.link);
   };
 
-  const handleDownloadFile = (file) => {
+  const handleDownloadFile = (file: string) => {
     fetch(file).then((response) => {
       response.blob().then((blob) => {
         const url = window.URL.createObjectURL(blob);
@@ -38,14 +35,10 @@ const DetailNew: React.FC = () => {
     });
   };
 
-  useEffect(() => {
-    dispatch({ type: 'SET_NEW_READED', payload: locationState?.id });
-  }, []);
-
   return (
     <IonPage className='communication-page'>
       <>
-        <TaskHeader backRoute={locationState?.pathBack} />
+        <TaskHeader backRoute={locationState.pathBack} />
 
         <div className='detail-new-flex'>
           <div className='detail-new-content'>

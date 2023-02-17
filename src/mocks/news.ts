@@ -4,25 +4,25 @@ export const categories: ICategory[] = [
   {
     id: '1',
     title: 'Category',
-    type: '/news/category',
+    type: '/news/1',
     total: 1,
   },
   {
     id: '2',
     title: 'Comercial',
-    type: '/news/comercial',
+    type: '/news/2',
     total: 2,
   },
   {
     id: '3',
     title: 'Ofertas',
-    type: '/news/ofertas',
+    type: '/news/3',
     total: 1,
   },
   {
     id: '4',
     title: 'Logística',
-    type: '/news/logistica',
+    type: '/news/4',
     total: 1,
   },
 ];
@@ -228,3 +228,12 @@ export const news: INew[] = [
     date: 'Mar 7 feb. 2023',
   },
 ];
+
+export const responseUpdateCommunicateAsRead = (communicationId: string) => ({
+  status: 200,
+  response: {
+    id: communicationId,
+    message: 'Se ha actualizado el estado a leído correctamente',
+    updated_at: new Date().toISOString(),
+  },
+});

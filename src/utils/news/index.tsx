@@ -3,7 +3,14 @@ import commercialImage from '../../assets/media/commercial.svg';
 import logisticImage from '../../assets/media/logistic.svg';
 import offerImage from '../../assets/media/offer.svg';
 
-export const categoryConfig = {
+interface ICategoryConfig {
+  [key: string]: {
+    color: string;
+    icon: string;
+  };
+}
+
+export const categoryConfig: ICategoryConfig = {
   '1': {
     color: '#DA995D',
     icon: categoryImage,

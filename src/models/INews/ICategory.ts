@@ -5,13 +5,19 @@ export interface ICategory {
   type: string;
 }
 
+export interface IFile {
+  id: string;
+  name: string;
+  url: string;
+}
+
 export interface INew {
   id: string;
   idCategory: string;
   category: string;
   title: string;
   subtitle: string;
-  files: Array<any> // TODO: improve this
+  files: Array<IFile>;
   description: string;
   image?: string;
   link?: string;

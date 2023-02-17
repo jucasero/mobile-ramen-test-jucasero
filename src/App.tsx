@@ -46,6 +46,8 @@ import { rootRoute, newsRoutes } from './routes';
 
 import animationBuilder from './libs/AnimationBuilder';
 
+import { NewsProvider } from './context';
+
 /* Set the lenguage (spanish if the default lenguage if you dont set any other) */
 /* setLocale('br') */
 
@@ -109,12 +111,14 @@ const App: React.FC = () => {
       <IonReactRouter keyLength={1}>
         <IonRouterOutlet animation={animationBuilder}>
           {/* CORE PATHS */}
-          <Route path={rootRoute} component={RootHomePage} exact={true} />
+          <NewsProvider>
+            <Route path={rootRoute} component={RootHomePage} exact={true} />
 
-          {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
-          {/* News routes */}
-          <Route path={newsRoutes.news} component={News} exact />
-          <Route path={newsRoutes.detailNew} component={DetailNew} exact />
+            {/* Parte de la documentacion de los equipos regionales (rutas de modulos) */}
+            {/* News routes */}
+            <Route path={newsRoutes.news} component={News} exact />
+            <Route path={newsRoutes.detailNew} component={DetailNew} exact />
+          </NewsProvider>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
