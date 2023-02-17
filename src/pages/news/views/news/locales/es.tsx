@@ -1,6 +1,8 @@
 const locale = {
   COMMUNICATIONS_READ: 'Leidos',
-  COMMUNICATIONS_UNREAD: 'Tienes XX comunicadados nuevos por leer',
+  COMMUNICATIONS_HAVE: 'Tienes',
+  COMMUNICATIONS_NEWS: 'comunicados nuevos',
+  COMMUNICATIONS_UNREAD: 'por leer',
 };
 
 export default locale;

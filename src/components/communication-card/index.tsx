@@ -1,11 +1,10 @@
 import { IonImg, IonItem } from '@ionic/react';
 import { chevronForwardSharp } from 'ionicons/icons';
-import { XText } from '@ramenx/ui-library';
 import Badge from '../badge';
 import defaultImage from '../../assets/media/task/task.svg';
 import './index.sass';
 
-interface ITaskCardProps {
+interface ICommunicationCardProps {
   title: string;
   image: string;
   total: number;
@@ -13,7 +12,7 @@ interface ITaskCardProps {
   onClick: () => void;
 }
 
-const TaskCard: React.FC<ITaskCardProps> = ({
+const CommunicationCard: React.FC<ICommunicationCardProps> = ({
   title,
   image,
   total,
@@ -22,23 +21,23 @@ const TaskCard: React.FC<ITaskCardProps> = ({
 }) => {
   return (
     <IonItem
-      class='task-card'
+      class='communication-category-card'
       onClick={() => onClick()}
       detail={true}
       detailIcon={chevronForwardSharp}
       lines='none'
     >
-      <div className={boxIcon ? 'task-box' : ''}>
+      <div className={boxIcon ? 'communication-category-box' : ''}>
         <IonImg
           src={image ?? defaultImage}
-          className={boxIcon ? 'task-image' : ''}
+          className={boxIcon ? 'communication-category-image' : ''}
         />
       </div>
       {/* TODO: Replace by XText from @ramenx/ui-library */}
-      <p className='task-card-title'>{title}</p>
+      <p className='communication-category-card-title'>{title}</p>
       <Badge total={total}></Badge>
     </IonItem>
   );
 };
 
-export default TaskCard;
+export default CommunicationCard;
