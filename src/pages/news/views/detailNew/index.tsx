@@ -20,7 +20,7 @@ const DetailNew: React.FC = () => {
   const locationState: INew = history.location.state;
 
   const redirectExternalLink = () => {
-    window.location.replace(locationState.link);
+    window.open(locationState.link, '_system');
   };
 
   const handleDownloadFile = (file: string) => {
